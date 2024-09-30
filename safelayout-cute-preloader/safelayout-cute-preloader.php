@@ -3,7 +3,7 @@
 Plugin Name: Safelayout Cute Preloader
 Plugin URI: https://safelayout.com
 Description: Easily add a pure CSS animated preloader to your WordPress website.
-Version: 2.0.92
+Version: 2.0.93
 Author: Safelayout
 Text Domain: safelayout-cute-preloader
 Domain Path: /languages
@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Preloader_Pro' ) ) {
 
 	// Define the constant used in this plugin
-	define( 'SAFELAYOUT_PRELOADER_VERSION', '2.0.92');
+	define( 'SAFELAYOUT_PRELOADER_VERSION', '2.0.93');
 	define( 'SAFELAYOUT_PRELOADER_NAME', plugin_basename( __FILE__ ) );
 	define( 'SAFELAYOUT_PRELOADER_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'SAFELAYOUT_PRELOADER_URL', plugin_dir_url( __FILE__ ) );
@@ -34,7 +34,7 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 			'specific_names'			=> '',
 			'device'					=> 'all',
 			'close_button'				=> 5,
-			'minimum_time'				=> 0,
+			'minimum_time'				=> 0.5,
 			'maximum_time'				=> 0,
 			'background_anim'			=> 'linear-right',
 			'background_color_type'		=> 'solid',
@@ -57,7 +57,7 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 			'text_anim'					=> 'zoom',
 			'text_size'					=> 14,
 			'text_color'				=> '#fff',
-			'text_margin_top'			=> 0,
+			'text_margin_top'			=> 5,
 			'brand_enable'				=> 'enable',
 			'brand_url'					=> '',
 			'brand_url_alt'				=> '',
@@ -67,15 +67,15 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 			'brand_position'			=> 'top',
 			'brand_margin_top'			=> 0,
 			'brand_margin_bottom'		=> 0,
-			'bar_shape'					=> 'anim-border-stripe-bar',
+			'bar_shape'					=> 'simple-bar',
 			'bar_light'					=> 'enable',
 			'bar_position'				=> 'middle_under_text',
-			'bar_width'					=> 220,
+			'bar_width'					=> 240,
 			'bar_width_unit'			=> 'px',
 			'bar_height'				=> 10,
-			'bar_border_radius'			=> 10,
+			'bar_border_radius'			=> 2,
 			'bar_border_color'			=> '#0f0',
-			'bar_margin_top'			=> 0,
+			'bar_margin_top'			=> 5,
 			'bar_margin_bottom'			=> 0,
 			'bar_margin_left'			=> 0,
 			'bar_color_type'			=> 'solid',
@@ -109,6 +109,7 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 
 			add_filter( 'plugin_action_links_' . SAFELAYOUT_PRELOADER_NAME, array( $this, 'plugin_action_links' ) );
 			add_action( 'activated_plugin', array( $this, 'redirect_settings' ) );
+			register_deactivation_hook( __FILE__, array( $this, 'deactivation_preloader' ) );
 
 			if ( is_admin() ){
 				// Load the admin related functions
@@ -122,11 +123,17 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 		// Redirect to settings page
 		public function redirect_settings( $plugin ) {
 			if( $plugin == plugin_basename( __FILE__ ) ) {
+				Safelayout_Preloader_Admin::purge_cache();
 				$option = get_option( 'safelayout_preloader_options_rate' );
 				if ( ! $option ) {
 					exit( wp_redirect( admin_url( 'options-general.php?page=safelayout-cute-preloader' ) ) );
 				}
 			}
+		}
+
+		// Deactivation preloader
+		public function deactivation_preloader() {
+			Safelayout_Preloader_Admin::purge_cache();
 		}
 
 		// Load the front end related functions

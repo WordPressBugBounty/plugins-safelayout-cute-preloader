@@ -1655,6 +1655,9 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 		public function option_sanitize( $input ) {
 			$default_options = safelayout_preloader_get_default_options();
 			
+			//purge cache
+			$this->purge_cache();
+			
 			// Restore Defaults
 			if ( isset( $_POST["delete_btn"] ) ) {
 				return $this->set_HTML_and_CSS_code( $default_options, '' );
@@ -2694,6 +2697,60 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 				$default = $number;
 			}
 			return $default;
+		}
+
+		//purge cache
+		public static function purge_cache() {
+			if ( function_exists( 'w3tc_pgcache_flush' ) ) { // W3 Total Cache
+				w3tc_pgcache_flush();
+			} else if ( function_exists( 'wp_cache_clean_cache' ) ) { // WP Super Cache
+				global $file_prefix, $supercachedir;
+				if ( empty( $supercachedir ) && function_exists( 'get_supercache_dir' ) ) {
+					$supercachedir = get_supercache_dir();
+				}
+				wp_cache_clean_cache( $file_prefix );
+			} else if ( class_exists( 'WpeCommon' ) ) { // WPEngine Cache
+				//be extra careful, just in case 3rd party changes things on us
+				if ( method_exists( 'WpeCommon', 'purge_memcached' ) ) {
+					WpeCommon::purge_memcached();
+				}
+				if ( method_exists( 'WpeCommon', 'clear_maxcdn_cache' ) ) {
+					WpeCommon::clear_maxcdn_cache();
+				}
+				if ( method_exists( 'WpeCommon', 'purge_varnish_cache' ) ) {
+					WpeCommon::purge_varnish_cache();   
+				}
+			} else if ( method_exists( 'WpFastestCache', 'deleteCache' ) && !empty( $wp_fastest_cache ) ) { // WP Fastest Cache
+				$wp_fastest_cache->deleteCache( true );
+			} else if ( class_exists( '\Kinsta\Cache' ) && !empty( $kinsta_cache ) ) { // Kinsta Cache
+				$kinsta_cache->kinsta_cache_purge->purge_complete_caches();
+			} else if ( class_exists( '\WPaaS\Cache' ) ) { // GoDaddy Cache
+				ccfm_godaddy_purge();
+			} else if ( class_exists( 'WP_Optimize' ) && defined( 'WPO_PLUGIN_MAIN_PATH' ) ) { // WP Optimize Cache
+				if ( !class_exists('WP_Optimize_Cache_Commands') ) {
+					include_once(WPO_PLUGIN_MAIN_PATH . 'cache/class-cache-commands.php');
+				}
+
+				if ( class_exists( 'WP_Optimize_Cache_Commands' ) ) {
+					$wpoptimize_cache_commands = new WP_Optimize_Cache_Commands();
+					$wpoptimize_cache_commands->purge_page_cache();
+				}
+			} else if ( class_exists( 'Breeze_Admin' ) ) { // Breeze Cache
+				do_action('breeze_clear_all_cache');
+			} else if ( defined( 'LSCWP_V' ) ) { // LiteSpeed Cache
+				do_action( 'litespeed_purge_all' );
+			} else if ( function_exists( 'sg_cachepress_purge_cache' ) ) { // SiteGround SuperCacher
+				sg_cachepress_purge_cache();
+			} else if ( class_exists( 'autoptimizeCache' ) ) { // Autoptimize
+				autoptimizeCache::clearall();
+			} else if ( class_exists( 'Cache_Enabler' ) ) { // Cache Enabler
+				Cache_Enabler::clear_total_cache();
+			} else if ( function_exists( 'rocket_clean_domain' ) ) { // WP Rocket
+				rocket_clean_domain();
+				if ( function_exists( 'rocket_clean_minify' ) ) {
+					rocket_clean_minify();
+				}
+			}
 		}
 
 		// Return gradients

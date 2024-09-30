@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Safelayout Cute Preloader plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Safelayout Cute Preloader 2.0.92\n"
-"POT-Creation-Date: 2024-09-15 22:23+0330\n"
-"PO-Revision-Date: 2024-09-15 22:23+0330\n"
+"Project-Id-Version: Safelayout Cute Preloader 2.0.93\n"
+"POT-Creation-Date: 2024-09-28 18:20+0330\n"
+"PO-Revision-Date: 2024-09-28 18:20+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -146,7 +146,7 @@ msgid "Safelayout Preloader"
 msgstr ""
 
 #: inc/class-safelayout-preloader-admin.php:413
-#: inc/class-safelayout-preloader-admin.php:703
+#: inc/class-safelayout-preloader-admin.php:707
 msgid "Display settings"
 msgstr ""
 
@@ -155,12 +155,12 @@ msgid "Background"
 msgstr ""
 
 #: inc/class-safelayout-preloader-admin.php:415
-#: inc/class-safelayout-preloader-admin.php:789
+#: inc/class-safelayout-preloader-admin.php:793
 msgid "Progress Bar"
 msgstr ""
 
 #: inc/class-safelayout-preloader-admin.php:416
-#: inc/class-safelayout-preloader-admin.php:632
+#: inc/class-safelayout-preloader-admin.php:636
 msgid "Brand Image"
 msgstr ""
 
@@ -169,12 +169,12 @@ msgid "Icon"
 msgstr ""
 
 #: inc/class-safelayout-preloader-admin.php:418
-#: inc/class-safelayout-preloader-admin.php:892
+#: inc/class-safelayout-preloader-admin.php:896
 msgid "Counter"
 msgstr ""
 
 #: inc/class-safelayout-preloader-admin.php:419
-#: inc/class-safelayout-preloader-admin.php:584
+#: inc/class-safelayout-preloader-admin.php:588
 msgid "Text"
 msgstr ""
 
@@ -202,499 +202,496 @@ msgstr ""
 msgid "Restore Defaults"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:483
+#: inc/class-safelayout-preloader-admin.php:487
 msgid "Icon settings"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:490
+#: inc/class-safelayout-preloader-admin.php:494
 msgid "Preloader icon"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:498
+#: inc/class-safelayout-preloader-admin.php:502
 msgid "Icon preview"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:506
+#: inc/class-safelayout-preloader-admin.php:510
 msgid "Icon size"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:514
+#: inc/class-safelayout-preloader-admin.php:518
 msgid "Icon color"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:522
+#: inc/class-safelayout-preloader-admin.php:526
 msgid "Icon effect"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:530
+#: inc/class-safelayout-preloader-admin.php:534
 msgid "Background settings"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:537
+#: inc/class-safelayout-preloader-admin.php:541
 msgid "Background Animation"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:545
+#: inc/class-safelayout-preloader-admin.php:549
 msgid "Background opacity"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:553
-#: inc/class-safelayout-preloader-admin.php:1126
+#: inc/class-safelayout-preloader-admin.php:557
+#: inc/class-safelayout-preloader-admin.php:1130
 msgid "Small background"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:561
+#: inc/class-safelayout-preloader-admin.php:565
 msgid "Background color"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:569
+#: inc/class-safelayout-preloader-admin.php:573
 msgid "Text settings"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:576
-#: inc/class-safelayout-preloader-admin.php:1144
+#: inc/class-safelayout-preloader-admin.php:580
+#: inc/class-safelayout-preloader-admin.php:1148
 msgid "Show text"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:592
+#: inc/class-safelayout-preloader-admin.php:596
 msgid "Text animation"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:600
+#: inc/class-safelayout-preloader-admin.php:604
 msgid "Text preview"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:608
+#: inc/class-safelayout-preloader-admin.php:612
 msgid "Text color"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:616
-#: inc/class-safelayout-preloader-admin.php:939
+#: inc/class-safelayout-preloader-admin.php:620
+#: inc/class-safelayout-preloader-admin.php:943
 msgid "Font size"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:624
-#: inc/class-safelayout-preloader-admin.php:687
-#: inc/class-safelayout-preloader-admin.php:868
-#: inc/class-safelayout-preloader-admin.php:947
+#: inc/class-safelayout-preloader-admin.php:628
+#: inc/class-safelayout-preloader-admin.php:691
+#: inc/class-safelayout-preloader-admin.php:872
+#: inc/class-safelayout-preloader-admin.php:951
 msgid "Margin top"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:647
+#: inc/class-safelayout-preloader-admin.php:651
+#: inc/class-safelayout-preloader-admin.php:1209
 msgid "Show brand image"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:655
+#: inc/class-safelayout-preloader-admin.php:659
 msgid "Image URL"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:663
+#: inc/class-safelayout-preloader-admin.php:667
 msgid "Image animation"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:671
+#: inc/class-safelayout-preloader-admin.php:675
 msgid "Image preview"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:679
+#: inc/class-safelayout-preloader-admin.php:683
 msgid "Image position"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:695
-#: inc/class-safelayout-preloader-admin.php:876
-#: inc/class-safelayout-preloader-admin.php:955
+#: inc/class-safelayout-preloader-admin.php:699
+#: inc/class-safelayout-preloader-admin.php:880
+#: inc/class-safelayout-preloader-admin.php:959
 msgid "Margin bottom"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:710
+#: inc/class-safelayout-preloader-admin.php:714
 msgid "Enable Preloader"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:718
+#: inc/class-safelayout-preloader-admin.php:722
 msgid "Display on"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:726
+#: inc/class-safelayout-preloader-admin.php:730
 msgid "Minimum load time"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:734
+#: inc/class-safelayout-preloader-admin.php:738
 msgid "Maximum load time"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:742
+#: inc/class-safelayout-preloader-admin.php:746
 msgid "Show close button after"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:750
+#: inc/class-safelayout-preloader-admin.php:754
 msgid "Special preloader"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:765
+#: inc/class-safelayout-preloader-admin.php:769
 msgid "Show meta box"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:773
+#: inc/class-safelayout-preloader-admin.php:777
 msgid "Preloader Shortcode"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:796
+#: inc/class-safelayout-preloader-admin.php:800
 msgid "Bar shape"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:804
+#: inc/class-safelayout-preloader-admin.php:808
 msgid "Bar preview"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:812
+#: inc/class-safelayout-preloader-admin.php:816
 msgid "Bar light"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:820
+#: inc/class-safelayout-preloader-admin.php:824
 msgid "Bar color"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:828
+#: inc/class-safelayout-preloader-admin.php:832
 msgid "Bar position"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:836
+#: inc/class-safelayout-preloader-admin.php:840
 msgid "Bar width"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:844
+#: inc/class-safelayout-preloader-admin.php:848
 msgid "Bar height"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:852
+#: inc/class-safelayout-preloader-admin.php:856
 msgid "Border radius"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:860
+#: inc/class-safelayout-preloader-admin.php:864
 msgid "Border color"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:884
-#: inc/class-safelayout-preloader-admin.php:963
+#: inc/class-safelayout-preloader-admin.php:888
+#: inc/class-safelayout-preloader-admin.php:967
 msgid "Margin left"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:899
-#: inc/class-safelayout-preloader-admin.php:1580
+#: inc/class-safelayout-preloader-admin.php:903
+#: inc/class-safelayout-preloader-admin.php:1584
 msgid "Show counter"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:907
+#: inc/class-safelayout-preloader-admin.php:911
 msgid "Counter Text"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:915
+#: inc/class-safelayout-preloader-admin.php:919
 msgid "Counter preview"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:923
+#: inc/class-safelayout-preloader-admin.php:927
 msgid "Counter position"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:931
+#: inc/class-safelayout-preloader-admin.php:935
 msgid "Counter color"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:992
+#: inc/class-safelayout-preloader-admin.php:996
 msgid "No Icon"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:994
+#: inc/class-safelayout-preloader-admin.php:998
 msgid "Custom Icon"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1009
+#: inc/class-safelayout-preloader-admin.php:1013
 msgid ""
 "You can add your own icon by entering the URL here. (Click outside the text "
 "box to apply the changes)"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1015
-#: inc/class-safelayout-preloader-admin.php:1213
+#: inc/class-safelayout-preloader-admin.php:1019
+#: inc/class-safelayout-preloader-admin.php:1217
 msgid "Media Library"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1027
-#: inc/class-safelayout-preloader-admin.php:1169
-#: inc/class-safelayout-preloader-admin.php:1242
-#: inc/class-safelayout-preloader-admin.php:1476
+#: inc/class-safelayout-preloader-admin.php:1031
+#: inc/class-safelayout-preloader-admin.php:1173
+#: inc/class-safelayout-preloader-admin.php:1246
+#: inc/class-safelayout-preloader-admin.php:1480
 msgid "Preview"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1060
+#: inc/class-safelayout-preloader-admin.php:1064
 msgid "No Effect"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1078
-#: inc/class-safelayout-preloader-admin.php:1185
-#: inc/class-safelayout-preloader-admin.php:1192
-#: inc/class-safelayout-preloader-admin.php:1270
-#: inc/class-safelayout-preloader-admin.php:1277
-#: inc/class-safelayout-preloader-admin.php:1523
-#: inc/class-safelayout-preloader-admin.php:1530
-#: inc/class-safelayout-preloader-admin.php:1537
-#: inc/class-safelayout-preloader-admin.php:1544
-#: inc/class-safelayout-preloader-admin.php:1551
-#: inc/class-safelayout-preloader-admin.php:1558
-#: inc/class-safelayout-preloader-admin.php:1619
-#: inc/class-safelayout-preloader-admin.php:1626
-#: inc/class-safelayout-preloader-admin.php:1633
-#: inc/class-safelayout-preloader-admin.php:1640
+#: inc/class-safelayout-preloader-admin.php:1082
+#: inc/class-safelayout-preloader-admin.php:1189
+#: inc/class-safelayout-preloader-admin.php:1196
+#: inc/class-safelayout-preloader-admin.php:1274
+#: inc/class-safelayout-preloader-admin.php:1281
+#: inc/class-safelayout-preloader-admin.php:1527
+#: inc/class-safelayout-preloader-admin.php:1534
+#: inc/class-safelayout-preloader-admin.php:1541
+#: inc/class-safelayout-preloader-admin.php:1548
+#: inc/class-safelayout-preloader-admin.php:1555
+#: inc/class-safelayout-preloader-admin.php:1562
+#: inc/class-safelayout-preloader-admin.php:1623
+#: inc/class-safelayout-preloader-admin.php:1630
+#: inc/class-safelayout-preloader-admin.php:1637
+#: inc/class-safelayout-preloader-admin.php:1644
 msgid "px"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1095
+#: inc/class-safelayout-preloader-admin.php:1099
 msgid "No Background"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1121
+#: inc/class-safelayout-preloader-admin.php:1125
 msgid ""
 "https://safelayout.com/safelayout-cute-preloader-pro-documentation#how-to-"
 "change-small-background-properties"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1122
+#: inc/class-safelayout-preloader-admin.php:1126
 msgid ""
 "How to change the position, padding and border radius of the small "
 "background."
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1123
+#: inc/class-safelayout-preloader-admin.php:1127
 msgid ""
 "The small background does not cover the entire screen and the preloader is "
 "displayed as a small window in the middle of the screen."
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1127
+#: inc/class-safelayout-preloader-admin.php:1131
 msgid "New !"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1149
+#: inc/class-safelayout-preloader-admin.php:1153
 msgid ""
 "Text to display under preloader icon. (Click outside the text box to apply "
 "the changes)"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1197
+#: inc/class-safelayout-preloader-admin.php:1201
 msgid ""
 "You can display your Brand image or logo inside the preloader screen. In "
 "this section you can enter the URL of the image and set its properties."
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1205
-msgid "Show brand"
-msgstr ""
-
-#: inc/class-safelayout-preloader-admin.php:1210
+#: inc/class-safelayout-preloader-admin.php:1214
 msgid ""
 "You can add your Brand image by entering the URL here. (Click outside the "
 "text box to apply the changes)"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1224
+#: inc/class-safelayout-preloader-admin.php:1228
 msgid ""
 "Wrest X, wrest Y, swirl, sheet, roll and pipe animation types are not "
 "suitable for images with a width or height greater than 550 pixels."
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1250
+#: inc/class-safelayout-preloader-admin.php:1254
 msgid "Top of the preloader icon"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1251
+#: inc/class-safelayout-preloader-admin.php:1255
 msgid "Top of the preloader counter"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1252
+#: inc/class-safelayout-preloader-admin.php:1256
 msgid "Top of the preloader text"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1253
+#: inc/class-safelayout-preloader-admin.php:1257
 msgid "Under the preloader text"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1284
+#: inc/class-safelayout-preloader-admin.php:1288
 msgid "Enable Safelayout Cute Preloader"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1294
+#: inc/class-safelayout-preloader-admin.php:1298
 msgid "Home page"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1297
+#: inc/class-safelayout-preloader-admin.php:1301
 msgid "Full website"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1300
+#: inc/class-safelayout-preloader-admin.php:1304
 msgid "Posts only"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1303
+#: inc/class-safelayout-preloader-admin.php:1307
 msgid "Pages only"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1306
+#: inc/class-safelayout-preloader-admin.php:1310
 msgid "Archive only"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1309
+#: inc/class-safelayout-preloader-admin.php:1313
 msgid "Search only"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1312
+#: inc/class-safelayout-preloader-admin.php:1316
 msgid "Specific post ( Select from the list )"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1324
+#: inc/class-safelayout-preloader-admin.php:1328
 msgid "Specific post types ( Select from the list )"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1347
+#: inc/class-safelayout-preloader-admin.php:1351
 msgid "[Page]"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1354
+#: inc/class-safelayout-preloader-admin.php:1358
 msgid "[Post]"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1373
+#: inc/class-safelayout-preloader-admin.php:1377
 msgid ""
 "The minimum time that, the preloader will be shown, even if the page was "
 "loaded. (Enter 0 to disable this feature)"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1377
-#: inc/class-safelayout-preloader-admin.php:1387
-#: inc/class-safelayout-preloader-admin.php:1397
+#: inc/class-safelayout-preloader-admin.php:1381
+#: inc/class-safelayout-preloader-admin.php:1391
+#: inc/class-safelayout-preloader-admin.php:1401
 msgid "Second(s)"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1383
+#: inc/class-safelayout-preloader-admin.php:1387
 msgid ""
 "After this time the preloader will be hidden even if the page has not been "
 "loaded yet. (Enter 0 to disable this feature)"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1393
+#: inc/class-safelayout-preloader-admin.php:1397
 msgid ""
 "After this time the close button will be shown at the top right corner of "
 "the screen. (Enter 0 to disable this feature)"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1403
+#: inc/class-safelayout-preloader-admin.php:1407
 msgid ""
 "https://safelayout.com/safelayout-cute-preloader-pro-documentation#how-to-"
 "add-different-preloaders"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1404
+#: inc/class-safelayout-preloader-admin.php:1408
 msgid "How to add different preloaders to different page/post of your site."
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1410
+#: inc/class-safelayout-preloader-admin.php:1414
 msgid ""
 "Displays a text box in the page/post editor, where you can paste the "
 "preloader shortcode."
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1411
+#: inc/class-safelayout-preloader-admin.php:1415
 msgid "Show preloader meta box"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1412
+#: inc/class-safelayout-preloader-admin.php:1416
 msgid "Hide preloader meta box"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1422
+#: inc/class-safelayout-preloader-admin.php:1426
 msgid "Successfully shown!"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1424
+#: inc/class-safelayout-preloader-admin.php:1428
 msgid "Successfully hidden!"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1433
+#: inc/class-safelayout-preloader-admin.php:1437
 msgid "Generate preloader Shortcode"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1435
+#: inc/class-safelayout-preloader-admin.php:1439
 msgid "Copy to Clipboard"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1441
+#: inc/class-safelayout-preloader-admin.php:1445
 msgid ""
 "https://safelayout.com/safelayout-cute-preloader-pro-documentation#how-to-"
 "set-preloaders-for-type"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1442
+#: inc/class-safelayout-preloader-admin.php:1446
 msgid ""
 "How to set preloaders for different data types, for example a different "
 "preloader for products."
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1460
+#: inc/class-safelayout-preloader-admin.php:1464
 msgid "No Progress bar"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1483
+#: inc/class-safelayout-preloader-admin.php:1487
 msgid "Play progress bar"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1490
+#: inc/class-safelayout-preloader-admin.php:1494
 msgid "Enable Light move effect"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1496
+#: inc/class-safelayout-preloader-admin.php:1500
 msgid "Top of the screen"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1497
+#: inc/class-safelayout-preloader-admin.php:1501
 msgid "Bottom of the screen"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1498
+#: inc/class-safelayout-preloader-admin.php:1502
 msgid "Middle ( top of the preloader brand image )"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1499
+#: inc/class-safelayout-preloader-admin.php:1503
 msgid "Middle ( top of the preloader icon )"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1500
+#: inc/class-safelayout-preloader-admin.php:1504
 msgid "Middle ( top of the preloader counter )"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1501
+#: inc/class-safelayout-preloader-admin.php:1505
 msgid "Middle ( top of the preloader text )"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1502
+#: inc/class-safelayout-preloader-admin.php:1506
 msgid "Middle ( under the preloader text )"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1585
+#: inc/class-safelayout-preloader-admin.php:1589
 msgid "Text to display after preloader counter. ( % , %completed , ... )"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1599
+#: inc/class-safelayout-preloader-admin.php:1603
 msgid "Default ( under the preloader icon )"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1600
+#: inc/class-safelayout-preloader-admin.php:1604
 msgid "Inside the progress bar (middle)"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1601
+#: inc/class-safelayout-preloader-admin.php:1605
 msgid "Inside the progress bar (left)"
 msgstr ""
 
-#: inc/class-safelayout-preloader-admin.php:1602
+#: inc/class-safelayout-preloader-admin.php:1606
 msgid "Inside the progress bar (right)"
 msgstr ""
 

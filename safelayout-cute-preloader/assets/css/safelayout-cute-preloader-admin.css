@@ -1,7 +1,7 @@
 /*
 * Safelayout Cute Preloader Admin Stylesheet
 *
-* Version: 2.0.92
+* Version: 2.0.93
 *
 * Table of Contents:
 *
@@ -528,7 +528,7 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 	width: 210px;
 }
 .sl-pl-special-button {
-	margin: 0 22px 20px 22px !important;
+	margin: 0 16px 20px 16px !important;
 }
 #sl-pl-play-bar {
 	margin-top: 30px;

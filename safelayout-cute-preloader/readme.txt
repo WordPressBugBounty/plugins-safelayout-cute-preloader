@@ -3,7 +3,7 @@ Contributors: safelayout
 Tags: preload, preloader, loader, loading, Wordpress Preloader
 Requires at least: 4.7
 Tested up to: 6.6
-Stable tag: 2.0.93
+Stable tag: 2.0.95
 Requires PHP: 5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -75,6 +75,9 @@ Safelayout Cute Preloader **Pro** is available. [Upgrade to pro version](https:/
 8. Special preloader
 
 == Changelog ==
+
+= 2.0.95 =
+* Added a condition to not show preloader in Gutenberg editor.
 
 = 2.0.93 =
 * Added the ability to clear the cache after changing settings.

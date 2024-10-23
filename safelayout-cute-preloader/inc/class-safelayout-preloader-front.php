@@ -182,6 +182,19 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 			<?php
 		}
 
+		// Checks if the page is being rendered via Gutenberg
+		public function check_is_in_gutenberg() {
+			if( function_exists( 'is_gutenberg_page' ) && is_gutenberg_page() ) { 
+				return true;
+			}   
+			
+			$current_screen = get_current_screen();
+			if ( method_exists( $current_screen, 'is_block_editor' ) && $current_screen->is_block_editor() ) {
+				return true;
+			}
+			return false;
+		}
+
 		// Checks if the page is being rendered via editors
 		public function check_is_in_editor() {
 			$page_builders = array(
@@ -205,7 +218,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 					break;
 				}
 			}
-			return is_customize_preview() || $ret;
+			return is_customize_preview() || $ret || this->check_is_in_gutenberg();
 		}
 
 		// Check if preloader must be shown on this page.

@@ -374,7 +374,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 						</div>
 						<p>
 							<?php esc_html_e( 'No email address, domain name or IP addresses are transmitted after you submit the survey.', 'safelayout-cute-preloader' ); ?><br>
-							<?php esc_html_e( 'You can see the source code here: ', 'safelayout-cute-preloader' ); ?> /wp-content/plugins/safelayout-cute-preloader/inc/class-safelayout-preloader-admin.php ( line: 293 ).
+							<?php esc_html_e( 'You can see the source code here: ', 'safelayout-cute-preloader' ); ?> /wp-content/plugins/safelayout-cute-preloader/inc/class-safelayout-preloader-admin.php ( line: 318 ).
 						</p>
 					</div>
 					<div class="sl-pl-feedback-footer">

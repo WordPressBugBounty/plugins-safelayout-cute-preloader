@@ -647,7 +647,8 @@ jQuery( document ).ready( function( $ ) {
 	function specialCodeGen() {
 		var n1 = "[name='safelayout_preloader_options[";
 
-		var code = '[safelayout_preloader close_button=' + $( '#close_button' ).val();
+		var code = '[safelayout_preloader device="' + $( n1 + "device]']:checked" ).val();
+		code += '" close_button=' + $( '#close_button' ).val();
 		code += ' minimum_time=' + $( '#minimum_time' ).val();
 		code += ' maximum_time=' + $( '#maximum_time' ).val();
 		code += ' background_anim="' + $( n1 + "background_anim]']:checked" ).val();

@@ -372,10 +372,6 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 							<label for="sl-pl-feedback-item6"><?php esc_html_e( 'Other', 'safelayout-cute-preloader' ); ?></label><br>
 							<textarea rows="2" id="sl-pl-feedback-item6-text" placeholder="<?php esc_html_e( 'Please share the reason.', 'safelayout-cute-preloader' ); ?>"></textarea>
 						</div>
-						<p>
-							<?php esc_html_e( 'No email address, domain name or IP addresses are transmitted after you submit the survey.', 'safelayout-cute-preloader' ); ?><br>
-							<?php esc_html_e( 'You can see the source code here: ', 'safelayout-cute-preloader' ); ?> /wp-content/plugins/safelayout-cute-preloader/inc/class-safelayout-preloader-admin.php ( line: 318 ).
-						</p>
 					</div>
 					<div class="sl-pl-feedback-footer">
 						<a id="sl-pl-feedback-submit" class="button"><?php esc_html_e( 'Submit & Deactivate', 'safelayout-cute-preloader' ); ?></a>
@@ -721,6 +717,14 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 				'display_on',
 				esc_html__( 'Display on', 'safelayout-cute-preloader' ),
 				array( $this, 'settings_display_on_callback' ),
+				'safelayout-cute-preloader-advanced',
+				'safelayout_preloader_section_advanced'
+			);
+
+			add_settings_field(
+				'device',
+				esc_html__( 'Device', 'safelayout-cute-preloader' ),
+				array( $this, 'settings_device_callback' ),
 				'safelayout-cute-preloader-advanced',
 				'safelayout_preloader_section_advanced'
 			);
@@ -1338,8 +1342,8 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 				}
 			}
 			echo '</select><br /><div style="text-align: center"><a target="_blank" class="sl-pl-pro-version-message" ' .
-				 'href="https://safelayout.com/safelayout-cute-preloader-pro">Exclude page/post, Show on all devices / mobile only / ' .
-				 'desktop only, Show only once per visitor session, Disable page scrolling while loading, available in PRO version</a></div>';
+				 'href="https://safelayout.com/safelayout-cute-preloader-pro">Exclude page/post, ' .
+				 'Show only once per visitor session, Disable page scrolling while loading, available in PRO version</a></div>';
 		}
 
 		// Return true if val is in list
@@ -1370,6 +1374,20 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 			$arr = explode( ',', $list );
 			$arr = array_map('trim', $arr);
 			return in_array( $val, $arr );
+		}
+
+		// device type code
+		public function settings_device_callback() {
+			$temp0 = '<input type="radio" name="safelayout_preloader_options[device]" id="preloader_device_';
+			$temp1 = '<label for="preloader_device_';
+			
+			$device = $this->options['device'];
+			echo $temp0 . '0" value="all" ' . checked( esc_attr( $device ), 'all', false ) . ' />' .
+				 $temp1 . '0">' . esc_html__( 'Show on all devices', 'safelayout-cute-preloader' ) . '</label><br />' .
+				 $temp0 . '1" value="mobile" ' . checked( esc_attr( $device ), 'mobile', false ) . ' />' .
+				 $temp1 . '1">' . esc_html__( 'Show on mobile only', 'safelayout-cute-preloader' ) . '</label><br />' .
+				 $temp0 . '2" value="desktop" ' . checked( esc_attr( $device ), 'desktop', false ) . ' />' .
+				 $temp1 . '2">' . esc_html__( 'Show on desktop only', 'safelayout-cute-preloader' ) . '</label><br /><br />';
 		}
 
 		// Minimum time field code
@@ -1683,6 +1701,10 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 
 			if ( isset( $input['specific_names'] ) ) {
 				$sanitary_values['specific_names'] = sanitize_text_field( $input['specific_names'] );
+			}
+
+			if ( isset( $input['device'] ) ) {
+				$sanitary_values['device'] = sanitize_text_field( $input['device'] );
 			}
 
 			if ( isset( $input['close_button'] ) ) {

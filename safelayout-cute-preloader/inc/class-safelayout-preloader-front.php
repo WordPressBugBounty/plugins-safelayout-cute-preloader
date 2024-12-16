@@ -265,6 +265,11 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 					$active = true;
 				}
 
+				if ( ( ! wp_is_mobile() && $options['device'] === 'mobile' ) ||
+					( wp_is_mobile() && $options['device'] === 'desktop' ) ) {
+						$active = false;
+				}
+
 				$this->active_loader = $active;
 			}
 		}

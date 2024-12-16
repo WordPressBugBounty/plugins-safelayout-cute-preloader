@@ -3,7 +3,7 @@ Contributors: safelayout
 Tags: preload, preloader, loader, loading, Wordpress Preloader
 Requires at least: 4.7
 Tested up to: 6.7
-Stable tag: 2.0.96
+Stable tag: 2.0.97
 Requires PHP: 5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -28,6 +28,7 @@ An **easy-to-use**, **lightweight** and **powerful** preloader plugin. Safelayou
 * Add your own loader image.
 * 431 Gradient colors for icon, progress bar and background (Pro).
 * 23 Beautiful filter effects (Pro).
+* Device control (Choose to show on all devices, mobile, or desktop only.)
 * Preloader minimum runtime.
 * Preloader maximum runtime.
 * Preloader close button.
@@ -75,6 +76,9 @@ Safelayout Cute Preloader **Pro** is available. [Upgrade to pro version](https:/
 8. Special preloader
 
 == Changelog ==
+
+= 2.0.97 =
+* Activated the Device feature, in the free version.
 
 = 2.0.96 =
 * Fixed some issue.

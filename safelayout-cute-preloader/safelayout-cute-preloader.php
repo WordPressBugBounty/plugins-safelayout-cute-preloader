@@ -3,7 +3,7 @@
 Plugin Name: Safelayout Cute Preloader
 Plugin URI: https://safelayout.com
 Description: Easily add a pure CSS animated preloader to your WordPress website.
-Version: 2.0.97
+Version: 2.0.98
 Author: Safelayout
 Text Domain: safelayout-cute-preloader
 Domain Path: /languages
@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Preloader_Pro' ) ) {
 
 	// Define the constant used in this plugin
-	define( 'SAFELAYOUT_PRELOADER_VERSION', '2.0.97');
+	define( 'SAFELAYOUT_PRELOADER_VERSION', '2.0.98');
 	define( 'SAFELAYOUT_PRELOADER_NAME', plugin_basename( __FILE__ ) );
 	define( 'SAFELAYOUT_PRELOADER_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'SAFELAYOUT_PRELOADER_URL', plugin_dir_url( __FILE__ ) );
@@ -105,7 +105,7 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 
 	class Safelayout_Preloader {
 		public function __construct() {
-			load_plugin_textdomain( 'safelayout-cute-preloader', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+			add_action( 'init', array( $this, 'load_textdomain' ) );
 
 			add_filter( 'plugin_action_links_' . SAFELAYOUT_PRELOADER_NAME, array( $this, 'plugin_action_links' ) );
 			add_action( 'activated_plugin', array( $this, 'redirect_settings' ) );
@@ -118,6 +118,11 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 				// Load the front end related functions
 				add_action( 'wp', array( $this, 'start_plugin_front' ) );
 			}
+		}
+
+		// Load plugin textdomain
+		public function load_textdomain() {
+			load_plugin_textdomain( 'safelayout-cute-preloader', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 		}
 
 		// Redirect to settings page

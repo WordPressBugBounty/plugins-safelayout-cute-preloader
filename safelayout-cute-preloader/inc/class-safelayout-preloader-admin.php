@@ -10,7 +10,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 		protected $price= '13$';
 
 		public function __construct() {
-			$this->options = safelayout_preloader_get_options();
+			add_action( 'admin_init', array( $this, 'load_options' ), 9 );
 
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 999 );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_for_feedback' ) );
@@ -25,6 +25,11 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 			add_filter( 'http_request_host_is_external', array( $this, 'allow_preloader_feedback_host' ), 10, 3 );
 			add_action( 'updated_post_meta', array( $this, 'updated_special_loader_code' ), 10, 4 );
 			add_action( 'added_post_meta', array( $this, 'updated_special_loader_code' ), 10, 4 );
+		}
+
+		// load options
+		public function load_options() {
+			$this->options = safelayout_preloader_get_options();
 		}
 
 		// Update old options

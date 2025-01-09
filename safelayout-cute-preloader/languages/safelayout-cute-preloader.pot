@@ -1,8 +1,8 @@
-# Copyright (C) 2021-2024 Safelayout
+# Copyright (C) 2021-2025 Safelayout
 # This file is distributed under the same license as the Safelayout Cute Preloader plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Safelayout Cute Preloader 2.0.98\n"
+"Project-Id-Version: Safelayout Cute Preloader 2.1.0\n"
 "POT-Creation-Date: 2024-12-16 22:18+0330\n"
 "PO-Revision-Date: 2024-12-16 22:18+0330\n"
 "Last-Translator: \n"

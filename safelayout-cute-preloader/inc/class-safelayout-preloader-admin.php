@@ -11,7 +11,6 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 
 		public function __construct() {
 			add_action( 'admin_init', array( $this, 'load_options' ), 9 );
-
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 999 );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_for_feedback' ) );
 			add_action( 'admin_footer-plugins.php', array( $this, 'add_code_for_feedback' ) );
@@ -2518,7 +2517,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 
 		// Return preloader css
 		public function set_preloader_css( $options ) {
-			echo '<style id="safelayout-cute-preloader-css">';
+			echo '<style id="safelayout-cute-preloader-css" data-no-optimize="1">';
 
 			require_once SAFELAYOUT_PRELOADER_PATH . 'inc/safelayout-preloader-set-style.php';
 			safelayout_preloader_set_style( $options );

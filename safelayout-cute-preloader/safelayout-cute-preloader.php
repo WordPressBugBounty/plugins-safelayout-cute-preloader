@@ -3,7 +3,7 @@
 Plugin Name: Safelayout Cute Preloader
 Plugin URI: https://safelayout.com
 Description: Easily add a pure CSS animated preloader to your WordPress website.
-Version: 2.0.98
+Version: 2.1.0
 Author: Safelayout
 Text Domain: safelayout-cute-preloader
 Domain Path: /languages
@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Preloader_Pro' ) ) {
 
 	// Define the constant used in this plugin
-	define( 'SAFELAYOUT_PRELOADER_VERSION', '2.0.98');
+	define( 'SAFELAYOUT_PRELOADER_VERSION', '2.1.0');
 	define( 'SAFELAYOUT_PRELOADER_NAME', plugin_basename( __FILE__ ) );
 	define( 'SAFELAYOUT_PRELOADER_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'SAFELAYOUT_PRELOADER_URL', plugin_dir_url( __FILE__ ) );
@@ -35,14 +35,14 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 			'device'					=> 'all',
 			'close_button'				=> 5,
 			'minimum_time'				=> 0.5,
-			'maximum_time'				=> 0,
+			'maximum_time'				=> 9,
 			'background_anim'			=> 'linear-right',
 			'background_color_type'		=> 'solid',
 			'background_color_value'	=> '#101010',
 			'background_gradient_value'	=> 6,
 			'background_alpha'			=> 95,
 			'background_small'			=> '',
-			'icon'						=> 'triple-spinner',
+			'icon'						=> 'spinner',
 			'custom_icon'				=> '',
 			'custom_icon_alt'			=> '',
 			'custom_icon_width'			=> 0,
@@ -50,8 +50,8 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 			'icon_size'					=> 50,
 			'icon_color_type'			=> 'solid',
 			'icon_color_value'			=> '#4285f4',
-			'icon_gradient_value'		=> 13,
-			'icon_effect'				=> 1,
+			'icon_gradient_value'		=> 4,
+			'icon_effect'				=> 0,
 			'text_enable'				=> 'enable',
 			'text'						=> esc_html__( 'Loading ...', 'safelayout-cute-preloader' ),
 			'text_anim'					=> 'zoom',
@@ -106,10 +106,19 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 	class Safelayout_Preloader {
 		public function __construct() {
 			add_action( 'init', array( $this, 'load_textdomain' ) );
-
 			add_filter( 'plugin_action_links_' . SAFELAYOUT_PRELOADER_NAME, array( $this, 'plugin_action_links' ) );
 			add_action( 'activated_plugin', array( $this, 'redirect_settings' ) );
 			register_deactivation_hook( __FILE__, array( $this, 'deactivation_preloader' ) );
+
+			add_filter( 'pre_get_rocket_option_remove_unused_css_safelist', array( $this, 'rocket_remove_unused_css_safelist' ) );
+			add_filter( 'pre_get_rocket_option_exclude_inline_js', array( $this, 'rocket_exclude_inline_js' ) );
+			add_filter( 'pre_get_rocket_option_exclude_js', array( $this, 'rocket_exclude_js' ) );
+			add_filter( 'pre_get_rocket_option_delay_js_exclusions', array( $this, 'rocket_delay_js_exclude' ) );
+			add_filter( 'pre_get_rocket_option_exclude_defer_js', array( $this, 'rocket_delay_js_exclude' ) );
+
+			add_filter( 'litespeed_optimize_js_excludes', array( $this, 'litespeed_custom_excludes' ) );
+			add_filter( 'litespeed_optm_js_defer_exc', array( $this, 'litespeed_custom_excludes' ) );
+			add_filter( 'litespeed_optm_gm_js_exc', array( $this, 'litespeed_custom_excludes' ) );
 
 			if ( is_admin() ){
 				// Load the admin related functions
@@ -118,6 +127,41 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 				// Load the front end related functions
 				add_action( 'wp', array( $this, 'start_plugin_front' ) );
 			}
+		}
+
+		// exclude css
+		public function rocket_remove_unused_css_safelist( $excluded ) {
+			$excluded[] = 'safelayout-cute-preloader-css';
+			return $excluded;
+		}
+
+		// exclude js
+		public function rocket_exclude_inline_js( $excluded ) {
+			$excluded[] = 'safelayout-cute-preloader-brand-anim-synchro';
+			$excluded[] = 'safelayout-cute-preloader-script-js-before';
+			$excluded[] = 'safelayout-cute-preloader-progress-bar-script-js';
+			return $excluded;
+		}
+
+		// exclude js
+		public function rocket_exclude_js( $excluded ) {
+			$excluded[] = 'safelayout-cute-preloader.min.js';
+			return $excluded;
+		}
+
+		// exclude js
+		public function rocket_delay_js_exclude( $excluded ) {
+			$excluded[] = 'safelayout-cute-preloader-brand-anim-synchro';
+			$excluded[] = 'safelayout-cute-preloader-script-js-before';
+			$excluded[] = 'safelayout-cute-preloader-progress-bar-script-js';
+			$excluded[] = 'safelayout-cute-preloader.min.js';
+			return $excluded;
+		}
+
+		// exclude js
+		public function litespeed_custom_excludes( $excludes ) {
+			$excludes[] = 'safelayout-cute-preloader.min.js';
+			return $excludes;
 		}
 
 		// Load plugin textdomain

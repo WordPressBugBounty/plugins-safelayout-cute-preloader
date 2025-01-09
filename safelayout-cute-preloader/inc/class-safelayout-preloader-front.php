@@ -13,6 +13,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 			add_action( 'wp_head', array( $this, 'set_header' ), 7 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 			add_action( 'wp_footer', array( $this, 'set_footer' ) );
+			add_filter( 'script_loader_tag', array( $this, 'add_data_to_script' ), 10, 3 );
 
 			add_filter( 'safe_style_css', function( $styles ) {
 				$styles[] = 'top';
@@ -23,6 +24,15 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 				$styles[] = '-webkit-animation-delay';
 				return $styles;
 			} );
+		}
+
+		// add attribute to script tag
+		public function add_data_to_script( $tag, $handle, $src ) {
+			if ( 'safelayout-cute-preloader-script' === $handle ) {
+				$tag = str_replace( '<script ', '<script data-no-optimize="1" ', $tag );
+			}
+
+			return $tag;
 		}
 
 		// Add link preload to header
@@ -75,7 +85,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 					'maxShowTime'		=> esc_html( $options['maximum_time'] ) * 1000,
 					'showCloseButton'	=> esc_html( $options['close_button'] ) * 1000,
 				);
-				wp_localize_script( 'safelayout-cute-preloader-script', 'slplPreLoader', $temp_obj );
+				wp_add_inline_script( 'safelayout-cute-preloader-script', 'var slplPreLoader = ' . json_encode( $temp_obj ), 'before' );
 			}
 		}
 
@@ -96,7 +106,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 			$pos = $options['counter_position'];
 			$pos = $pos === 'center' ? 0.5 : ( $pos === 'left' ? 1 : ( $pos === 'right' ? 0 : 2 ) );
 			?>
-			<script id = "safelayout-cute-preloader-progress-bar-script-js" type = "text/javascript">
+			<script id="safelayout-cute-preloader-progress-bar-script-js" data-no-optimize="1" type="text/javascript">
 				function slplExecAnim( timeStamp ) {
 					if ( ! slplStartT ) {
 						slplStartT = timeStamp;
@@ -301,10 +311,13 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 				'femerge'		=> [],
 				'femergenode'	=> [ 'in'			=> 1, ],
 				'span'			=> [ 'style'		=> 1, ],
-				'style'			=> [ 'id'			=> 1, ],
 				'defs'			=> [ 'id'			=> 1, ],
 				'mask'			=> [ 'id'			=> 1, ],
 				'fegaussianblur'=> [ 'stddeviation'	=> 1, ],
+				'style'			=> [
+					'id'			=> 1,
+					'data-*'		=> 1,
+				],
 				'div'			=> [
 					'class'			=> 1,
 					'id'			=> 1,
@@ -417,7 +430,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 				$temp1 = array( 'wrest-X', 'wrest-Y', 'roll', 'pipe', 'swirl', 'sheet', );
 				if ( in_array( $options['brand_anim'], $temp1 ) ) {
 					ob_start();
-					echo '<script id = "safelayout-cute-preloader-brand-anim-synchro" type = "text/javascript">' .
+					echo '<script id="safelayout-cute-preloader-brand-anim-synchro" data-no-optimize="1" type="text/javascript">' .
 						 "\n\tvar childs = document.getElementById('sl-pl-brand-parent').children;" .
 						 "\n\tvar name = 'sl-pl-brand-" . esc_html( $options['brand_anim'] ) . "';" .
 						 "\n\tfor ( var i = 0 ; i < childs.length ; i++ ) {\n\t\tif ( childs[i].classList ) {\n\t\t\tchilds[i].classList.add( name );" .

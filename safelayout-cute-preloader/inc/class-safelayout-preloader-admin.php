@@ -7,7 +7,6 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 		protected $options = null;
 		protected $default_options = null;
 		protected $options_page_hook= null;
-		protected $price= '13$';
 
 		public function __construct() {
 			add_action( 'admin_init', array( $this, 'load_options' ), 9 );
@@ -201,7 +200,6 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 					<div class="sl-pl-upgrade-reminder-footer">
 						<a id="sl-pl-upgrade" class="button" href="https://safelayout.com" target="_blank">
 							<span class="dashicons dashicons-smiley"></span><?php esc_html_e( 'Upgrade to Pro', 'safelayout-cute-preloader' ); ?>
-							<strong><?php echo esc_html( $this->price ); ?></strong>
 						</a>
 						<a id="sl-pl-upgrade-later" class="button">
 							<span class="dashicons dashicons-calendar"></span><?php esc_html_e( 'Remind me later', 'safelayout-cute-preloader' ); ?>
@@ -420,7 +418,6 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 							<li><a href="#tabs-8"><span class="dashicons dashicons-edit"></span> <?php esc_html_e( 'Special Preloader', 'safelayout-cute-preloader' ); ?></a></li>
 							<a href="https://safelayout.com" target="_blank" class="button" id="sl-pl-side-button-upgrade" title="<?php esc_html_e( 'Upgrade to pro version and get full features.', 'safelayout-cute-preloader' ); ?>">
 								<span class="dashicons dashicons-unlock sl-pl-side-button-icon"></span> <?php esc_html_e( 'Upgrade to Pro', 'safelayout-cute-preloader' ); ?>
-									<strong><?php echo esc_html( $this->price ); ?></strong>
 								</a>
 							<a href="https://wordpress.org/support/plugin/safelayout-cute-preloader/reviews/?filter=5" target="_blank" class="button" id="sl-pl-side-button-rate" title="<?php esc_html_e( 'Like the plugin? Please give us a rating!', 'safelayout-cute-preloader' ); ?>">
 								<span class="dashicons dashicons-star-filled sl-pl-side-button-icon"></span> <?php esc_html_e( 'Rate The Plugin', 'safelayout-cute-preloader' ); ?></a>
@@ -2517,7 +2514,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 
 		// Return preloader css
 		public function set_preloader_css( $options ) {
-			echo '<style id="safelayout-cute-preloader-css" data-no-optimize="1">';
+			echo '<style id="safelayout-cute-preloader-css" data-no-optimize="1" data-no-minify="1">';
 
 			require_once SAFELAYOUT_PRELOADER_PATH . 'inc/safelayout-preloader-set-style.php';
 			safelayout_preloader_set_style( $options );

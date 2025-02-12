@@ -29,7 +29,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 		// add attribute to script tag
 		public function add_data_to_script( $tag, $handle, $src ) {
 			if ( 'safelayout-cute-preloader-script' === $handle ) {
-				$tag = str_replace( '<script ', '<script data-no-optimize="1" ', $tag );
+				$tag = str_replace( '<script ', '<script data-no-delay-js data-no-optimize="1" data-no-minify="1" ', $tag );
 			}
 
 			return $tag;
@@ -106,7 +106,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 			$pos = $options['counter_position'];
 			$pos = $pos === 'center' ? 0.5 : ( $pos === 'left' ? 1 : ( $pos === 'right' ? 0 : 2 ) );
 			?>
-			<script id="safelayout-cute-preloader-progress-bar-script-js" data-no-optimize="1" type="text/javascript">
+			<script id="safelayout-cute-preloader-progress-bar-script-js" data-no-delay-js data-no-optimize="1" data-no-minify="1" type="text/javascript">
 				function slplExecAnim( timeStamp ) {
 					if ( ! slplStartT ) {
 						slplStartT = timeStamp;
@@ -430,11 +430,11 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 				$temp1 = array( 'wrest-X', 'wrest-Y', 'roll', 'pipe', 'swirl', 'sheet', );
 				if ( in_array( $options['brand_anim'], $temp1 ) ) {
 					ob_start();
-					echo '<script id="safelayout-cute-preloader-brand-anim-synchro" data-no-optimize="1" type="text/javascript">' .
-						 "\n\tvar childs = document.getElementById('sl-pl-brand-parent').children;" .
+					echo '<script id="safelayout-cute-preloader-brand-anim-synchro" data-no-delay-js data-no-optimize="1" data-no-minify="1" type="text/javascript">' .
+						 "\n\tvar slplChilds = document.getElementById('sl-pl-brand-parent').children;" .
 						 "\n\tvar name = 'sl-pl-brand-" . esc_html( $options['brand_anim'] ) . "';" .
-						 "\n\tfor ( var i = 0 ; i < childs.length ; i++ ) {\n\t\tif ( childs[i].classList ) {\n\t\t\tchilds[i].classList.add( name );" .
-						 "\n\t\t} else {\n\t\t\tchilds[i].className += ' ' + name;\n\t\t}\n\t}" . "\n</script>";
+						 "\n\tfor ( var i = 0 ; i < slplChilds.length ; i++ ) {\n\t\tif ( slplChilds[i].classList ) {\n\t\t\tslplChilds[i].classList.add( name );" .
+						 "\n\t\t} else {\n\t\t\tslplChilds[i].className += ' ' + name;\n\t\t}\n\t}" . "\n</script>";
 					$this->main_code .= ob_get_clean();
 				}
 			}

@@ -3,7 +3,7 @@
 Plugin Name: Safelayout Cute Preloader
 Plugin URI: https://safelayout.com
 Description: Easily add a pure CSS animated preloader to your WordPress website.
-Version: 2.1.0
+Version: 2.1.1
 Author: Safelayout
 Text Domain: safelayout-cute-preloader
 Domain Path: /languages
@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Preloader_Pro' ) ) {
 
 	// Define the constant used in this plugin
-	define( 'SAFELAYOUT_PRELOADER_VERSION', '2.1.0');
+	define( 'SAFELAYOUT_PRELOADER_VERSION', '2.1.1');
 	define( 'SAFELAYOUT_PRELOADER_NAME', plugin_basename( __FILE__ ) );
 	define( 'SAFELAYOUT_PRELOADER_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'SAFELAYOUT_PRELOADER_URL', plugin_dir_url( __FILE__ ) );
@@ -120,6 +120,14 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 			add_filter( 'litespeed_optm_js_defer_exc', array( $this, 'litespeed_custom_excludes' ) );
 			add_filter( 'litespeed_optm_gm_js_exc', array( $this, 'litespeed_custom_excludes' ) );
 
+			add_filter( 'sgo_js_minify_exclude', array( $this, 'sgo_javascript_exclude' ) );
+			add_filter( 'sgo_javascript_combine_exclude', array( $this, 'sgo_javascript_exclude' ) );
+			add_filter( 'sgo_javascript_combine_excluded_inline_content', array( $this, 'sgo_javascript_exclude_inline_js' ) );
+
+			add_filter( 'wp-optimize-minify-default-exclusions', array( $this, 'wp_optimize_javascript_exclude' ) );
+
+			add_filter( 'autoptimize_filter_js_exclude', array( $this, 'autoptimize_javascript_exclude' ) );
+
 			if ( is_admin() ){
 				// Load the admin related functions
 				require_once SAFELAYOUT_PRELOADER_PATH . 'inc/class-safelayout-preloader-admin.php';
@@ -129,13 +137,41 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 			}
 		}
 
-		// exclude css
+		// exclude js autoptimize
+		public function autoptimize_javascript_exclude( $excluded ) {
+			if( is_string( $excluded ) ) {
+				$excluded .= ', safelayout';
+			}
+			return $excluded;
+		}
+
+		// exclude js wp optimize
+		public function wp_optimize_javascript_exclude( $excluded ) {
+			$excluded[] = 'safelayout';
+			return $excluded;
+		}
+
+		// exclude js Siteground SG Optimize
+		public function sgo_javascript_exclude( $excluded ) {
+			$excluded[] = 'safelayout-cute-preloader-script';
+			return $excluded;
+		}
+
+		// exclude inline js Siteground SG Optimize
+		public function sgo_javascript_exclude_inline_js( $excluded ) {
+			$excluded[] = 'var slplChilds';
+			$excluded[] = 'var slplPreLoader';
+			$excluded[] = 'function slplExecAnim( timeStamp )';
+			return $excluded;
+		}
+
+		// exclude css WP Rocket
 		public function rocket_remove_unused_css_safelist( $excluded ) {
 			$excluded[] = 'safelayout-cute-preloader-css';
 			return $excluded;
 		}
 
-		// exclude js
+		// exclude js WP Rocket
 		public function rocket_exclude_inline_js( $excluded ) {
 			$excluded[] = 'safelayout-cute-preloader-brand-anim-synchro';
 			$excluded[] = 'safelayout-cute-preloader-script-js-before';
@@ -143,13 +179,13 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 			return $excluded;
 		}
 
-		// exclude js
+		// exclude js WP Rocket
 		public function rocket_exclude_js( $excluded ) {
 			$excluded[] = 'safelayout-cute-preloader.min.js';
 			return $excluded;
 		}
 
-		// exclude js
+		// exclude js WP Rocket
 		public function rocket_delay_js_exclude( $excluded ) {
 			$excluded[] = 'safelayout-cute-preloader-brand-anim-synchro';
 			$excluded[] = 'safelayout-cute-preloader-script-js-before';
@@ -158,7 +194,7 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 			return $excluded;
 		}
 
-		// exclude js
+		// exclude js LiteSpeed Cache
 		public function litespeed_custom_excludes( $excludes ) {
 			$excludes[] = 'safelayout-cute-preloader.min.js';
 			return $excludes;

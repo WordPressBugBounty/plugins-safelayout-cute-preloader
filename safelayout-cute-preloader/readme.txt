@@ -3,7 +3,7 @@ Contributors: safelayout
 Tags: preload, preloader, loader, loading, Wordpress Preloader
 Requires at least: 4.7
 Tested up to: 6.7
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 Requires PHP: 5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -20,7 +20,7 @@ An **easy-to-use**, **lightweight** and **powerful** preloader plugin. Safelayou
 * 35 Loading animation icons.
 * 18 Background animation effects.
 * 14 Brand Image animation effects.
-* 8 Text animation effects.
+* 11 Text animation effects.
 * progress bar and counter.
 * Cross browser compatible.
 * Fully customizable.
@@ -76,6 +76,9 @@ Safelayout Cute Preloader **Pro** is available. [Upgrade to pro version](https:/
 8. Special preloader
 
 == Changelog ==
+
+= 2.1.2 =
+* Added 3 new animation types for text.
 
 = 2.1.1 =
 * Increased compatibility with cache plugins.

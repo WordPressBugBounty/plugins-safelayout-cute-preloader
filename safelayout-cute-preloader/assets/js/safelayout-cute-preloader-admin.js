@@ -71,7 +71,7 @@ jQuery( document ).ready( function( $ ) {
 		textAnimChange();
 	});
 
-	$( '#text_anim' ).change( function() {
+	$( "[name='safelayout_preloader_options[text_anim]']" ).change( function() {
 		textAnimChange();
 	});
 
@@ -360,11 +360,11 @@ jQuery( document ).ready( function( $ ) {
 	// Show other plugins banner
 	function showOtherBanner( tab ) {
 		if( tab == 0 || tab == 2 || tab == 4 || tab == 6 ) {
-			$( '#sl-pl-other-icons' ).css( 'display', 'none' );
-			$( '#sl-pl-other-buttons' ).css( 'display', 'inline-block' );
-		} else {
 			$( '#sl-pl-other-icons' ).css( 'display', 'inline-block' );
 			$( '#sl-pl-other-buttons' ).css( 'display', 'none' );
+		} else {
+			$( '#sl-pl-other-icons' ).css( 'display', 'none' );
+			$( '#sl-pl-other-buttons' ).css( 'display', 'inline-block' );
 		}
 	}
 
@@ -459,7 +459,7 @@ jQuery( document ).ready( function( $ ) {
 	// Change text animation.
 	function textAnimChange() {
 		var text = $( "[name='safelayout_preloader_options[text]']" ).val().trim();
-		var anim = $( "#text_anim" ).val();
+		var anim = $( "[name='safelayout_preloader_options[text_anim]']:checked" ).val();
 		var html = '';
 		if ( anim == 'No' ) {
 			html = '<div class="sl-pl-text">' + text;
@@ -493,8 +493,8 @@ jQuery( document ).ready( function( $ ) {
 	}
 
 	function textPropChange( prop, value ) {
-		$( '.sl-pl-text' ).css( prop, value );
-		$( '.sl-pl-text span' ).css( prop, value );
+		$( '#sl-pl-text-preview .sl-pl-text' ).css( prop, value );
+		$( '#sl-pl-text-preview .sl-pl-text span' ).css( prop, value );
 	}
 
 	// Select brand image from media library

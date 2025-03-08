@@ -1,7 +1,7 @@
 /*
 * Safelayout Cute Preloader Admin Stylesheet
 *
-* Version: 2.1.1
+* Version: 2.1.2
 *
 * Table of Contents:
 *
@@ -55,6 +55,9 @@
 *		7.6 - zoom
 *		7.7 - wave
 *		7.8 - swing
+*		7.9 - flight01
+*		7.10 - flight02
+*		7.11 - flight03
 * 8.0 - Styles and animations of Brand Image
 *		8.1 - rotate-2D
 *		8.2 - rotate-3D-X
@@ -200,11 +203,16 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 	2.0 - Icon tab styles
 *	*	*	*	*	*	*	*	*	*/
 
+.sl-pl-text-container,
 .sl-pl-icon-container,
 .sl-pl-progress-container,
 .sl-pl-background-container {
 	max-width: 500px;
 }
+.sl-pl-text-container {
+	font-size: 16px;
+}
+.sl-pl-text-radio,
 .sl-pl-icon-radio,
 .sl-pl-effect-radio,
 .sl-pl-progress-radio,
@@ -213,6 +221,7 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 	display: none !important;
 	position: absolute;
 }
+.sl-pl-text-radio:checked + label,
 .sl-pl-icon-radio:checked + label,
 .sl-pl-progress-radio:checked + label,
 .sl-pl-background-radio:checked + label {
@@ -225,6 +234,7 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 .sl-pl-effect-radio:checked + label {
 	box-shadow: 0px 0px 0px 2px #00f;
 }
+.sl-pl-text-label,
 .sl-pl-icon-label,
 .sl-pl-progress-label,
 .sl-pl-background-label {
@@ -237,15 +247,22 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 	text-align: center;
 	width: 90px;
 }
+.sl-pl-text-label {
+	background: #484848;
+	color: #fff;
+	width: 115px;
+}
 #sl-pl-icon-label-queue {
 	width: 184px;
 }
+.sl-pl-text-label:hover,
 .sl-pl-icon-label:hover,
 .sl-pl-progress-label:hover,
 .sl-pl-free-color-label:hover,
 .sl-pl-background-label:hover {
 	border: 2px solid #007fff;
 }
+.sl-pl-text-div,
 .sl-pl-icon-div,
 .sl-pl-progress-div {
 	display: inline-block;
@@ -254,6 +271,11 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 	top: 22%;
 	width: 50px;
 }
+.sl-pl-text-div {
+	align-content: center;
+	width: 100px;
+}
+.sl-pl-text-div-text,
 .sl-pl-icon-div-text,
 .sl-pl-effect-div-text,
 .sl-pl-progress-div-text,
@@ -435,6 +457,7 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 .sl-pl-back-admin-linear {
 	background: rgba( 0, 0, 0, 0 );
 }
+.sl-pl-text-div-text,
 .sl-pl-background-div-text {
 	width: 72px;
 }
@@ -3284,6 +3307,7 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 
 .sl-pl-text {
 	position: relative;
+	perspective: 200px;
 }
 
 .sl-pl-text span {
@@ -3336,7 +3360,7 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 		text-shadow: 0 0 5px yellow;
 	}
 }
-@-webkit-keyframes sl-pl-glow-anim {
+@keyframes sl-pl-glow-anim {
 	50% {
 		text-shadow: 0 0 5px yellow;
 	}
@@ -3514,6 +3538,102 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 	}
 	100% {
 		transform: rotate(0);
+	}
+}
+
+/*	*	*	*	*	*	*	*	*	*
+	7.9 - flight01
+*	*	*	*	*	*	*	*	*	*/
+
+#sl-pl-flight01 span {
+	animation: sl-pl-flight01-anim 4.8s linear infinite;
+	-webkit-animation: sl-pl-flight01-anim 4.8s linear infinite;
+	opacity: 0;
+	transform-origin: 65% 14% 29px;
+	-webkit-transform-origin: 65% 14% 29px;
+}
+@-webkit-keyframes sl-pl-flight01-anim {
+	0%, 5%, 85%, 100% {
+		-webkit-transform: rotateZ(0) rotateX(0) rotateY(0) scale(3, 3);
+		opacity: 0;
+	}
+	35%, 70% {
+		-webkit-transform: rotateZ(-360deg) rotateX(-360deg) rotateY(-360deg) scale(1, 1);
+		opacity: 1;
+	}
+}
+@keyframes sl-pl-flight01-anim {
+	0%, 5%, 85%, 100% {
+		transform: rotateZ(0) rotateX(0) rotateY(0) scale(3, 3);
+		opacity: 0;
+	}
+	35%, 70% {
+		transform: rotateZ(-360deg) rotateX(-360deg) rotateY(-360deg) scale(1, 1);
+		opacity: 1;
+	}
+}
+
+/*	*	*	*	*	*	*	*	*	*
+	7.10 - flight02
+*	*	*	*	*	*	*	*	*	*/
+
+#sl-pl-flight02 span {
+	animation: sl-pl-flight02-anim 4.8s linear infinite;
+	-webkit-animation: sl-pl-flight02-anim 4.8s linear infinite;
+	opacity: 0;
+	transform-origin: 96% 66% 12px;
+	-webkit-transform-origin: 96% 66% 12px;
+}
+@-webkit-keyframes sl-pl-flight02-anim {
+	0%, 5%, 85%, 100% {
+		-webkit-transform: rotateX(360deg) rotateY(-360deg) rotateZ(360deg) scale(2, 2) translate(10px ,-10px);
+		opacity: 0;
+	}
+	35%, 70% {
+		-webkit-transform: rotateX(0) rotateY(0) rotateZ(0) scale(1, 1) translate(0 ,0);
+		opacity: 1;
+	}
+}
+@keyframes sl-pl-flight02-anim {
+	0%, 5%, 85%, 100% {
+		transform: rotateX(360deg) rotateY(-360deg) rotateZ(360deg) scale(2, 2) translate(10px ,-10px);
+		opacity: 0;
+	}
+	35%, 70% {
+		transform: rotateX(0) rotateY(0) rotateZ(0) scale(1, 1) translate(0 ,0);
+		opacity: 1;
+	}
+}
+
+/*	*	*	*	*	*	*	*	*	*
+	7.11 - flight03
+*	*	*	*	*	*	*	*	*	*/
+
+#sl-pl-flight03 span {
+	animation: sl-pl-flight03-anim 4.8s linear infinite;
+	-webkit-animation: sl-pl-flight03-anim 4.8s linear infinite;
+	opacity: 0;
+	transform-origin: 102% 31% 25px;
+	-webkit-transform-origin: 102% 31% 25px;
+}
+@-webkit-keyframes sl-pl-flight03-anim {
+	0%, 5%, 85%, 100% {
+		-webkit-transform: rotateX(660deg) rotateY(0) rotateZ(0) scale(0, 3) translate(0 ,0);
+		opacity: 0;
+	}
+	35%, 70% {
+		-webkit-transform: rotateX(0) rotateY(0) rotateZ(0) scale(1, 1) translate(0 ,0);
+		opacity: 1;
+	}
+}
+@keyframes sl-pl-flight03-anim {
+	0%, 5%, 85%, 100% {
+		transform: rotateX(660deg) rotateY(0) rotateZ(0) scale(0, 3) translate(0 ,0);
+		opacity: 0;
+	}
+	35%, 70% {
+		transform: rotateX(0) rotateY(0) rotateZ(0) scale(1, 1) translate(0 ,0);
+		opacity: 1;
 	}
 }
 
@@ -3765,7 +3885,7 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 }
 @-webkit-keyframes sl-pl-sheet-anim {
 	0% {
-		-webkit-transform: rotateX(0deg) scale(0.1, 1);
+		-webkit-transform: rotateX(0) scale(0.1, 1);
 	}
 	45%, 100% {
 		-webkit-transform: rotateX(-360deg) scale(1, 1);
@@ -3773,7 +3893,7 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 }
 @keyframes sl-pl-sheet-anim {
 	0% {
-		transform: rotateX(0deg) scale(0.1, 1);
+		transform: rotateX(0) scale(0.1, 1);
 	}
 	45%, 100% {
 		transform: rotateX(-360deg) scale(1, 1);

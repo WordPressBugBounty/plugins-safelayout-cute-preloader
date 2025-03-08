@@ -200,6 +200,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 					<div class="sl-pl-upgrade-reminder-footer">
 						<a id="sl-pl-upgrade" class="button" href="https://safelayout.com" target="_blank">
 							<span class="dashicons dashicons-smiley"></span><?php esc_html_e( 'Upgrade to Pro', 'safelayout-cute-preloader' ); ?>
+							16$
 						</a>
 						<a id="sl-pl-upgrade-later" class="button">
 							<span class="dashicons dashicons-calendar"></span><?php esc_html_e( 'Remind me later', 'safelayout-cute-preloader' ); ?>
@@ -418,7 +419,8 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 							<li><a href="#tabs-8"><span class="dashicons dashicons-edit"></span> <?php esc_html_e( 'Special Preloader', 'safelayout-cute-preloader' ); ?></a></li>
 							<a href="https://safelayout.com" target="_blank" class="button" id="sl-pl-side-button-upgrade" title="<?php esc_html_e( 'Upgrade to pro version and get full features.', 'safelayout-cute-preloader' ); ?>">
 								<span class="dashicons dashicons-unlock sl-pl-side-button-icon"></span> <?php esc_html_e( 'Upgrade to Pro', 'safelayout-cute-preloader' ); ?>
-								</a>
+								16$
+							</a>
 							<a href="https://wordpress.org/support/plugin/safelayout-cute-preloader/reviews/?filter=5" target="_blank" class="button" id="sl-pl-side-button-rate" title="<?php esc_html_e( 'Like the plugin? Please give us a rating!', 'safelayout-cute-preloader' ); ?>">
 								<span class="dashicons dashicons-star-filled sl-pl-side-button-icon"></span> <?php esc_html_e( 'Rate The Plugin', 'safelayout-cute-preloader' ); ?></a>
 						</ul>
@@ -459,11 +461,10 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 						</form>
 					</div>
 					<a id="sl-pl-other-icons" class="sl-pl-other-plugins" href="https://safelayout.com/safelayout-elegant-icons-pro-demo/" target="_blank">
-						<img alt="safelayout elegant icons" src="<?php echo SAFELAYOUT_PRELOADER_URL . 'assets/image/safelayout-elegant-icons.png'; ?>"/>
+						Safelayout other plugins<br><img alt="safelayout elegant icons" src="<?php echo SAFELAYOUT_PRELOADER_URL . 'assets/image/safelayout-elegant-icons-bnr.png'; ?>"/>
 					</a>
 					<a id="sl-pl-other-buttons" class="sl-pl-other-plugins" href="https://safelayout.com/safelayout-brilliant-buttons-pro-demo/" target="_blank">
-						<img alt="safelayout brilliant buttons icon" src="<?php echo SAFELAYOUT_PRELOADER_URL . 'assets/image/icon-128x128.webp'; ?>"/><br>
-						<img alt="safelayout brilliant buttons" src="<?php echo SAFELAYOUT_PRELOADER_URL . 'assets/image/safelayout-brilliant-buttons.png'; ?>"/>
+						Safelayout other plugins<br><img alt="safelayout brilliant buttons" src="<?php echo SAFELAYOUT_PRELOADER_URL . 'assets/image/safelayout-brilliant-buttons-bnr.png'; ?>"/>
 					</a>
 				</div>
 			</div>
@@ -1162,16 +1163,28 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 
 		// Text animation field code
 		public function settings_text_anim_callback() {
-			$texts = array( 'No', 'bounce', 'glow', 'yoyo', 'spring', 'zoom', 'wave', 'swing', 'shadow', );
-			echo '<select name="safelayout_preloader_options[text_anim]" id="text_anim" class="sl-pl-text-enable">';
+			$texts = array( 'No', 'bounce', 'yoyo', 'spring', 'zoom', 'wave', 'swing', 'glow', 'shadow',
+				'flight01', 'flight02', 'flight03' );
+			$counter = 0;
 
+			echo '<div class="sl-pl-text-container">';
 			foreach ( $texts as $text ) {
-				echo '<option value="' . esc_html( $text ) . '" ' . selected( esc_attr( $this->options['text_anim'] ), $text, false ) . '>' .
-					 esc_html( $text ) . ( $text === 'No' ? ' animation' : '') . '</option>';
+				echo '<input class="sl-pl-text-radio" type="radio" id="preloader_text_' .
+					 esc_html( $counter ) . '" name="safelayout_preloader_options[text_anim]" value="' .
+					 esc_html( $text ) . '" ' . checked( esc_attr( $this->options['text_anim'] ), $text, false ) . ' />' .
+					 '<label class="sl-pl-text-label" for="preloader_text_' . esc_html( $counter ) . '" title="' . esc_html( $text ) . '">';
+				if ( $text === 'No' ) {
+					echo '<div class="sl-pl-text-div-text">' . esc_html__( 'No Animation', 'safelayout-cute-preloader' ) . '</div></label>';
+				} else {
+					echo '<div class="sl-pl-text-div">';
+					$this->set_text( 'Loading ...', $text );
+					echo '</div></label>';
+				}
+				$counter++;
 			}
-
-			echo '</select>';
-		}
+			echo '</div><div style="text-align: center"><a target="_blank" class="sl-pl-pro-version-message" ' .
+			'href="https://safelayout.com/safelayout-cute-preloader-pro">More Text animations available in PRO version</a></div>';
+   }
 
 		// Text preview code
 		public function settings_text_preview_callback() {

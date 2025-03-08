@@ -58,7 +58,7 @@ if ( ! function_exists( 'safelayout_preloader_set_text' ) ) {
 						text-shadow: 0 0 5px yellow;
 					}
 				}
-				@-webkit-keyframes sl-pl-glow-anim {
+				@keyframes sl-pl-glow-anim {
 					50% {
 						text-shadow: 0 0 5px yellow;
 					}
@@ -271,6 +271,111 @@ if ( ! function_exists( 'safelayout_preloader_set_text' ) ) {
 						transform: rotate(0);
 					}
 				}
+				<?php
+				break;
+			case 'flight01':
+				?>
+					.sl-pl-text {
+						perspective: 200px;
+						z-index: 1000;
+					}
+					#sl-pl-flight01 span {
+						animation: sl-pl-flight01-anim 4.8s linear infinite;
+						-webkit-animation: sl-pl-flight01-anim 4.8s linear infinite;
+						opacity: 0;
+						transform-origin: 65% 14% 29px;
+						-webkit-transform-origin: 65% 14% 29px;
+					}
+					@-webkit-keyframes sl-pl-flight01-anim {
+						0%, 5%, 85%, 100% {
+							-webkit-transform: rotateZ(0) rotateX(0) rotateY(0) scale(3, 3);
+							opacity: 0;
+						}
+						35%, 70% {
+							-webkit-transform: rotateZ(-360deg) rotateX(-360deg) rotateY(-360deg) scale(1, 1);
+							opacity: 1;
+						}
+					}
+					@keyframes sl-pl-flight01-anim {
+						0%, 5%, 85%, 100% {
+							transform: rotateZ(0) rotateX(0) rotateY(0) scale(3, 3);
+							opacity: 0;
+						}
+						35%, 70% {
+							transform: rotateZ(-360deg) rotateX(-360deg) rotateY(-360deg) scale(1, 1);
+							opacity: 1;
+						}
+					}
+				<?php
+				break;
+			case 'flight02':
+				?>
+					.sl-pl-text {
+						perspective: 200px;
+						z-index: 1000;
+					}
+					#sl-pl-flight02 span {
+						animation: sl-pl-flight02-anim 4.8s linear infinite;
+						-webkit-animation: sl-pl-flight02-anim 4.8s linear infinite;
+						opacity: 0;
+						transform-origin: 96% 66% 12px;
+						-webkit-transform-origin: 96% 66% 12px;
+					}
+					@-webkit-keyframes sl-pl-flight02-anim {
+						0%, 5%, 85%, 100% {
+							-webkit-transform: rotateX(360deg) rotateY(-360deg) rotateZ(360deg) scale(2, 2) translate(10px ,-10px);
+							opacity: 0;
+						}
+						35%, 70% {
+							-webkit-transform: rotateX(0) rotateY(0) rotateZ(0) scale(1, 1) translate(0 ,0);
+							opacity: 1;
+						}
+					}
+					@keyframes sl-pl-flight02-anim {
+						0%, 5%, 85%, 100% {
+							transform: rotateX(360deg) rotateY(-360deg) rotateZ(360deg) scale(2, 2) translate(10px ,-10px);
+							opacity: 0;
+						}
+						35%, 70% {
+							transform: rotateX(0) rotateY(0) rotateZ(0) scale(1, 1) translate(0 ,0);
+							opacity: 1;
+						}
+					}
+				<?php
+				break;
+			case 'flight03':
+				?>
+					.sl-pl-text {
+						perspective: 200px;
+						z-index: 1000;
+					}
+					#sl-pl-flight03 span {
+						animation: sl-pl-flight03-anim 4.8s linear infinite;
+						-webkit-animation: sl-pl-flight03-anim 4.8s linear infinite;
+						opacity: 0;
+						transform-origin: 102% 31% 25px;
+						-webkit-transform-origin: 102% 31% 25px;
+					}
+					@-webkit-keyframes sl-pl-flight03-anim {
+						0%, 5%, 85%, 100% {
+							-webkit-transform: rotateX(660deg) rotateY(0) rotateZ(0) scale(0, 3) translate(0 ,0);
+							opacity: 0;
+						}
+						35%, 70% {
+							-webkit-transform: rotateX(0) rotateY(0) rotateZ(0) scale(1, 1) translate(0 ,0);
+							opacity: 1;
+						}
+					}
+					@keyframes sl-pl-flight03-anim {
+						0%, 5%, 85%, 100% {
+							transform: rotateX(660deg) rotateY(0) rotateZ(0) scale(0, 3) translate(0 ,0);
+							opacity: 0;
+						}
+						35%, 70% {
+							transform: rotateX(0) rotateY(0) rotateZ(0) scale(1, 1) translate(0 ,0);
+							opacity: 1;
+						}
+					}
 				<?php
 				break;
 		}//end of switch

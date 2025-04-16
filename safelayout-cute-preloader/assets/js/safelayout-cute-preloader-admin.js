@@ -665,7 +665,7 @@ jQuery( document ).ready( function( $ ) {
 		code += ' icon_effect=' + $( n1 + "icon_effect]']:checked" ).val();
 		code += ' text_enable="' + $( n1 + "text_enable]']:checked" ).val();
 		code += '" text="' + $( n1 + "text]']" ).val();
-		code += '" text_anim="' + $( '#text_anim' ).val();
+		code += '" text_anim="' + $( n1 + "text_anim]']:checked" ).val()
 		code += '" text_size=' + $( '#text_size' ).val();
 		code += ' text_color="' + $( n1 + "text_color]']" ).val();
 		code += '" text_margin_top=' + $( '#text_margin_top' ).val();

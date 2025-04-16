@@ -198,9 +198,9 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 						?>
 					</p>
 					<div class="sl-pl-upgrade-reminder-footer">
-						<a id="sl-pl-upgrade" class="button" href="https://safelayout.com" target="_blank">
+						<a id="sl-pl-upgrade" class="button" href="https://safelayout.com/safelayout-cute-preloader-pro" target="_blank">
 							<span class="dashicons dashicons-smiley"></span><?php esc_html_e( 'Upgrade to Pro', 'safelayout-cute-preloader' ); ?>
-							16$
+							14$
 						</a>
 						<a id="sl-pl-upgrade-later" class="button">
 							<span class="dashicons dashicons-calendar"></span><?php esc_html_e( 'Remind me later', 'safelayout-cute-preloader' ); ?>
@@ -230,7 +230,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 		public function show_rate_reminder() {
 			global $current_user;
 			?>
-			<div id="sl-pl-rate-reminder" class="notice notice-success">
+			<div id="sl-pl-rate-reminder" class="notice notice-success is-dismissible">
 				<img class="" alt="safelayout cute preloader" src="https://ps.w.org/safelayout-cute-preloader/assets/icon-128x128.gif">
 				<div class="sl-pl-msg-container">
 					<p>
@@ -417,9 +417,9 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 							<li><a href="#tabs-6"><span class="dashicons dashicons-editor-ol" id="sl-pl-counter-icon"></span> <?php esc_html_e( 'Counter', 'safelayout-cute-preloader' ); ?></a></li>
 							<li><a href="#tabs-7"><span class="dashicons dashicons-editor-textcolor"></span> <?php esc_html_e( 'Text', 'safelayout-cute-preloader' ); ?></a></li>
 							<li><a href="#tabs-8"><span class="dashicons dashicons-edit"></span> <?php esc_html_e( 'Special Preloader', 'safelayout-cute-preloader' ); ?></a></li>
-							<a href="https://safelayout.com" target="_blank" class="button" id="sl-pl-side-button-upgrade" title="<?php esc_html_e( 'Upgrade to pro version and get full features.', 'safelayout-cute-preloader' ); ?>">
+							<a href="https://safelayout.com/safelayout-cute-preloader-pro" target="_blank" class="button" id="sl-pl-side-button-upgrade" title="<?php esc_html_e( 'Upgrade to pro version and get full features.', 'safelayout-cute-preloader' ); ?>">
 								<span class="dashicons dashicons-unlock sl-pl-side-button-icon"></span> <?php esc_html_e( 'Upgrade to Pro', 'safelayout-cute-preloader' ); ?>
-								16$
+								14$
 							</a>
 							<a href="https://wordpress.org/support/plugin/safelayout-cute-preloader/reviews/?filter=5" target="_blank" class="button" id="sl-pl-side-button-rate" title="<?php esc_html_e( 'Like the plugin? Please give us a rating!', 'safelayout-cute-preloader' ); ?>">
 								<span class="dashicons dashicons-star-filled sl-pl-side-button-icon"></span> <?php esc_html_e( 'Rate The Plugin', 'safelayout-cute-preloader' ); ?></a>
@@ -460,10 +460,10 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 							<input type="text" id="ui_tabs_activate" name="safelayout_preloader_options[ui_tabs_activate]" style="display:none" value="<?php echo esc_html( $this->options['ui_tabs_activate'] ); ?>" />
 						</form>
 					</div>
-					<a id="sl-pl-other-icons" class="sl-pl-other-plugins" href="https://safelayout.com/safelayout-elegant-icons-pro-demo/" target="_blank">
+					<a id="sl-pl-other-icons" class="sl-pl-other-plugins" href="https://safelayout.com/safelayout-elegant-icons-pro/" target="_blank">
 						Safelayout other plugins<br><img alt="safelayout elegant icons" src="<?php echo SAFELAYOUT_PRELOADER_URL . 'assets/image/safelayout-elegant-icons-bnr.png'; ?>"/>
 					</a>
-					<a id="sl-pl-other-buttons" class="sl-pl-other-plugins" href="https://safelayout.com/safelayout-brilliant-buttons-pro-demo/" target="_blank">
+					<a id="sl-pl-other-buttons" class="sl-pl-other-plugins" href="https://safelayout.com/safelayout-brilliant-buttons-pro/" target="_blank">
 						Safelayout other plugins<br><img alt="safelayout brilliant buttons" src="<?php echo SAFELAYOUT_PRELOADER_URL . 'assets/image/safelayout-brilliant-buttons-bnr.png'; ?>"/>
 					</a>
 				</div>
@@ -1474,9 +1474,12 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 
 		// Special preloader description1 code
 		public function settings_special_description1_callback() {
-			$msg0 = __( 'https://safelayout.com/safelayout-cute-preloader-pro-documentation#how-to-set-preloaders-for-type', 'safelayout-cute-preloader' );
+			$msg0 = 'https://safelayout.com/safelayout-cute-preloader-pro-documentation#how-to-set-preloaders-for-type';
 			$msg1 = __( 'How to set preloaders for different data types, for example a different preloader for products.', 'safelayout-cute-preloader' );
-			echo '<div style="text-align:center;height:70px"><a href="' . esc_html( $msg0 ) . '" target="_blank">' . esc_html( $msg1 ) . '</a></div>';
+			$msg2 = 'https://safelayout.com/safelayout-cute-preloader-pro-documentation#how-to-set-different-preloader-for-mobile';
+			$msg3 = __( 'How to set a different preloader for mobile visitors.', 'safelayout-cute-preloader' );
+			echo '<div style="text-align:center;height:140px"><a href="' . esc_html( $msg0 ) . '" target="_blank">' . esc_html( $msg1 ) .
+				 '</a><br><br><br><br><br><a href="' . esc_html( $msg2 ) . '" target="_blank">' . esc_html( $msg3 ) . '</a></div>';
 		}
 
 		// Progress bar shape code

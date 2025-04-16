@@ -2,8 +2,8 @@
 Contributors: safelayout
 Tags: preload, preloader, loader, loading, Wordpress Preloader
 Requires at least: 4.7
-Tested up to: 6.7
-Stable tag: 2.1.2
+Tested up to: 6.8
+Stable tag: 2.1.3
 Requires PHP: 5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -13,6 +13,14 @@ Easily add a pure CSS animated preloader to your WordPress website.
 == Description ==
 
 An **easy-to-use**, **lightweight** and **powerful** preloader plugin. Safelayout Cute Preloader helps you to add a beautiful, pure CSS animated preloader to your website.
+
+[youtube https://www.youtube.com/watch?v=KrLU4_xY6i0]
+
+[How to add different preloaders to different page/post of your site.](https://safelayout.com/safelayout-cute-preloader-pro-documentation#how-to-add-different-preloaders)
+
+[How to set preloaders for different data types, for example a different preloader for products.](https://safelayout.com/safelayout-cute-preloader-pro-documentation#how-to-set-preloaders-for-type)
+
+[How to set a different preloader for mobile visitors.](https://safelayout.com/safelayout-cute-preloader-pro-documentation#how-to-set-different-preloader-for-mobile)
 
 = Features =
 
@@ -37,12 +45,6 @@ An **easy-to-use**, **lightweight** and **powerful** preloader plugin. Safelayou
 = Live Demo =
 
 [Safelayout Cute Preloader Demo.](https://safelayout.com/safelayout-cute-preloader-pro-demo/)
-
-= Documentation =
-
-[How to add different preloaders to different page/post of your site.](https://safelayout.com/safelayout-cute-preloader-pro-documentation#how-to-add-different-preloaders)
-
-[How to set preloaders for different data types, for example a different preloader for products.](https://safelayout.com/safelayout-cute-preloader-pro-documentation#how-to-set-preloaders-for-type)
 
 = Pro Version =
 
@@ -76,6 +78,9 @@ Safelayout Cute Preloader **Pro** is available. [Upgrade to pro version](https:/
 8. Special preloader
 
 == Changelog ==
+
+= 2.1.3 =
+* Added the ability, to not display the preloader if JavaScript is disabled.
 
 = 2.1.2 =
 * Added 3 new animation types for text.

@@ -46,6 +46,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 				if ( $options['icon'] === 'Custom' && strpos( $options['custom_icon'], 'data:image' ) === false ) {
 					echo "\n" . '<link rel="preload" fetchpriority="high" as="image" href="' . esc_url( $options['custom_icon'] ) . '">';
 				}
+				echo "\n" . '<style id="safelayout-cute-preloader-visible-css" data-no-optimize="1" data-no-minify="1">#sl-preloader{visibility: hidden;}</style>';
 			}
 		}
 
@@ -438,6 +439,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 					$this->main_code .= ob_get_clean();
 				}
 			}
+			$this->main_code = '<script id="safelayout-cute-preloader-visible" data-no-delay-js data-no-optimize="1" data-no-minify="1" type="text/javascript">var vStyle = document.createElement("style");document.head.appendChild(vStyle);vStyle.textContent = "#sl-preloader{visibility: visible !important;}";</script>' . $this->main_code;
 		}
 	}
 	new Safelayout_Preloader_Front();

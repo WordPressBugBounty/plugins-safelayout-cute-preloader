@@ -3,7 +3,7 @@
 Plugin Name: Safelayout Cute Preloader
 Plugin URI: https://safelayout.com
 Description: Easily add a pure CSS animated preloader to your WordPress website.
-Version: 2.1.2
+Version: 2.1.3
 Author: Safelayout
 Text Domain: safelayout-cute-preloader
 Domain Path: /languages
@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Preloader_Pro' ) ) {
 
 	// Define the constant used in this plugin
-	define( 'SAFELAYOUT_PRELOADER_VERSION', '2.1.2');
+	define( 'SAFELAYOUT_PRELOADER_VERSION', '2.1.3');
 	define( 'SAFELAYOUT_PRELOADER_NAME', plugin_basename( __FILE__ ) );
 	define( 'SAFELAYOUT_PRELOADER_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'SAFELAYOUT_PRELOADER_URL', plugin_dir_url( __FILE__ ) );
@@ -168,6 +168,7 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 		// exclude css WP Rocket
 		public function rocket_remove_unused_css_safelist( $excluded ) {
 			$excluded[] = 'safelayout-cute-preloader-css';
+			$excluded[] = 'safelayout-cute-preloader-visible-css';
 			return $excluded;
 		}
 
@@ -175,6 +176,7 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 		public function rocket_exclude_inline_js( $excluded ) {
 			$excluded[] = 'safelayout-cute-preloader-brand-anim-synchro';
 			$excluded[] = 'safelayout-cute-preloader-script-js-before';
+			$excluded[] = 'safelayout-cute-preloader-visible';
 			$excluded[] = 'safelayout-cute-preloader-progress-bar-script-js';
 			return $excluded;
 		}
@@ -189,6 +191,7 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 		public function rocket_delay_js_exclude( $excluded ) {
 			$excluded[] = 'safelayout-cute-preloader-brand-anim-synchro';
 			$excluded[] = 'safelayout-cute-preloader-script-js-before';
+			$excluded[] = 'safelayout-cute-preloader-visible';
 			$excluded[] = 'safelayout-cute-preloader-progress-bar-script-js';
 			$excluded[] = 'safelayout-cute-preloader.min.js';
 			return $excluded;

@@ -297,13 +297,13 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 		// ajax handlers
 		public function add_preloader_meta_box_ajax_handler() {
 			check_ajax_referer( 'slpl_preloader_ajax' );
-			$key = $_POST['key'];
+			$key = sanitize_text_field( $_POST['key'] );
 			if ( $key == 'show' ) {
 				update_option( 'safelayout_preloader_options_meta', true );
 			} else {
 				update_option( 'safelayout_preloader_options_meta', false );
 			}
-			echo $key;
+			echo esc_html( $key );
 
 			wp_die();
 		}
@@ -461,10 +461,10 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 						</form>
 					</div>
 					<a id="sl-pl-other-icons" class="sl-pl-other-plugins" href="https://safelayout.com/safelayout-elegant-icons-pro/" target="_blank">
-						Safelayout other plugins<br><img alt="safelayout elegant icons" src="<?php echo SAFELAYOUT_PRELOADER_URL . 'assets/image/safelayout-elegant-icons-bnr.png'; ?>"/>
+						Safelayout other plugins<br><img alt="safelayout elegant icons" src="<?php echo SAFELAYOUT_PRELOADER_URL . 'assets/image/safelayout-elegant-icons-bnr.png?ver=' . SAFELAYOUT_PRELOADER_VERSION; ?>"/>
 					</a>
-					<a id="sl-pl-other-buttons" class="sl-pl-other-plugins" href="https://safelayout.com/safelayout-brilliant-buttons-pro/" target="_blank">
-						Safelayout other plugins<br><img alt="safelayout brilliant buttons" src="<?php echo SAFELAYOUT_PRELOADER_URL . 'assets/image/safelayout-brilliant-buttons-bnr.png'; ?>"/>
+					<a id="sl-pl-other-buttons" class="sl-pl-other-plugins" href="https://safelayout.com/safelayout-brilliant-buttons-pro-demo/" target="_blank">
+						Safelayout other plugins<br><img alt="safelayout brilliant buttons" src="<?php echo SAFELAYOUT_PRELOADER_URL . 'assets/image/safelayout-brilliant-buttons-bnr.png?ver=' . SAFELAYOUT_PRELOADER_VERSION; ?>"/>
 					</a>
 				</div>
 			</div>
@@ -1029,7 +1029,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 				 '<input type="number" name="safelayout_preloader_options[custom_icon_height]" class="sl-pl-hidden" ' .
 				 'id="custom_icon_height" value="' . esc_attr( $this->options['custom_icon_height'] ) . '" /><span class="description">' .
 				 esc_html( $msg ) . '</span></div></div><div style="text-align: center;margin-top: 10px"><a class="sl-pl-pro-version-message" ' .
-				 'href="https://safelayout.com/safelayout-cute-preloader-pro" target="_blank">More icons available in PRO version</a></div>';
+				 'href="https://safelayout.com/safelayout-cute-preloader-pro" target="_blank">More icons available in PRO version<br><br>Custom HTML available in PRO version</a></div>';
 		}
 
 		// Icon preview code

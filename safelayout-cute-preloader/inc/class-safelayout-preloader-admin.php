@@ -157,13 +157,13 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 			if ( is_super_admin() ) {
 				$rate = $this->get_rate_data();
 				$upgrade = $this->get_upgrade_data();
-				if ( $rate['later'] != 0 && $rate['later'] < strtotime( '-3 day' ) ) {
-					add_action( 'admin_notices', array( $this, 'show_rate_reminder' ), 0 );
-					add_action( 'wp_ajax_slpl_preloader_rate_reminder', array( $this, 'preloader_rate_reminder_ajax_handler' ) );
-					add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_for_rate_reminder' ) );
-				} else if ( $upgrade < strtotime( '-20 day' ) ) {
+				if ( $upgrade < strtotime( '-9 day' ) ) {
 					add_action( 'admin_notices', array( $this, 'show_upgrade_message' ), 0 );
 					add_action( 'wp_ajax_slpl_preloader_upgrade', array( $this, 'preloader_upgrade_ajax_handler' ) );
+					add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_for_rate_reminder' ) );
+				} else if ( $rate['later'] != 0 && $rate['later'] < strtotime( '-3 day' ) ) {
+					add_action( 'admin_notices', array( $this, 'show_rate_reminder' ), 0 );
+					add_action( 'wp_ajax_slpl_preloader_rate_reminder', array( $this, 'preloader_rate_reminder_ajax_handler' ) );
 					add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_for_rate_reminder' ) );
 				}
 			}
@@ -200,10 +200,9 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 					<div class="sl-pl-upgrade-reminder-footer">
 						<a id="sl-pl-upgrade" class="button" href="https://safelayout.com/safelayout-cute-preloader-pro" target="_blank">
 							<span class="dashicons dashicons-smiley"></span><?php esc_html_e( 'Upgrade to Pro', 'safelayout-cute-preloader' ); ?>
-							14$
 						</a>
 						<a id="sl-pl-upgrade-later" class="button">
-							<span class="dashicons dashicons-calendar"></span><?php esc_html_e( 'Remind me later', 'safelayout-cute-preloader' ); ?>
+							<span class="dashicons dashicons-no-alt"></span><?php esc_html_e( 'No Thanks', 'safelayout-cute-preloader' ); ?>
 						</a> 
 					</div>
 				</div>
@@ -419,7 +418,6 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 							<li><a href="#tabs-8"><span class="dashicons dashicons-edit"></span> <?php esc_html_e( 'Special Preloader', 'safelayout-cute-preloader' ); ?></a></li>
 							<a href="https://safelayout.com/safelayout-cute-preloader-pro" target="_blank" class="button" id="sl-pl-side-button-upgrade" title="<?php esc_html_e( 'Upgrade to pro version and get full features.', 'safelayout-cute-preloader' ); ?>">
 								<span class="dashicons dashicons-unlock sl-pl-side-button-icon"></span> <?php esc_html_e( 'Upgrade to Pro', 'safelayout-cute-preloader' ); ?>
-								14$
 							</a>
 							<a href="https://wordpress.org/support/plugin/safelayout-cute-preloader/reviews/?filter=5" target="_blank" class="button" id="sl-pl-side-button-rate" title="<?php esc_html_e( 'Like the plugin? Please give us a rating!', 'safelayout-cute-preloader' ); ?>">
 								<span class="dashicons dashicons-star-filled sl-pl-side-button-icon"></span> <?php esc_html_e( 'Rate The Plugin', 'safelayout-cute-preloader' ); ?></a>

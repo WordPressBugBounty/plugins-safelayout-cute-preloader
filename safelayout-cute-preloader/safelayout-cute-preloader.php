@@ -3,7 +3,7 @@
 Plugin Name: Safelayout Cute Preloader
 Plugin URI: https://safelayout.com
 Description: Easily add a pure CSS animated preloader to your WordPress website.
-Version: 2.1.4
+Version: 2.1.5
 Author: Safelayout
 Text Domain: safelayout-cute-preloader
 Domain Path: /languages
@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Preloader_Pro' ) ) {
 
 	// Define the constant used in this plugin
-	define( 'SAFELAYOUT_PRELOADER_VERSION', '2.1.4');
+	define( 'SAFELAYOUT_PRELOADER_VERSION', '2.1.5');
 	define( 'SAFELAYOUT_PRELOADER_NAME', plugin_basename( __FILE__ ) );
 	define( 'SAFELAYOUT_PRELOADER_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'SAFELAYOUT_PRELOADER_URL', plugin_dir_url( __FILE__ ) );
@@ -110,11 +110,11 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 			add_action( 'activated_plugin', array( $this, 'redirect_settings' ) );
 			register_deactivation_hook( __FILE__, array( $this, 'deactivation_preloader' ) );
 
-			add_filter( 'pre_get_rocket_option_remove_unused_css_safelist', array( $this, 'rocket_remove_unused_css_safelist' ) );
-			add_filter( 'pre_get_rocket_option_exclude_inline_js', array( $this, 'rocket_exclude_inline_js' ) );
-			add_filter( 'pre_get_rocket_option_exclude_js', array( $this, 'rocket_exclude_js' ) );
-			add_filter( 'pre_get_rocket_option_delay_js_exclusions', array( $this, 'rocket_delay_js_exclude' ) );
-			add_filter( 'pre_get_rocket_option_exclude_defer_js', array( $this, 'rocket_delay_js_exclude' ) );
+			add_filter( 'get_rocket_option_remove_unused_css_safelist', array( $this, 'rocket_remove_unused_css_safelist' ) );
+			add_filter( 'get_rocket_option_exclude_inline_js', array( $this, 'rocket_exclude_inline_js' ) );
+			add_filter( 'get_rocket_option_exclude_js', array( $this, 'rocket_exclude_js' ) );
+			add_filter( 'get_rocket_option_delay_js_exclusions', array( $this, 'rocket_delay_js_exclude' ) );
+			add_filter( 'get_rocket_option_exclude_defer_js', array( $this, 'rocket_delay_js_exclude' ) );
 
 			add_filter( 'litespeed_optimize_js_excludes', array( $this, 'litespeed_custom_excludes' ) );
 			add_filter( 'litespeed_optm_js_defer_exc', array( $this, 'litespeed_custom_excludes' ) );
@@ -167,33 +167,56 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 
 		// exclude css WP Rocket
 		public function rocket_remove_unused_css_safelist( $excluded ) {
-			$excluded[] = 'safelayout-cute-preloader-css';
-			$excluded[] = 'safelayout-cute-preloader-visible-css';
+			$list = [ 'safelayout-cute-preloader-css', 'safelayout-cute-preloader-visible-css' ];
+			foreach( $list as $li ) {
+				if( ! in_array( $li, $excluded ) ) {
+					array_push( $excluded, $li );
+				}
+			}
 			return $excluded;
 		}
 
 		// exclude js WP Rocket
 		public function rocket_exclude_inline_js( $excluded ) {
-			$excluded[] = 'safelayout-cute-preloader-brand-anim-synchro';
-			$excluded[] = 'safelayout-cute-preloader-script-js-before';
-			$excluded[] = 'safelayout-cute-preloader-visible';
-			$excluded[] = 'safelayout-cute-preloader-progress-bar-script-js';
+			$list = [
+				'safelayout-cute-preloader-brand-anim-synchro',
+				'safelayout-cute-preloader-script-js-before',
+				'safelayout-cute-preloader-visible',
+				'safelayout-cute-preloader-progress-bar-script-js',
+			];
+			foreach( $list as $li ) {
+				if( ! in_array( $li, $excluded ) ) {
+					array_push( $excluded, $li );
+				}
+			}
 			return $excluded;
 		}
 
 		// exclude js WP Rocket
 		public function rocket_exclude_js( $excluded ) {
-			$excluded[] = 'safelayout-cute-preloader.min.js';
+			$list = [ 'safelayout-cute-preloader.min.js', ];
+			foreach( $list as $li ) {
+				if( ! in_array( $li, $excluded ) ) {
+					array_push( $excluded, $li );
+				}
+			}
 			return $excluded;
 		}
 
 		// exclude js WP Rocket
 		public function rocket_delay_js_exclude( $excluded ) {
-			$excluded[] = 'safelayout-cute-preloader-brand-anim-synchro';
-			$excluded[] = 'safelayout-cute-preloader-script-js-before';
-			$excluded[] = 'safelayout-cute-preloader-visible';
-			$excluded[] = 'safelayout-cute-preloader-progress-bar-script-js';
-			$excluded[] = 'safelayout-cute-preloader.min.js';
+			$list = [
+				'safelayout-cute-preloader-brand-anim-synchro',
+				'safelayout-cute-preloader-script-js-before',
+				'safelayout-cute-preloader-visible',
+				'safelayout-cute-preloader-progress-bar-script-js',
+				'safelayout-cute-preloader.min.js',
+			];
+			foreach( $list as $li ) {
+				if( ! in_array( $li, $excluded ) ) {
+					array_push( $excluded, $li );
+				}
+			}
 			return $excluded;
 		}
 

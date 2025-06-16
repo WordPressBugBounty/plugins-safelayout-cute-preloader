@@ -1026,8 +1026,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 				 'class="sl-pl-hidden" id="custom_icon_width" value="' . esc_attr( $this->options['custom_icon_width'] ) . '" />' .
 				 '<input type="number" name="safelayout_preloader_options[custom_icon_height]" class="sl-pl-hidden" ' .
 				 'id="custom_icon_height" value="' . esc_attr( $this->options['custom_icon_height'] ) . '" /><span class="description">' .
-				 esc_html( $msg ) . '</span></div></div><div style="text-align: center;margin-top: 10px"><a class="sl-pl-pro-version-message" ' .
-				 'href="https://safelayout.com/safelayout-cute-preloader-pro" target="_blank">More icons available in PRO version<br><br>Custom HTML available in PRO version</a></div>';
+				 esc_html( $msg ) . '</span></div></div>';
 		}
 
 		// Icon preview code
@@ -1041,8 +1040,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 		public function settings_icon_free_color_callback() {
 			echo '<div class="sl-pl-free-color-container">';
 			$this->set_color_code( 'icon_gradient_value', 'icon_free_color_' );
-			echo '</div><div style="text-align: center"><a target="_blank" class="sl-pl-pro-version-message" ' .
-				 'href="https://safelayout.com/safelayout-cute-preloader-pro">Unlimited Colors and Gradients available in PRO version</a></div>';
+			echo '</div>';
 		}
 
 		// echo free version color HTML
@@ -1141,8 +1139,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 		public function settings_background_free_color_callback() {
 			echo '<div class="sl-pl-free-color-container">';
 			$this->set_color_code( 'background_gradient_value', 'background_free_color_' );
-			echo '</div><div style="text-align: center"><a target="_blank" class="sl-pl-pro-version-message" ' .
-				 'href="https://safelayout.com/safelayout-cute-preloader-pro">Unlimited Colors and Gradients available in PRO version</a></div>';
+			echo '</div>';
 		}
 
 		// Show text code
@@ -1180,8 +1177,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 				}
 				$counter++;
 			}
-			echo '</div><div style="text-align: center"><a target="_blank" class="sl-pl-pro-version-message" ' .
-			'href="https://safelayout.com/safelayout-cute-preloader-pro">More Text animations available in PRO version</a></div>';
+			echo '</div>';
    }
 
 		// Text preview code
@@ -1252,9 +1248,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 					 esc_html( $anim ) . ( $anim === 'No' ? ' animation' : '') . '</option>';
 			}
 
-			echo '</select><span class="sl-pl-hidden" id="sl-pl-brand-size-alert">' . esc_html( $msg ) . '</span>' .
-				 '<div style="text-align: center"><a target="_blank" class="sl-pl-pro-version-message" ' .
-				 'href="https://safelayout.com/safelayout-cute-preloader-pro">More brand animations available in PRO version</a></div>';
+			echo '</select><span class="sl-pl-hidden" id="sl-pl-brand-size-alert">' . esc_html( $msg ) . '</span>';
 		}
 
 		// Brand preview code
@@ -1353,9 +1347,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 					echo '<option value="' . esc_html( $post ) . ( $key ? '" selected>' : '">' ) . esc_html( $post ) . '</option>';
 				}
 			}
-			echo '</select><br /><div style="text-align: center"><a target="_blank" class="sl-pl-pro-version-message" ' .
-				 'href="https://safelayout.com/safelayout-cute-preloader-pro">Exclude page/post, ' .
-				 'Show only once per visitor session, Disable page scrolling while loading, available in PRO version</a></div>';
+			echo '</select>';
 		}
 
 		// Return true if val is in list
@@ -1504,8 +1496,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 				}
 				$counter++;
 			}
-			echo '</div><div style="text-align: center;margin-top: 10px"><a target="_blank" class="sl-pl-pro-version-message" ' .
-				 'href="https://safelayout.com/safelayout-cute-preloader-pro">More progress bars available in PRO version</a></div>';
+			echo '</div>';
 		}
 
 		// Progress bar preview code
@@ -1606,8 +1597,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 		public function settings_bar_free_color_callback() {
 			echo '<div class="sl-pl-free-color-container">';
 			$this->set_color_code( 'bar_gradient_value', 'bar_free_color_' );
-			echo '</div><div style="text-align: center"><a target="_blank" class="sl-pl-pro-version-message" ' .
-				 'href="https://safelayout.com/safelayout-cute-preloader-pro">Unlimited Colors and Gradients available in PRO version</a></div>';
+			echo '</div>';
 		}
 
 		// show counter code

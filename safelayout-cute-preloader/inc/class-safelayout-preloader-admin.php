@@ -161,7 +161,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 					add_action( 'admin_notices', array( $this, 'show_upgrade_message' ), 0 );
 					add_action( 'wp_ajax_slpl_preloader_upgrade', array( $this, 'preloader_upgrade_ajax_handler' ) );
 					add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_for_rate_reminder' ) );
-				} else if ( $rate['later'] != 0 && $rate['later'] < strtotime( '-3 day' ) ) {
+				} else if ( $upgrade < strtotime( '-1 day' ) && $rate['later'] != 0 && $rate['later'] < strtotime( '-3 day' ) ) {
 					add_action( 'admin_notices', array( $this, 'show_rate_reminder' ), 0 );
 					add_action( 'wp_ajax_slpl_preloader_rate_reminder', array( $this, 'preloader_rate_reminder_ajax_handler' ) );
 					add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_for_rate_reminder' ) );
@@ -458,11 +458,13 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 							<input type="text" id="ui_tabs_activate" name="safelayout_preloader_options[ui_tabs_activate]" style="display:none" value="<?php echo esc_html( $this->options['ui_tabs_activate'] ); ?>" />
 						</form>
 					</div>
-					<a id="sl-pl-other-icons" class="sl-pl-other-plugins" href="https://safelayout.com/safelayout-elegant-icons-pro/" target="_blank">
+					<div id="sl-pl-other-buttons" class="sl-pl-other-plugins">
+						<a href="https://safelayout.com/safelayout-brilliant-buttons-pro/?action=preloader" target="_blank">Safelayout other plugins</a>
+						<br>
+						<iframe width="216" height="850" src="https://safelayout.com/logo/button01.html?ver=<?php echo SAFELAYOUT_PRELOADER_VERSION; ?>"></iframe>
+					</div>
+					<a id="sl-pl-other-icons" class="sl-pl-other-plugins" href="https://safelayout.com/safelayout-elegant-icons-pro/?action=preloader" target="_blank">
 						Safelayout other plugins<br><img alt="safelayout elegant icons" src="<?php echo SAFELAYOUT_PRELOADER_URL . 'assets/image/safelayout-elegant-icons-bnr.png?ver=' . SAFELAYOUT_PRELOADER_VERSION; ?>"/>
-					</a>
-					<a id="sl-pl-other-buttons" class="sl-pl-other-plugins" href="https://safelayout.com/safelayout-brilliant-buttons-pro-demo/" target="_blank">
-						Safelayout other plugins<br><img alt="safelayout brilliant buttons" src="<?php echo SAFELAYOUT_PRELOADER_URL . 'assets/image/safelayout-brilliant-buttons-bnr.png?ver=' . SAFELAYOUT_PRELOADER_VERSION; ?>"/>
 					</a>
 				</div>
 			</div>
@@ -1326,28 +1328,36 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 				 $temp1 . '6">' . esc_html__( 'Specific post ( Select from the list )', 'safelayout-cute-preloader' ) . '</label><br />' .
 				 '<input type="text" id="specific_IDs" name="safelayout_preloader_options[specific_IDs]" ' .
 				 'class="sl-pl-hidden" value="' . esc_attr( $this->options['specific_IDs'] ) .
-				 '" /><select class="sl-pl-display-on-select" id="specific_IDs_select" size="6" multiple>';
+				 '" /><div class="sl-pl-display-on-select" id="specific_IDs_select">';
 
 			$pages = $this->get_page_list();
+			$count = 0;
 			foreach ( $pages as $page ) {
 				$key = $this->check_list( esc_attr( $this->options['specific_IDs'] ), esc_html( $page[0] ) );
-				echo '<option value="' . esc_html( $page[0] ) . ( $key ? '" selected>' : '">' ) . esc_html( $page[1] ) . '</option>';
+				echo '<input class="sl-pl-list-id" type="checkbox" id="specific_id_list_' . esc_html( $count ) .
+					 '" value="' . esc_html( $page[0] ) . '" ' . checked( esc_attr( $key ), true, false ) .
+					 ' /><label' . ( $key ? ' class="sl-pl-list-selected"' : '' ) . ' for="specific_id_list_' .
+					 esc_html( $count++ ) . '" title="' . esc_html( $page[1] ) . '">' . esc_html( $page[1] ) . '</label><br />';
 			}
-			echo '</select>';
+			echo '</div>';
 			echo $temp0 . '7" value="custom-name" ' . checked( esc_attr( $disp ), 'custom-name', false ) . ' />' .
 				 $temp1 . '7">' . esc_html__( 'Specific post types ( Select from the list )', 'safelayout-cute-preloader' ) . '</label><br />' .
 				 '<input type="text" id="specific_names" name="safelayout_preloader_options[specific_names]" ' .
 				 'class="sl-pl-hidden" value="' . esc_attr( $this->options['specific_names'] ) .
-				 '" /><select class="sl-pl-display-on-select" id="specific_names_select" size="4" multiple>';
+				 '" /><div class="sl-pl-display-on-select" id="specific_names_select">';
 
 			$posts = get_post_types( array( 'public' => true ) );
+			$count = 0;
 			foreach ( $posts as $post ) {
 				if ( $post != 'attachment' ) {
 					$key = $this->check_list( esc_attr( $this->options['specific_names'] ), esc_html( $post ) );
-					echo '<option value="' . esc_html( $post ) . ( $key ? '" selected>' : '">' ) . esc_html( $post ) . '</option>';
+					echo '<input class="sl-pl-list-name" type="checkbox" id="specific_name_list_' . esc_html( $count ) .
+						'" value="' . esc_html( $post ) . '" ' . checked( esc_attr( $key ), true, false ) .
+						' /><label' . ( $key ? ' class="sl-pl-list-selected"' : '' ) . ' for="specific_name_list_' .
+						esc_html( $count++ ) . '" title="' . esc_html( $post ) . '">' . esc_html( $post ) . '</label><br />';
 				}
 			}
-			echo '</select>';
+			echo '</div>';
 		}
 
 		// Return true if val is in list

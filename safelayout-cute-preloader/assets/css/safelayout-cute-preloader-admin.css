@@ -1,7 +1,7 @@
 /*
 * Safelayout Cute Preloader Admin Stylesheet
 *
-* Version: 2.1.6
+* Version: 2.1.7
 *
 * Table of Contents:
 *
@@ -524,10 +524,28 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 	width: 530px;
 }
 .sl-pl-display-on-select {
+	background-color: #fff;
+	border: 1px solid #8c8f94;
 	display: block;
+	height: 110px;
 	margin: 4px 30px 4px 30px;
-	resize: auto;
+	overflow: scroll;
+	padding: 4px;
+	resize: both;
 	width: 346px;
+}
+.sl-pl-display-on-select label {
+	background: transparent;
+	color: #313131;
+	display: inline-block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: calc(100% - 30px);
+}
+.sl-pl-display-on-select .sl-pl-list-selected {
+	background: #5858b9;
+	color: #fff;
 }
 .sl-pl-advanced {
 	width: 500px;

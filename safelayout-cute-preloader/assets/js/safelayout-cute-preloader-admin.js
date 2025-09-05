@@ -116,12 +116,12 @@ jQuery( document ).ready( function( $ ) {
 		AdvancedDisplayOnChange();
 	});
 
-	$( '#specific_IDs_select' ).change( function() {
-		$( '#specific_IDs' ).val( $( '#specific_IDs_select' ).val().toString() );
+	$( '.sl-pl-list-id' ).change( function() {
+		setCheckListValue( this, '#specific_IDs' );
 	});
 
-	$( '#specific_names_select' ).change( function() {
-		$( '#specific_names' ).val( $( '#specific_names_select' ).val().toString() );
+	$( '.sl-pl-list-name' ).change( function() {
+		setCheckListValue( this, '#specific_names' );
 	});
 
 	// special preloader tab elements event
@@ -360,11 +360,11 @@ jQuery( document ).ready( function( $ ) {
 	// Show other plugins banner
 	function showOtherBanner( tab ) {
 		if( tab == 0 || tab == 2 || tab == 4 || tab == 6 ) {
-			$( '#sl-pl-other-icons' ).css( 'display', 'inline-block' );
-			$( '#sl-pl-other-buttons' ).css( 'display', 'none' );
-		} else {
 			$( '#sl-pl-other-icons' ).css( 'display', 'none' );
 			$( '#sl-pl-other-buttons' ).css( 'display', 'inline-block' );
+		} else {
+			$( '#sl-pl-other-icons' ).css( 'display', 'inline-block' );
+			$( '#sl-pl-other-buttons' ).css( 'display', 'none' );
 		}
 	}
 
@@ -873,6 +873,20 @@ jQuery( document ).ready( function( $ ) {
 			}
 		}
 		return html;
+	}
+
+	function setCheckListValue( el, id ) {
+		var els = el.parentNode.querySelectorAll( "[type='checkbox']" ),
+			arr = [];
+		for ( var j = 0; j < els.length; j++ ) {
+			if ( els[j].checked ) {
+				arr.push( els[j].value );
+				els[j].nextSibling.classList.add( 'sl-pl-list-selected' );
+			} else {
+				els[j].nextSibling.classList.remove( 'sl-pl-list-selected' );
+			}
+		}
+		$( id ).val( arr.join() );
 	}
 
 	function getElementColor( name, color ) {

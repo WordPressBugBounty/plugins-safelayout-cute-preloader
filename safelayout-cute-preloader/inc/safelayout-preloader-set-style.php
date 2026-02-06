@@ -37,6 +37,7 @@ if ( ! function_exists( 'safelayout_preloader_set_style' ) ) {
 		.sl-pl-loaded .sl-pl-spin,
 		.sl-pl-loaded .sl-pl-text,
 		.sl-pl-loaded .sl-pl-custom,
+		.sl-pl-loaded #sl-pl-canvas,
 		.sl-pl-loaded #sl-pl-counter,
 		.sl-pl-loaded #sl-pl-close-button,
 		.sl-pl-loaded .sl-pl-bar-container,
@@ -49,6 +50,12 @@ if ( ! function_exists( 'safelayout_preloader_set_style' ) ) {
 		if ( $options['background_anim'] != 'none' ) {
 			require_once SAFELAYOUT_PRELOADER_PATH . 'inc/safelayout-preloader-set-background.php';
 			safelayout_preloader_set_background( $options['background_anim'] );
+		}
+
+		// set background animation css
+		if ( $options['background_new_anim'] != 'No' ) {
+			require_once SAFELAYOUT_PRELOADER_PATH . 'inc/safelayout-preloader-set-background-anim.php';
+			safelayout_preloader_set_background_anim( $options['background_new_anim'] );
 		}
 
 		// set icon css ( animation, ... )

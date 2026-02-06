@@ -1,7 +1,7 @@
 /*
 * Safelayout Cute Preloader Admin Stylesheet
 *
-* Version: 2.1.7
+* Version: 2.2.1
 *
 * Table of Contents:
 *
@@ -104,7 +104,6 @@
 	background-color: #e6e6e6;
 	border: 1px solid #c5c5c5;
 	border-radius: inherit;
-	margin-bottom: 20px;
 	margin-top: 20px;
 	text-align: initial;
 }
@@ -167,7 +166,7 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 	width: 160px;
 	height: 35px;
 	padding-top: 4px !important;
-	margin-bottom: 20px !important;
+	margin-top: 20px !important;
 	color: #00f !important;
 }
 #sl-pl-side-button-rate {
@@ -209,6 +208,11 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 .sl-pl-background-container {
 	max-width: 500px;
 }
+#sl-pl-new-background-container {
+	position: relative;
+	max-width: 505px;
+	min-width: 500px;
+}
 .sl-pl-text-container {
 	font-size: 16px;
 }
@@ -217,14 +221,16 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 .sl-pl-effect-radio,
 .sl-pl-progress-radio,
 .sl-pl-free-color-radio,
-.sl-pl-background-radio {
+.sl-pl-background-radio,
+.sl-pl-new-background-radio {
 	display: none !important;
 	position: absolute;
 }
 .sl-pl-text-radio:checked + label,
 .sl-pl-icon-radio:checked + label,
 .sl-pl-progress-radio:checked + label,
-.sl-pl-background-radio:checked + label {
+.sl-pl-background-radio:checked + label,
+.sl-pl-new-background-radio:checked + label {
 	border: 3px solid #ffba00;
 }
 .sl-pl-free-color-radio:checked + label {
@@ -237,7 +243,8 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 .sl-pl-text-label,
 .sl-pl-icon-label,
 .sl-pl-progress-label,
-.sl-pl-background-label {
+.sl-pl-background-label,
+.sl-pl-new-background-label {
 	border: 1px solid #b6c1b4;
 	box-sizing: border-box;
 	display: inline-block;
@@ -259,7 +266,8 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 .sl-pl-icon-label:hover,
 .sl-pl-progress-label:hover,
 .sl-pl-free-color-label:hover,
-.sl-pl-background-label:hover {
+.sl-pl-background-label:hover,
+.sl-pl-new-background-label:hover {
 	border: 2px solid #007fff;
 }
 .sl-pl-text-div,
@@ -279,7 +287,8 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 .sl-pl-icon-div-text,
 .sl-pl-effect-div-text,
 .sl-pl-progress-div-text,
-.sl-pl-background-div-text {
+.sl-pl-background-div-text,
+.sl-pl-new-background-div-text {
 	display: inline-block;
 	font-size: 13px;
 	font-weight: 500;
@@ -396,7 +405,8 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 #sl-pl-bar-preview-title,
 #sl-pl-brand-preview-title,
 #sl-pl-text-preview-title,
-#sl-pl-icon-preview-title {
+#sl-pl-icon-preview-title,
+#sl-pl-new-background-preview-title {
 	font-size: 13px;
 	font-weight: 500;
 }
@@ -458,7 +468,8 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 	background: rgba( 0, 0, 0, 0 );
 }
 .sl-pl-text-div-text,
-.sl-pl-background-div-text {
+.sl-pl-background-div-text,
+.sl-pl-new-background-div-text {
 	width: 72px;
 }
 .sl-pl-background-div {
@@ -513,6 +524,19 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 	color: white;
 	margin: 0 10px;
 	padding: 0 3px;
+}
+.sl-pl-new-background-preview-container {
+	position: relative;
+	height: 500px;
+	margin-top: 30px;
+	text-align: center;
+	width: 500px;
+}
+#sl-pl-new-background-frame {
+	height: 500px;
+	position: relative;
+	width: 500px;
+	z-index: 1;
 }
 
 /*	*	*	*	*	*	*	*	*	*

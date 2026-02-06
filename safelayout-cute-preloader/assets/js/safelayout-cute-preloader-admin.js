@@ -4,6 +4,9 @@ jQuery( document ).ready( function( $ ) {
 	$( "#tabs" ).on( "tabsactivate", function( event, ui ) {
 		$( '#ui_tabs_activate' ).val( $( "#tabs" ).tabs( "option", "active" ) );
 		showOtherBanner( $( '#ui_tabs_activate' ).val() );
+		if( $( '#ui_tabs_activate' ).val() == 8 ) {
+			document.getElementById( 'sl-pl-pro-features' ).src = document.getElementById( 'sl-pl-pro-features' ).src;
+		}
 	});
 
 	// Color pickers start
@@ -60,6 +63,10 @@ jQuery( document ).ready( function( $ ) {
 	$( ".sl-pl-background-div" ).hover(function() {
 		$( this ).addClass( 'sl-pl-loaded' );},
 		function() {$( this ).removeClass( 'sl-pl-loaded' );
+	});
+
+	$( "[name='safelayout_preloader_options[background_new_anim]']" ).change( function() {
+		newBackgroundPreview();
 	});
 
 	// Text tab elements event
@@ -238,6 +245,7 @@ jQuery( document ).ready( function( $ ) {
 	function updateStageOnload() {
 		iconChange();
 		updatePreviewBackground();
+		newBackgroundPreview();
 		backgroundColorChange();
 		backgroundAlphaChange();
 		textAnimChange();
@@ -456,6 +464,20 @@ jQuery( document ).ready( function( $ ) {
 		$( '.sl-pl-back-admin-linear div' ).css( prop, value );
 	}
 
+	// Change background animation preview.
+	function newBackgroundPreview() {
+		var value = $( "[name='safelayout_preloader_options[background_new_anim]']:checked" ).val();
+		var html_string='';
+		if ( value == 'No' ) {
+			html_string='<html><head></head><body></body></html>'
+		} else {
+			html_string = `<html><head><link rel="stylesheet" href="${ slplBgAnimData[value][0] }"></head><body style="padding:0;margin:0;">${ slplBgAnimData[value][1] }</body></html>`;
+		}
+
+		$( '#sl-pl-new-background-preview-title' ).text( ' ( ' + value.replace( '-', ' ' ) + ' ) ' );
+		document.getElementById('sl-pl-new-background-frame').srcdoc = html_string;
+	}
+
 	// Change text animation.
 	function textAnimChange() {
 		var text = $( "[name='safelayout_preloader_options[text]']" ).val().trim();
@@ -655,6 +677,7 @@ jQuery( document ).ready( function( $ ) {
 		code += '" background_gradient_value=' + $( n1 + "background_gradient_value]']:checked" ).val();
 		code += ' background_alpha=' + $( n1 + "background_alpha]']" ).val();
 		code += ' background_small="' + $( n1 + "background_small]']:checked" ).val();
+		code += '" background_new_anim="' + $( n1 + "background_new_anim]']:checked" ).val();
 		code += '" icon="' + $( n1 + "icon]']:checked" ).val();
 		code += '" custom_icon="' + $( '#custom_icon' ).val().replace(/%20/g, ' ');
 		code += '" custom_icon_alt="' + $( '#custom_icon_alt' ).val();

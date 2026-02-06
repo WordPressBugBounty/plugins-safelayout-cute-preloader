@@ -75,10 +75,10 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 				 wp_is_post_revision( $post_id ) ||
 				 ! current_user_can( 'edit_post', $post_id ) ||
 				 ! isset( $_POST[ 'safelayout_preloader_meta_nonce' ] ) ||
-				 ! wp_verify_nonce( $_POST[ 'safelayout_preloader_meta_nonce' ], basename( __FILE__ ) )	) {
+				 ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST[ 'safelayout_preloader_meta_nonce' ] ) ), basename( __FILE__ ) )	) {
 					return $post_id;
 			}
-			update_post_meta( $post_id, 'safelayout_preloader_shortcode', sanitize_text_field( $_POST[ 'safelayout_preloader_shortcode' ] ) );
+			update_post_meta( $post_id, 'safelayout_preloader_shortcode', sanitize_text_field( wp_unslash( $_POST[ 'safelayout_preloader_shortcode' ] ) ) );
 		}
 
 		// Add & Updated post meta, Add html and CSS code to option database
@@ -121,6 +121,14 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 				'nonce'		=> wp_create_nonce( 'slpl_preloader_ajax' ),
 			);
 			wp_localize_script( 'safelayout-cute-preloader-script-admin', 'slplPreloaderAjax', $temp_obj );
+
+			$temp_obj = array(
+				'rising-squares'	=> [
+					SAFELAYOUT_PRELOADER_URL . 'assets/css/bg-anim/rising-squares/style.min.css',
+					'<div id="sl-pl-canvas"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>'],
+			);
+			wp_add_inline_script( 'safelayout-cute-preloader-script-admin', 'var slplBgAnimData = ' . json_encode( $temp_obj ), 'before' );
+
 			wp_enqueue_style(
 				'safelayout-cute-preloader-style-admin',
 				SAFELAYOUT_PRELOADER_URL . 'assets/css/safelayout-cute-preloader-admin.min.css',
@@ -180,11 +188,13 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 		public function show_upgrade_message() {
 			global $current_user;
 			?>
-			<div id="sl-pl-upgrade-reminder" class="notice notice-success">
+			<div id="sl-pl-upgrade-reminder" class="notice notice-success is-dismissible">
+				<img class="" alt="safelayout cute preloader" src="<?php echo esc_url( SAFELAYOUT_PRELOADER_URL . 'assets/image/icon-128x128.gif' ); ?>">
 				<div class="sl-pl-msg-container">
 					<p>
 						<?php
 						printf(
+							/* translators: 1: current user name, 2: Safelayout Cute Preloader, 3: upgrading to the PRO version, 4: support the developer, 5: We really appreciate your support! */
 							esc_html__(
 								'Howdy, %1$s! Thank you for using %2$s! Please consider %3$s, get full features and %4$s.%5$s',
 								'safelayout-cute-preloader'
@@ -213,7 +223,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 		// ajax handlers for rate reminder
 		public function preloader_rate_reminder_ajax_handler() {
 			check_ajax_referer( 'slpl_preloader_ajax' );
-			$type = sanitize_text_field( $_POST['type'] );
+			$type = sanitize_text_field( wp_unslash( $_POST['type'] ) );
 			$rate = $this->get_rate_data();
 			if ( $type === 'sl-pl-rate-later' ) {
 				$rate['later'] = time();
@@ -230,11 +240,12 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 			global $current_user;
 			?>
 			<div id="sl-pl-rate-reminder" class="notice notice-success is-dismissible">
-				<img class="" alt="safelayout cute preloader" src="https://ps.w.org/safelayout-cute-preloader/assets/icon-128x128.gif">
+				<img class="" alt="safelayout cute preloader" src="<?php echo esc_url( SAFELAYOUT_PRELOADER_URL . 'assets/image/icon-128x128.gif' ); ?>">
 				<div class="sl-pl-msg-container">
 					<p>
 						<?php
 						printf(
+							/* translators: 1: current user name, 2: Safelayout Cute Preloader, 3: give it a 5-star rating on WordPress.org, 4: We really appreciate your support! */
 							esc_html__(
 								'Howdy, %1$s! Thank you for using %2$s! Could you please do us a BIG favor and %3$s? Just to help us spread the word and boost our motivation.%4$s',
 								'safelayout-cute-preloader'
@@ -296,7 +307,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 		// ajax handlers
 		public function add_preloader_meta_box_ajax_handler() {
 			check_ajax_referer( 'slpl_preloader_ajax' );
-			$key = sanitize_text_field( $_POST['key'] );
+			$key = sanitize_text_field( wp_unslash( $_POST['key'] ) );
 			if ( $key == 'show' ) {
 				update_option( 'safelayout_preloader_options_meta', true );
 			} else {
@@ -310,8 +321,8 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 		// ajax handlers for feedback
 		public function preloader_feedback_ajax_handler() {
 			check_ajax_referer( 'slpl_preloader_ajax' );
-			$type = sanitize_text_field( $_POST['type'] );
-			$text = sanitize_text_field( $_POST['text'] );
+			$type = sanitize_text_field( wp_unslash( $_POST['type'] ) );
+			$text = sanitize_text_field( wp_unslash( $_POST['text'] ) );
 			$apiUrl = 'https://safelayout.com/feedback/feedback.php';
 			$rate = $this->get_rate_data();
 			$options = safelayout_preloader_get_options();
@@ -421,6 +432,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 							</a>
 							<a href="https://wordpress.org/support/plugin/safelayout-cute-preloader/reviews/?filter=5" target="_blank" class="button" id="sl-pl-side-button-rate" title="<?php esc_html_e( 'Like the plugin? Please give us a rating!', 'safelayout-cute-preloader' ); ?>">
 								<span class="dashicons dashicons-star-filled sl-pl-side-button-icon"></span> <?php esc_html_e( 'Rate The Plugin', 'safelayout-cute-preloader' ); ?></a>
+							<li><a href="#tabs-9" style="color:#00f"><span class="dashicons dashicons-awards"></span> <?php esc_html_e( 'Pro Features', 'safelayout-cute-preloader' ); ?></a></li>
 						</ul>
 					</div>
 					<div class="ui-tabs-content">
@@ -450,6 +462,9 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 							<div id="tabs-8">
 								<?php do_settings_sections( 'safelayout-cute-preloader-special' ); ?>
 							</div>
+							<div id="tabs-9">
+								<iframe id="sl-pl-pro-features" width="690" height="900" src="https://safelayout.com/logo/preloader-pro-features.html?ver=<?php echo esc_html( SAFELAYOUT_PRELOADER_VERSION ); ?>"></iframe>
+							</div>
 							<div id="sl-pl-options-button-container">
 								<?php submit_button( esc_html__( 'Save Changes', 'safelayout-cute-preloader' ), 'primary', 'submit_btn', false ); ?>
 								<span style="margin: 15px;"></span>
@@ -459,13 +474,15 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 						</form>
 					</div>
 					<div id="sl-pl-other-buttons" class="sl-pl-other-plugins">
-						<a href="https://safelayout.com/safelayout-brilliant-buttons-pro/?action=preloader" target="_blank">Safelayout other plugins</a>
+						<a href="https://safelayout.com/safelayout-brilliant-buttons-pro/?action=preloader" target="_blank">Safelayout Brilliant Buttons</a>
 						<br>
-						<iframe width="216" height="850" src="https://safelayout.com/logo/button01.html?ver=<?php echo SAFELAYOUT_PRELOADER_VERSION; ?>"></iframe>
+						<iframe width="216" height="1200" src="https://safelayout.com/logo/button01.html?ver=<?php echo esc_html( SAFELAYOUT_PRELOADER_VERSION ); ?>"></iframe>
 					</div>
-					<a id="sl-pl-other-icons" class="sl-pl-other-plugins" href="https://safelayout.com/safelayout-elegant-icons-pro/?action=preloader" target="_blank">
-						Safelayout other plugins<br><img alt="safelayout elegant icons" src="<?php echo SAFELAYOUT_PRELOADER_URL . 'assets/image/safelayout-elegant-icons-bnr.png?ver=' . SAFELAYOUT_PRELOADER_VERSION; ?>"/>
-					</a>
+					<div id="sl-pl-other-icons" class="sl-pl-other-plugins">
+						<a href="https://safelayout.com/safelayout-elegant-icons-pro/?action=preloader" target="_blank">Safelayout Elegant Icons</a>
+						<br>
+						<iframe width="216" height="1200" src="https://safelayout.com/logo/icon01.html?ver=<?php echo esc_html( SAFELAYOUT_PRELOADER_VERSION ); ?>"></iframe>
+					</div>
 				</div>
 			</div>
 			<?php
@@ -536,7 +553,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 
 			add_settings_field(
 				'background_anim',
-				esc_html__( 'Background Animation', 'safelayout-cute-preloader' ),
+				esc_html__( 'Background Exit', 'safelayout-cute-preloader' ),
 				array( $this, 'settings_background_anim_callback' ),
 				'safelayout-cute-preloader-background',
 				'safelayout_preloader_section_background'
@@ -562,6 +579,14 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 				'background_gradient_value',
 				esc_html__( 'Background color', 'safelayout-cute-preloader' ),
 				array( $this, 'settings_background_free_color_callback' ),
+				'safelayout-cute-preloader-background',
+				'safelayout_preloader_section_background'
+			);
+
+			add_settings_field(
+				'background_new_anim',
+				esc_html__( 'Background Animation', 'safelayout-cute-preloader' ),
+				array( $this, 'settings_background_new_anim_callback' ),
 				'safelayout-cute-preloader-background',
 				'safelayout_preloader_section_background'
 			);
@@ -1086,7 +1111,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 				 esc_html__( 'px', 'safelayout-cute-preloader' ) . '<br /><br />';
 		}
 
-		// Background animation field code
+		// Background exit field code
 		public function settings_background_anim_callback() {
 			$backgrounds = array( 'No', 'fade', 'to-left', 'to-right', 'to-top', 'to-bottom', 'rect',
 				'diamond', 'circle', 'ellipse-top', 'ellipse-bottom', 'ellipse-left', 'ellipse-right',
@@ -1141,7 +1166,32 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 		public function settings_background_free_color_callback() {
 			echo '<div class="sl-pl-free-color-container">';
 			$this->set_color_code( 'background_gradient_value', 'background_free_color_' );
+			echo '</div><br />';
+		}
+
+		// Background animation field code
+		public function settings_background_new_anim_callback() {
+			$backgrounds = array( 'No', 'rising-squares', );
+			$counter = 0;
+
+			echo '<span class="sl-pl-new-msg">New !</span><br /><div id="sl-pl-new-background-container">';
+			foreach ( $backgrounds as $background ) {
+				echo '<input class="sl-pl-new-background-radio" type="radio" id="preloader_new_background_' .
+					 esc_html( $counter ) . '" name="safelayout_preloader_options[background_new_anim]" value="' .
+					 esc_html( $background ) . '" ' . checked( esc_attr( $this->options['background_new_anim'] ), $background, false ) . ' />' .
+					 '<label class="sl-pl-new-background-label" for="preloader_new_background_' . esc_html( $counter ) . '" title="' .
+					 esc_html( $background ) . '"><div class="sl-pl-new-background-div-text">';
+				if ( $background === 'No' ) {
+					echo esc_html__( 'No Animation', 'safelayout-cute-preloader' ) . '</div></label>';
+				} else {
+					echo esc_html( str_replace( '-', ' ', $background ) ) . '</div></label>';
+				}
+				$counter++;
+			}
 			echo '</div>';
+			echo '<div class="sl-pl-new-background-preview-container">' . esc_html__( 'Preview', 'safelayout-cute-preloader' ) .
+				 '<span id="sl-pl-new-background-preview-title"></span><br /><div class="sl-pl-icon-preview-background"></div>' .
+				 '<iframe id="sl-pl-new-background-frame"></iframe></div>';
 		}
 
 		// Show text code
@@ -1302,31 +1352,27 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 
 		// Display on code
 		public function settings_display_on_callback() {
-			$temp0 = '<input type="radio" name="safelayout_preloader_options[display_on]" id="preloader_display_on_';
-			$temp1 = '<label for="preloader_display_on_';
-			
 			$disp = $this->options['display_on'];
-			echo $temp0 . '0" value="home" ' . checked( esc_attr( $disp ), 'home', false ) . ' />' .
-				 $temp1 . '0">' . esc_html__( 'Home page', 'safelayout-cute-preloader' ) . '</label><br />' .
-
-				 $temp0 . '1" value="full" ' . checked( esc_attr( $disp ), 'full', false ) . ' />' .
-				 $temp1 . '1">' . esc_html__( 'Full website', 'safelayout-cute-preloader' ) . '</label><br />' .
-
-				 $temp0 . '2" value="posts" ' . checked( esc_attr( $disp ), 'posts', false ) . ' />' .
-				 $temp1 . '2">' . esc_html__( 'Posts only', 'safelayout-cute-preloader' ) . '</label><br />' .
-
-				 $temp0 . '3" value="pages" ' . checked( esc_attr( $disp ), 'pages', false ) . ' />' .
-				 $temp1 . '3">' . esc_html__( 'Pages only', 'safelayout-cute-preloader' ) . '</label><br />' .
-
-				 $temp0 . '4" value="archive" ' . checked( esc_attr( $disp ), 'archive', false ) . ' />' .
-				 $temp1 . '4">' . esc_html__( 'Archive only', 'safelayout-cute-preloader' ) . '</label><br />' .
-
-				 $temp0 . '5" value="search" ' . checked( esc_attr( $disp ), 'search', false ) . ' />' .
-				 $temp1 . '5">' . esc_html__( 'Search only', 'safelayout-cute-preloader' ) . '</label><br />' .
-
-				 $temp0 . '6" value="custom-id" ' . checked( esc_attr( $disp ), 'custom-id', false ) . ' />' .
-				 $temp1 . '6">' . esc_html__( 'Specific post ( Select from the list )', 'safelayout-cute-preloader' ) . '</label><br />' .
-				 '<input type="text" id="specific_IDs" name="safelayout_preloader_options[specific_IDs]" ' .
+			$disp_array = array(
+				'home'		=> __( 'Home page', 'safelayout-cute-preloader' ),
+				'full'		=> __( 'Full website', 'safelayout-cute-preloader' ),
+				'posts'		=> __( 'Posts only', 'safelayout-cute-preloader' ),
+				'pages'		=> __( 'Pages only', 'safelayout-cute-preloader' ),
+				'archive'	=> __( 'Archive only', 'safelayout-cute-preloader' ),
+				'search'	=> __( 'Search only', 'safelayout-cute-preloader' ),
+				'custom-id'	=> __( 'Specific post ( Select from the list )', 'safelayout-cute-preloader' ),
+			);
+			$count = 0;
+			foreach ( $disp_array as $key => $val ) {
+				echo '<input type="radio" name="safelayout_preloader_options[display_on]" id="preloader_display_on_' .
+					 esc_html( $count ) . '" value="' . esc_html( $key ) . '" ' .
+					 checked( esc_attr( $disp ), esc_html( $key ), false ) . ' />' .
+					 '<label for="preloader_display_on_' . esc_html( $count ) . '">' .
+					 esc_html( $val ) . '</label><br />';
+					 $count++;
+			}
+		
+			echo '<input type="text" id="specific_IDs" name="safelayout_preloader_options[specific_IDs]" ' .
 				 'class="sl-pl-hidden" value="' . esc_attr( $this->options['specific_IDs'] ) .
 				 '" /><div class="sl-pl-display-on-select" id="specific_IDs_select">';
 
@@ -1340,8 +1386,9 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 					 esc_html( $count++ ) . '" title="' . esc_html( $page[1] ) . '">' . esc_html( $page[1] ) . '</label><br />';
 			}
 			echo '</div>';
-			echo $temp0 . '7" value="custom-name" ' . checked( esc_attr( $disp ), 'custom-name', false ) . ' />' .
-				 $temp1 . '7">' . esc_html__( 'Specific post types ( Select from the list )', 'safelayout-cute-preloader' ) . '</label><br />' .
+			echo '<input type="radio" name="safelayout_preloader_options[display_on]" id="preloader_display_on_7" ' .
+				 'value="custom-name" ' . checked( esc_attr( $disp ), 'custom-name', false ) . ' />' .
+				 '<label for="preloader_display_on_7">' . esc_html__( 'Specific post types ( Select from the list )', 'safelayout-cute-preloader' ) . '</label><br />' .
 				 '<input type="text" id="specific_names" name="safelayout_preloader_options[specific_names]" ' .
 				 'class="sl-pl-hidden" value="' . esc_attr( $this->options['specific_names'] ) .
 				 '" /><div class="sl-pl-display-on-select" id="specific_names_select">';
@@ -1360,7 +1407,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 			echo '</div>';
 		}
 
-		// Return true if val is in list
+		// Return list of all posts and pages
 		public function get_page_list() {
 			$arr = [];
 			$pages = get_pages( array( 'number' => 200 ) );
@@ -1392,16 +1439,22 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 
 		// device type code
 		public function settings_device_callback() {
-			$temp0 = '<input type="radio" name="safelayout_preloader_options[device]" id="preloader_device_';
-			$temp1 = '<label for="preloader_device_';
-			
 			$device = $this->options['device'];
-			echo $temp0 . '0" value="all" ' . checked( esc_attr( $device ), 'all', false ) . ' />' .
-				 $temp1 . '0">' . esc_html__( 'Show on all devices', 'safelayout-cute-preloader' ) . '</label><br />' .
-				 $temp0 . '1" value="mobile" ' . checked( esc_attr( $device ), 'mobile', false ) . ' />' .
-				 $temp1 . '1">' . esc_html__( 'Show on mobile only', 'safelayout-cute-preloader' ) . '</label><br />' .
-				 $temp0 . '2" value="desktop" ' . checked( esc_attr( $device ), 'desktop', false ) . ' />' .
-				 $temp1 . '2">' . esc_html__( 'Show on desktop only', 'safelayout-cute-preloader' ) . '</label><br /><br />';
+			$device_array = array(
+				'all'		=> __( 'Show on all devices', 'safelayout-cute-preloader' ),
+				'mobile'	=> __( 'Show on mobile only', 'safelayout-cute-preloader' ),
+				'desktop'	=> __( 'Show on desktop only', 'safelayout-cute-preloader' ),
+			);
+			$count = 0;
+			foreach ( $device_array as $key => $val ) {
+				echo '<input type="radio" name="safelayout_preloader_options[device]" id="preloader_device_' .
+					 esc_html( $count ) . '" value="' . esc_html( $key ) . '" ' .
+					 checked( esc_attr( $device ), esc_html( $key ), false ) . ' />' .
+					 '<label for="preloader_device_' . esc_html( $count ) . '">' .
+					 esc_html( $val ) . '</label><br />';
+					 $count++;
+			}
+			echo '<br />';
 		}
 
 		// Minimum time field code
@@ -1777,6 +1830,10 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 				$sanitary_values['background_small'] = '';
 			}
 
+			if ( isset( $input['background_new_anim'] ) ) {
+				$sanitary_values['background_new_anim'] = sanitize_text_field( $input['background_new_anim'] );
+			}
+
 			if ( isset( $input['icon'] ) ) {
 				$sanitary_values['icon'] = sanitize_text_field( $input['icon'] );
 			}
@@ -2085,6 +2142,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 			if ( $options['background_small'] != 'enable' ) {
 				$this->set_background( $options['background_anim'], 'sl-pl-back' );
 			}
+			$this->set_new_background( $options['background_new_anim'] );
 			echo '<div id="sl-pl-close-button"><svg class="sl-pl-close-icon" viewbox="0 0 50 50"><path d="M10 7A3 3 0 0 0 7.879 7.879 3 3 0 0 0 7.879 12.12L20.76 25 7.879 37.88A3 3 0 0 0 7.879 42.12 3 3 0 0 0 12.12 42.12L25 29.24 37.88 42.12A3 3 0 0 0 42.12 42.12 3 3 0 0 0 42.12 37.88L29.24 25 42.12 12.12A3 3 0 0 0 42.12 7.879 3 3 0 0 0 37.88 7.879L25 20.76 12.12 7.879A3 3 0 0 0 10 7Z"/></svg></div>' .
 				 '<div class="sl-pl-spin-container">';
 			if ( $options['background_small'] == 'enable' ) {
@@ -2506,6 +2564,15 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 			}
 		}
 
+		// echo background animation
+		public function set_new_background( $anim ) {
+			switch ( $anim ) {
+				case 'rising-squares':
+					echo '<div id="sl-pl-canvas"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>';
+					break;
+			}
+		}
+
 		// echo Progress bar shape
 		public function set_bar_shape( $shape, $light, $counter, $pos, $delay = '', $container = false ) {
 			if ( $container ) {
@@ -2514,7 +2581,11 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 			echo '<div class="sl-pl-bar-container" id="sl-pl-' . esc_html( $shape ) . '-container"><div class="sl-pl-bar-back"></div>' .
 				 '<div id="sl-pl-progress"><div id="sl-pl-progress-view1"><div id="sl-pl-progress-view2"><div class="sl-pl-bar" id="sl-pl-' . esc_html( $shape ) . '"></div>';
 			if ( $light === 'enable' ) {
-				echo '<div class="sl-pl-light-move-bar"' . ( $delay != '' ? ( ' id="' . esc_html( $delay ) . '"' ) : '' ) . '></div>';
+				echo '<div class="sl-pl-light-move-bar"';
+				if ( $delay != '' ) {
+					echo ' id="' . esc_html( $delay ) . '"';
+				}
+				echo '></div>';
 			}
 			echo '</div></div></div>';
 			if ( $counter === 'enable' && $pos != 'default' ) {
@@ -2639,7 +2710,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 					 'margin-left: ' . esc_html( $options['counter_margin_left'] ) . 'px !important;}';
 
 				if ( $options['counter_position'] != 'default' && $shape != 'No' ) {
-					echo '#sl-pl-counter{text-align: ' . $options['counter_position'] . ';' .
+					echo '#sl-pl-counter{text-align: ' . esc_html( $options['counter_position'] ) . ';' .
 						 'top: 50%;transform: translateY(-50%);-webkit-transform: translateY(-50%);}';
 					}
 			}

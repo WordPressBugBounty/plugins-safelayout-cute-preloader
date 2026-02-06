@@ -16,10 +16,6 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 			add_filter( 'script_loader_tag', array( $this, 'add_data_to_script' ), 10, 3 );
 
 			add_filter( 'safe_style_css', function( $styles ) {
-				$styles[] = 'top';
-				$styles[] = 'left';
-				$styles[] = 'opacity';
-				$styles[] = 'position';
 				$styles[] = 'animation-delay';
 				$styles[] = '-webkit-animation-delay';
 				return $styles;
@@ -29,7 +25,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 		// add attribute to script tag
 		public function add_data_to_script( $tag, $handle, $src ) {
 			if ( 'safelayout-cute-preloader-script' === $handle ) {
-				$tag = str_replace( '<script ', '<script data-no-delay-js data-no-optimize="1" data-no-minify="1" ', $tag );
+				$tag = str_replace( '<script ', '<script data-no-delay-js="1" data-no-optimize="1" data-no-minify="1" ', $tag );
 			}
 
 			return $tag;
@@ -107,7 +103,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 			$pos = $options['counter_position'];
 			$pos = $pos === 'center' ? 0.5 : ( $pos === 'left' ? 1 : ( $pos === 'right' ? 0 : 2 ) );
 			?>
-			<script id="safelayout-cute-preloader-progress-bar-script-js" data-no-delay-js data-no-optimize="1" data-no-minify="1" type="text/javascript">
+			<script id="safelayout-cute-preloader-progress-bar-script-js" data-no-delay-js="1" data-no-optimize="1" data-no-minify="1" type="text/javascript">
 				function slplExecAnim( timeStamp ) {
 					if ( ! slplStartT ) {
 						slplStartT = timeStamp;
@@ -431,7 +427,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 				$temp1 = array( 'wrest-X', 'wrest-Y', 'roll', 'pipe', 'swirl', 'sheet', );
 				if ( in_array( $options['brand_anim'], $temp1 ) ) {
 					ob_start();
-					echo '<script id="safelayout-cute-preloader-brand-anim-synchro" data-no-delay-js data-no-optimize="1" data-no-minify="1" type="text/javascript">' .
+					echo '<script id="safelayout-cute-preloader-brand-anim-synchro" data-no-delay-js="1" data-no-optimize="1" data-no-minify="1" type="text/javascript">' .
 						 "\n\tvar slplChilds = document.getElementById('sl-pl-brand-parent').children;" .
 						 "\n\tvar name = 'sl-pl-brand-" . esc_html( $options['brand_anim'] ) . "';" .
 						 "\n\tfor ( var i = 0 ; i < slplChilds.length ; i++ ) {\n\t\tif ( slplChilds[i].classList ) {\n\t\t\tslplChilds[i].classList.add( name );" .
@@ -439,7 +435,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 					$this->main_code .= ob_get_clean();
 				}
 			}
-			$this->main_code = '<script id="safelayout-cute-preloader-visible" data-no-delay-js data-no-optimize="1" data-no-minify="1" type="text/javascript">var vStyle = document.createElement("style");document.head.appendChild(vStyle);vStyle.textContent = "#sl-preloader{visibility: visible !important;}";</script>' . $this->main_code;
+			$this->main_code = '<script id="safelayout-cute-preloader-visible" data-no-delay-js="1" data-no-optimize="1" data-no-minify="1" type="text/javascript">var vStyle = document.createElement("style");document.head.appendChild(vStyle);vStyle.textContent = "#sl-preloader{visibility: visible !important;}";</script>' . $this->main_code;
 		}
 	}
 	new Safelayout_Preloader_Front();

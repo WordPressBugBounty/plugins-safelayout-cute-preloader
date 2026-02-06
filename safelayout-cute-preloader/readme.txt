@@ -2,9 +2,9 @@
 Contributors: safelayout
 Tags: preload, preloader, loader, loading, wordpress preloader
 Requires at least: 4.7
-Tested up to: 6.8
-Stable tag: 2.1.7
-Requires PHP: 5.0
+Tested up to: 6.9
+Stable tag: 2.2.1
+Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,7 +26,8 @@ An **easy-to-use**, **lightweight** and **powerful** preloader plugin. Safelayou
 
 * Pure CSS animation (No GIF images).
 * 35 Loading animation icons.
-* 18 Background animation effects.
+* 18 Background exit effects.
+* background animation.
 * 14 Brand Image animation effects.
 * 11 Text animation effects.
 * progress bar and counter.
@@ -34,8 +35,8 @@ An **easy-to-use**, **lightweight** and **powerful** preloader plugin. Safelayou
 * Fully customizable.
 * Work with Any Theme.
 * Add your own loader image.
-* 431 Gradient colors for icon, progress bar and background (Pro).
-* 23 Beautiful filter effects (Pro).
+* Beautiful Gradient colors for icon, progress bar and background.
+* Beautiful filter effects for icons.
 * Device control (Choose to show on all devices, mobile, or desktop only.)
 * Preloader minimum runtime.
 * Preloader maximum runtime.
@@ -55,6 +56,8 @@ Safelayout Cute Preloader **Pro** is available. [Upgrade to pro version](https:/
 [Safelayout Elegant Icons - WordPress icon block](https://wordpress.org/plugins/safelayout-elegant-icons/)
 
 [Safelayout Brilliant Buttons - WordPress Button block](https://wordpress.org/plugins/safelayout-brilliant-buttons)
+
+[Safelayout Animated Header Footer](https://wordpress.org/plugins/safelayout-animated-header-footer)
 
 == Installation ==
 
@@ -78,6 +81,12 @@ Safelayout Cute Preloader **Pro** is available. [Upgrade to pro version](https:/
 8. Special preloader
 
 == Changelog ==
+
+= 2.2.1 =
+* Fixed some issue.
+
+= 2.2.0 =
+* Added new feature, background animation.
 
 = 2.1.7 =
 * Fixed some issue.

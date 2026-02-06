@@ -3,7 +3,7 @@
 Plugin Name: Safelayout Cute Preloader
 Plugin URI: https://safelayout.com
 Description: Easily add a pure CSS animated preloader to your WordPress website.
-Version: 2.1.7
+Version: 2.2.1
 Author: Safelayout
 Text Domain: safelayout-cute-preloader
 Domain Path: /languages
@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Preloader_Pro' ) ) {
 
 	// Define the constant used in this plugin
-	define( 'SAFELAYOUT_PRELOADER_VERSION', '2.1.7');
+	define( 'SAFELAYOUT_PRELOADER_VERSION', '2.2.1' );
 	define( 'SAFELAYOUT_PRELOADER_NAME', plugin_basename( __FILE__ ) );
 	define( 'SAFELAYOUT_PRELOADER_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'SAFELAYOUT_PRELOADER_URL', plugin_dir_url( __FILE__ ) );
@@ -37,6 +37,7 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 			'minimum_time'				=> 0.5,
 			'maximum_time'				=> 9,
 			'background_anim'			=> 'linear-right',
+			'background_new_anim'		=> 'rising-squares',
 			'background_color_type'		=> 'solid',
 			'background_color_value'	=> '#101010',
 			'background_gradient_value'	=> 6,
@@ -121,6 +122,7 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 			add_filter( 'litespeed_optm_gm_js_exc', array( $this, 'litespeed_custom_excludes' ) );
 
 			add_filter( 'sgo_js_minify_exclude', array( $this, 'sgo_javascript_exclude' ) );
+			add_filter( 'sgo_js_async_exclude', array( $this, 'sgo_javascript_exclude' ) );
 			add_filter( 'sgo_javascript_combine_exclude', array( $this, 'sgo_javascript_exclude' ) );
 			add_filter( 'sgo_javascript_combine_excluded_inline_content', array( $this, 'sgo_javascript_exclude_inline_js' ) );
 
@@ -237,7 +239,8 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 				Safelayout_Preloader_Admin::purge_cache();
 				$option = get_option( 'safelayout_preloader_options_rate' );
 				if ( ! $option ) {
-					exit( wp_redirect( admin_url( 'options-general.php?page=safelayout-cute-preloader' ) ) );
+					wp_safe_redirect( admin_url( 'options-general.php?page=safelayout-cute-preloader' ) );
+					exit;
 				}
 			}
 		}

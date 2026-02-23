@@ -188,7 +188,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 		public function show_upgrade_message() {
 			global $current_user;
 			?>
-			<div id="sl-pl-upgrade-reminder" class="notice notice-success is-dismissible">
+			<div id="sl-pl-upgrade-reminder" class="notice notice-success">
 				<img class="" alt="safelayout cute preloader" src="<?php echo esc_url( SAFELAYOUT_PRELOADER_URL . 'assets/image/icon-128x128.gif' ); ?>">
 				<div class="sl-pl-msg-container">
 					<p>
@@ -579,6 +579,14 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 				'background_gradient_value',
 				esc_html__( 'Background color', 'safelayout-cute-preloader' ),
 				array( $this, 'settings_background_free_color_callback' ),
+				'safelayout-cute-preloader-background',
+				'safelayout_preloader_section_background'
+			);
+
+			add_settings_field(
+				'background_pattern',
+				esc_html__( 'Background Pattern', 'safelayout-cute-preloader' ),
+				array( $this, 'settings_background_pattern_callback' ),
 				'safelayout-cute-preloader-background',
 				'safelayout_preloader_section_background'
 			);
@@ -1167,6 +1175,76 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 			echo '<div class="sl-pl-free-color-container">';
 			$this->set_color_code( 'background_gradient_value', 'background_free_color_' );
 			echo '</div><br />';
+		}
+
+		// Background pattern field code
+		public function settings_background_pattern_callback() {
+			$patterns = $this->get_patterns_array( null, true ) + 1;
+			$options = $this->options;
+
+			echo '<span class="sl-pl-new-msg">New !</span><br /><div class="sl-pl-background-container">';
+			for ( $patt = 0; $patt < $patterns; $patt++ ) {
+				if ( $patt == 0 ) {
+					$p0 = 'No';
+				} else {
+					$p0 = 'pattern-' . str_pad( $patt, 2, '0', STR_PAD_LEFT );
+				}
+				echo '<input class="sl-pl-pattern-radio" type="radio" id="preloader_pattern_' .
+					 esc_html( $patt ) . '" name="safelayout_preloader_options[background_pattern]" value="' .
+					 esc_html( $p0 ) . '" ' . checked( esc_attr( $options['background_pattern'] ), $p0, false ) .
+					 ' /><label class="sl-pl-pattern-label" for="preloader_pattern_' . esc_html( $patt ) . '" title="';
+				if ( $patt == 0 ) {
+					echo esc_html__( 'No Pattern', 'safelayout-cute-preloader' ) . '">' .
+						 esc_html__( 'No Pattern', 'safelayout-cute-preloader' ) . '</label>';
+				} else {
+					$p1 = $this->get_patterns_array( $p0 );
+					$opt['background_pattern'] = $p0;
+					$opt['background_pattern_scale'] = .8;
+					$opt['background_pattern_rotate'] = $p1[4];
+					$opt['background_pattern_x'] = $p1[5];
+					$opt['background_pattern_y'] = $p1[6];
+					echo esc_html( str_replace( '-', ' ', $p0 ) ) . '" style="background:' .
+						 esc_html( $this->get_patterns_image( $opt, 48, 48, 'sl-pl-' . $p0 ) ) .
+						 'transparent;background-repeat: repeat;"></label>';
+				}
+			}
+			echo '</div><br><br><div id="sl-pl-background-pattern-props"><span id="sl-pl-pa-lable">' .
+				 esc_html__( 'Background pattern properties', 'safelayout-cute-preloader' ) . 
+				 '</span><span style="vertical-align:sub"><strong>' . esc_html__( 'Pattern color', 'safelayout-cute-preloader' ) .
+				 ' : </strong></span><span id="sl-pl-pattern-color-selector"></span><input type="text" ' .
+				 'name="safelayout_preloader_options[background_pattern_color]" class="sl-pl-pattern-color" ' .
+				 'data-default-color="' . esc_attr( $this->default_options['background_pattern_color'] ) . '" value="' .
+				 esc_attr( $options['background_pattern_color'] ) . '"/><br><strong>' .
+				 esc_html__( 'X Offset', 'safelayout-cute-preloader' ) .
+				 ' : </strong><input type="number" id="background_pattern_x" ' .
+				 'name="safelayout_preloader_options[background_pattern_x]" min="-1000" max="1000" step="1" value="' .
+				 esc_attr( $options['background_pattern_x'] ) . '" data-default-size="' .
+				 esc_attr( $this->default_options['background_pattern_x'] ) . '" style="margin:10px 0" /> ' .
+				 esc_html__( 'px', 'safelayout-cute-preloader' ) .
+				 '<span style="margin-left:102px"><strong>' .
+				 esc_html__( 'Y Offset', 'safelayout-cute-preloader' ) .
+				 ' : </strong></span><input type="number" id="background_pattern_y" ' .
+				 'name="safelayout_preloader_options[background_pattern_y]" min="-1000" max="1000" step="1" value="' .
+				 esc_attr( $options['background_pattern_y'] ) . '" data-default-size="' .
+				 esc_attr( $this->default_options['background_pattern_y'] ) . '" /> ' .
+				 esc_html__( 'px', 'safelayout-cute-preloader' ) . '<br><strong>' .
+				 esc_html__( 'Rotate', 'safelayout-cute-preloader' ) . ' : </strong><input type="range" ' .
+				 'id="background-pattern-rotate" name="safelayout_preloader_options[background_pattern_rotate]" ' .
+				 'min="0" max="360" step="1" value="' . esc_attr( $options['background_pattern_rotate'] ) .
+				 '" style="vertical-align:sub"/><output id="background-pattern-rotate-output" for="background-pattern-rotate"' .
+				 ' style="display:inline-block;min-width:24px">' . esc_attr( $options['background_pattern_rotate'] ) .
+				 '</output><span style="margin-left:70px"><strong>' .
+				 esc_html__( 'Scale', 'safelayout-cute-preloader' ) . ' : </strong></span><input type="range" ' .
+				 'id="background-pattern-scale" name="safelayout_preloader_options[background_pattern_scale]" ' .
+				 'min="0.4" max="10" step=".1" value="' . esc_attr( $options['background_pattern_scale'] ) .
+				 '"  style="vertical-align:sub"/><output id="background-pattern-scale-output" for="background-pattern-scale">' .
+				 esc_attr( $options['background_pattern_scale'] ) . '</output>' .
+				 '<div style="text-align:right;padding-top:12px"><a id="background-pattern-reset" class="button">' .
+				 esc_html__( 'Reset pattern properties', 'safelayout-cute-preloader' ) . '</a></div></div>';
+
+			echo '<div class="sl-pl-pattern-preview-container">' . esc_html__( 'Preview', 'safelayout-cute-preloader' ) .
+				 '<span id="sl-pl-pattern-preview-title"></span><br /><div class="sl-pl-icon-preview-background"></div>' .
+				 '<div class="sl-pl-pattern-preview-background"></div></div><br><br><br>';
 		}
 
 		// Background animation field code
@@ -1828,6 +1906,46 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 				$sanitary_values['background_small'] = sanitize_text_field( $input['background_small'] );
 			} else {
 				$sanitary_values['background_small'] = '';
+			}
+
+			if ( isset( $input['background_pattern'] ) ) {
+				$sanitary_values['background_pattern'] = sanitize_text_field( $input['background_pattern'] );
+			}
+
+			if ( isset( $input['background_pattern_scale'] ) ) {
+				$sanitary_values['background_pattern_scale'] = $this->sanitize_numeric(
+					$input['background_pattern_scale'],
+					0.4,
+					10,
+					$default_options['background_pattern_scale']
+				);
+			}
+
+			if ( isset( $input['background_pattern_rotate'] ) ) {
+				$sanitary_values['background_pattern_rotate'] = $this->sanitize_numeric(
+					$input['background_pattern_rotate'],
+					0,
+					360,
+					$default_options['background_pattern_rotate']
+				);
+			}
+
+			if ( isset( $input['background_pattern_x'] ) ) {
+				$sanitary_values['background_pattern_x'] = $this->sanitize_numeric(
+					$input['background_pattern_x'],
+					-1000,
+					1000,
+					$default_options['background_pattern_x']
+				);
+			}
+
+			if ( isset( $input['background_pattern_y'] ) ) {
+				$sanitary_values['background_pattern_y'] = $this->sanitize_numeric(
+					$input['background_pattern_y'],
+					-1000,
+					1000,
+					$default_options['background_pattern_y']
+				);
 			}
 
 			if ( isset( $input['background_new_anim'] ) ) {
@@ -2610,7 +2728,12 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 
 			// set background css ( opacity, background )
 			if ( $options['background_anim'] != 'No' ) {
-				$temp1 = $this->get_color( $options['background_gradient_value'], false );
+				$temp1 = $this->get_patterns_image( $options ) . $this->get_color( $options['background_gradient_value'], false );
+
+				if ( $options['background_pattern'] != 'No' ) {
+					$temp1 .= ' !important;background-repeat: repeat';
+				}
+
 				if ( $options['background_anim'] === 'linear-left' || $options['background_anim'] === 'linear-right' ) {
 					echo '.sl-pl-back{background: rgba(0,0,0,0) !important;}' .
 						 '.sl-pl-back-' . esc_html( $options['background_anim'] ) . ' div{opacity: ' .
@@ -2859,6 +2982,49 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 					rocket_clean_minify();
 				}
 			}
+		}
+
+		// Return patterns svg image
+		public function get_patterns_image( $options, $w = 3200, $h = 1800, $id = 'sl-pl-pattern01' ) {
+			$patt = $options['background_pattern'];
+			if ( $patt != 'No' ) {
+				$patt = $this->get_patterns_array( $patt );
+				$svg = '<svg width="' . esc_html( $w ) . '" height="' . esc_html( $h ) .
+					'" xmlns="http://www.w3.org/2000/svg"><defs>' . $this->get_patterns_gradient( $patt[3] ) .
+					'<pattern patternUnits="userSpaceOnUse" patternTransform="scale(' .
+					esc_html( $options['background_pattern_scale'] ) . ') rotate(' .
+					esc_html( $options['background_pattern_rotate'] ) . ')" id="' . esc_html( $id ) . '" x="' .
+					esc_html( $options['background_pattern_x'] ) . '" y="' . esc_html( $options['background_pattern_y'] ) .
+					'" width="' . $patt[0] . '" height="' . $patt[1] . '"><g>' . $patt[8] .
+					'</g></pattern></defs><rect x="0" y="0" width="' . esc_html( $w ) . '" height="' .
+					esc_html( $h ) . '" fill="url(#' . esc_html( $id ) . ')"></rect></svg>';
+				return 'url(data:image/svg+xml;base64,' . base64_encode( $svg ) . '), ';
+			} else {
+				return 'linear-gradient(transparent, transparent), ';
+			}
+		}
+
+		// Return patterns array
+		public function get_patterns_array( $pattern, $key = false ) {
+			$patterns = array(
+				'pattern-01' => array( 30, 30, 0, 0, 0, 0, 0, '#000000', '<g fill="none" stroke-width="7" stroke="#000000" stroke-dasharray="1 2.4"><circle cy="15" r="8"/><circle stroke-dasharray="1.5 2.5" stroke-width="4" cx="15" r="5"/><circle cx="30" cy="15" r="8"/><circle stroke-dasharray="1.5 2.5" stroke-width="4" cx="15" cy="30" r="5"/></g>', ),
+				'pattern-02' => array( 70, 70, 20, 1, 0, 0, 0, '#66cc00', '<g id="csl-pl-pattern-02" fill="url(#grsl-pl-pattern-02)"><path d="M9.55 15.9 L0 15.9 L0 19.1 L9.55 19.1 L9.55 15.9 Z M13.05 10.75 L9.65 7.4 L7.4 9.65 L10.75 13.05 L13.05 10.75 Z M19.1 0 L15.9 0 L15.9 9.55 L19.1 9.55 L19.1 0 Z M27.6 9.65 L25.4 7.4 L22 10.75 L24.25 13.05 L27.6 9.65 Z M25.45 15.9 L25.45 19.1 L35 19.1 L35 15.9 L25.45 15.9 Z M17.5 12.75 C14.9 12.75 12.7 14.9 12.7 17.5 C12.7 20.15 14.9 22.25 17.5 22.25 C20.1 22.25 22.3 20.15 22.3 17.5 C22.3 14.9 20.1 12.75 17.5 12.75 Z M22 24.25 L25.4 27.6 L27.6 25.4 L24.25 22.05 L22 24.25 Z M7.4 25.4 L9.65 27.6 L13.05 24.25 L10.75 22.05 L7.4 25.4 Z M15.9 35 L19.1 35 L19.1 25.45 L15.9 25.45 L15.9 35 Z"/></g><use href="#csl-pl-pattern-02" x="70"/><use href="#csl-pl-pattern-02" x="35" y="35"/><use href="#csl-pl-pattern-02" x="35" y="-35"/>', ),
+			);
+			if ( $key ) {
+				return count( $patterns );
+			} else {
+				return $patterns[ $pattern ];
+			}
+		}
+
+		// Return patterns gradient
+		public function get_patterns_gradient( $id ) {
+			$grads = array(
+				'',
+				'<linearGradient id="grsl-pl-pattern-02" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0" stop-color="#4d9900" stop-opacity="1"/><stop offset="0.45" stop-color="#80ff00" stop-opacity="1"/><stop offset="0.65" stop-color="#4d9900" stop-opacity="1"/><stop offset="1" stop-color="#80ff00" stop-opacity="1"/></linearGradient>',
+				''
+			);
+			return $grads[ $id ];
 		}
 
 		// Return gradients

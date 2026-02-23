@@ -10,6 +10,8 @@ jQuery( document ).ready( function( $ ) {
 	});
 
 	// Color pickers start
+	$( '.sl-pl-pattern-color' ).wpColorPicker({change: function(event, ui){patternBackgroundPreview()}});
+
 	$( '.sl-pl-text-color' ).wpColorPicker({change: function(event, ui){textColorChange( ui.color.toString() );}});
 
 	$( '.sl-pl-bar-border-color' ).wpColorPicker({change: function(event, ui){barBorderColorChange( ui.color.toString() );}});
@@ -63,6 +65,38 @@ jQuery( document ).ready( function( $ ) {
 	$( ".sl-pl-background-div" ).hover(function() {
 		$( this ).addClass( 'sl-pl-loaded' );},
 		function() {$( this ).removeClass( 'sl-pl-loaded' );
+	});
+
+	$( "[name='safelayout_preloader_options[background_pattern]']" ).change( function() {
+		if ( this.value == 'No' ) {
+			patternBackgroundPreview();
+		} else {
+			patternBackgroundReset();
+		}
+		$( '#sl-pl-pattern-preview-title' ).text( ' ( ' + this.value.replace( '-', ' ' ) + ' ) ' );
+	});
+
+	$( '#background_pattern_x' ).change( function() {
+		patternBackgroundPreview();
+	});
+
+	$( '#background_pattern_y' ).change( function() {
+		patternBackgroundPreview();
+	});
+
+	$("#background-pattern-rotate").on("input change", function() {
+		$("#background-pattern-rotate-output").html( this.value );
+		patternBackgroundPreview();
+	});
+
+	$("#background-pattern-scale").on("input change", function() {
+		$("#background-pattern-scale-output").html( this.value );
+		patternBackgroundPreview();
+	});
+
+	$( '#background-pattern-reset' ).click( function() {
+		event.preventDefault();
+		patternBackgroundReset();
 	});
 
 	$( "[name='safelayout_preloader_options[background_new_anim]']" ).change( function() {
@@ -255,6 +289,8 @@ jQuery( document ).ready( function( $ ) {
 		updateCounter();
 		enableTBCounter();
 		showOtherBanner( $( '#ui_tabs_activate' ).val() );
+		patternBackgroundPreview();
+		disableColorPicker( '#sl-pl-pattern-color-selector', true );
 	}
 
 	// Initial text, brand and counter
@@ -678,7 +714,12 @@ jQuery( document ).ready( function( $ ) {
 		code += ' background_alpha=' + $( n1 + "background_alpha]']" ).val();
 		code += ' background_small="' + $( n1 + "background_small]']:checked" ).val();
 		code += '" background_new_anim="' + $( n1 + "background_new_anim]']:checked" ).val();
-		code += '" icon="' + $( n1 + "icon]']:checked" ).val();
+		code += '" background_pattern="' + $( n1 + "background_pattern]']:checked" ).val();
+		code += '" background_pattern_x=' + $( n1 + "background_pattern_x]']" ).val();
+		code += ' background_pattern_y=' + $( n1 + "background_pattern_y]']" ).val();
+		code += ' background_pattern_scale=' + $( n1 + "background_pattern_scale]']" ).val();
+		code += ' background_pattern_rotate=' + $( n1 + "background_pattern_rotate]']" ).val();
+		code += ' icon="' + $( n1 + "icon]']:checked" ).val();
 		code += '" custom_icon="' + $( '#custom_icon' ).val().replace(/%20/g, ' ');
 		code += '" custom_icon_alt="' + $( '#custom_icon_alt' ).val();
 		code += '" custom_icon_width=' + $( '#custom_icon_width' ).val();
@@ -910,6 +951,63 @@ jQuery( document ).ready( function( $ ) {
 			}
 		}
 		$( id ).val( arr.join() );
+	}
+
+	function patternBackgroundReset() {
+		var p = $( "[name='safelayout_preloader_options[background_pattern]']:checked" ).val();
+		if ( p == 'No' ) {
+			p = 'pattern-01';
+		}
+		var patt = get_patterns_array( Number( p.substring(8) ) );
+		$( "[name='safelayout_preloader_options[background_pattern_x]']" ).val( 0 );
+		$( "[name='safelayout_preloader_options[background_pattern_y]']" ).val( 0 );
+		$( "[name='safelayout_preloader_options[background_pattern_scale]']" ).val( 1 );
+		$( "[name='safelayout_preloader_options[background_pattern_rotate]']" ).val( patt[4] );
+		$("#background-pattern-scale-output").html( 1 );
+		$("#background-pattern-rotate-output").html( patt[4] );
+		patternBackgroundPreview();
+	}
+
+	// Change background pattern preview.
+	function patternBackgroundPreview() {
+		var p = $( "[name='safelayout_preloader_options[background_pattern]']:checked" ).val();
+		var x = $( "[name='safelayout_preloader_options[background_pattern_x]']" ).val();
+		var y = $( "[name='safelayout_preloader_options[background_pattern_y]']" ).val();
+		var s = $( "[name='safelayout_preloader_options[background_pattern_scale]']" ).val();
+		var r = $( "[name='safelayout_preloader_options[background_pattern_rotate]']" ).val();
+		var id = 'sl-pl-pattern-preview', b ='';
+
+		if ( p != 'No' ) {
+			patt = get_patterns_array( Number( p.substring(8) ) );
+			var svg = '<svg width="1600" height="900" xmlns="http://www.w3.org/2000/svg"><defs>' +
+				get_patterns_gradient( patt[3] ) + '<pattern patternUnits="userSpaceOnUse" patternTransform="scale(' +
+				s + ') rotate(' + r + ')" id="' + id + '" x="' + x + '" y="' + y +
+				'" width="' + patt[0] + '" height="' + patt[1] + '"><g>' + patt[6] +
+				'</g></pattern></defs><rect x="0" y="0" width="1600" height="900" fill="url(#' + id + ')"></rect></svg>';
+			b = 'url(data:image/svg+xml;base64,' + btoa( svg ) + ')';
+		}
+		$( '.sl-pl-pattern-preview-background' ).css( 'background', b );
+		$( '#sl-pl-pattern-preview-title' ).text( ' ( ' + p.replace( '-', ' ' ) + ' ) ' );
+	}
+
+	// Return patterns array
+	function get_patterns_array( pattern ) {
+		var patterns = [
+			'',
+			[ 30, 30, 0, 0, 0, '#000000', '<g fill="none" stroke-width="7" stroke="#000000" stroke-dasharray="1 2.4"><circle cy="15" r="8"/><circle stroke-dasharray="1.5 2.5" stroke-width="4" cx="15" r="5"/><circle cx="30" cy="15" r="8"/><circle stroke-dasharray="1.5 2.5" stroke-width="4" cx="15" cy="30" r="5"/></g>', ],
+			[ 70, 70, 20, 1, 0, '#66cc00', '<g id="csl-pl-pattern-02" fill="url(#grsl-pl-pattern-02)"><path d="M9.55 15.9 L0 15.9 L0 19.1 L9.55 19.1 L9.55 15.9 Z M13.05 10.75 L9.65 7.4 L7.4 9.65 L10.75 13.05 L13.05 10.75 Z M19.1 0 L15.9 0 L15.9 9.55 L19.1 9.55 L19.1 0 Z M27.6 9.65 L25.4 7.4 L22 10.75 L24.25 13.05 L27.6 9.65 Z M25.45 15.9 L25.45 19.1 L35 19.1 L35 15.9 L25.45 15.9 Z M17.5 12.75 C14.9 12.75 12.7 14.9 12.7 17.5 C12.7 20.15 14.9 22.25 17.5 22.25 C20.1 22.25 22.3 20.15 22.3 17.5 C22.3 14.9 20.1 12.75 17.5 12.75 Z M22 24.25 L25.4 27.6 L27.6 25.4 L24.25 22.05 L22 24.25 Z M7.4 25.4 L9.65 27.6 L13.05 24.25 L10.75 22.05 L7.4 25.4 Z M15.9 35 L19.1 35 L19.1 25.45 L15.9 25.45 L15.9 35 Z"/></g><use href="#csl-pl-pattern-02" x="70"/><use href="#csl-pl-pattern-02" x="35" y="35"/><use href="#csl-pl-pattern-02" x="35" y="-35"/>', ],
+		];
+		return patterns[ pattern ];
+	}
+
+	// Return patterns gradient
+	function get_patterns_gradient( id ) {
+		var grads = [
+			'',
+			'<linearGradient id="grsl-pl-pattern-02" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0" stop-color="#4d9900" stop-opacity="1"/><stop offset="0.45" stop-color="#80ff00" stop-opacity="1"/><stop offset="0.65" stop-color="#4d9900" stop-opacity="1"/><stop offset="1" stop-color="#80ff00" stop-opacity="1"/></linearGradient>',
+			''
+		];
+		return grads[ id ];
 	}
 
 	function getElementColor( name, color ) {

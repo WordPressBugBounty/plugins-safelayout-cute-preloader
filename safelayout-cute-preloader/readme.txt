@@ -3,7 +3,7 @@ Contributors: safelayout
 Tags: preload, preloader, loader, loading, wordpress preloader
 Requires at least: 4.7
 Tested up to: 6.9
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -13,6 +13,7 @@ Easily add a pure CSS animated preloader to your WordPress website.
 == Description ==
 
 An **easy-to-use**, **lightweight** and **powerful** preloader plugin. Safelayout Cute Preloader helps you to add a beautiful, pure CSS animated preloader to your website.
+
 
 [youtube https://www.youtube.com/watch?v=KrLU4_xY6i0]
 
@@ -28,6 +29,7 @@ An **easy-to-use**, **lightweight** and **powerful** preloader plugin. Safelayou
 * 35 Loading animation icons.
 * 18 Background exit effects.
 * background animation.
+* background pattern.
 * 14 Brand Image animation effects.
 * 11 Text animation effects.
 * progress bar and counter.
@@ -81,6 +83,10 @@ Safelayout Cute Preloader **Pro** is available. [Upgrade to pro version](https:/
 8. Special preloader
 
 == Changelog ==
+
+= 2.2.2 =
+* Added new feature, background pattern.
+* Fixed some issue.
 
 = 2.2.1 =
 * Fixed some issue.

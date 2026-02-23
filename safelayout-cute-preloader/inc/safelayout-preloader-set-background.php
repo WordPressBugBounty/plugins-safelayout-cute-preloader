@@ -206,13 +206,16 @@ if ( ! function_exists( 'safelayout_preloader_set_background' ) ) {
 				break;
 			case 'tear-vertical':
 				?>
-				.sl-pl-back-tear-vertical-left {
+				#sl-preloader .sl-pl-back-tear-vertical-left {
+					background-size: 3200px 1800px, 200% 100%  !important;
 					height: 100%;
 					left: 0;
 					top: 0;
 					width: 50%;
 				}
-				.sl-pl-back-tear-vertical-right {
+				#sl-preloader .sl-pl-back-tear-vertical-right {
+					background-position-x: -100%  !important;
+					background-size: 3200px 1800px, 200% 100%  !important;
 					height: 100%;
 					left: 50%;
 					top: 0;
@@ -230,13 +233,16 @@ if ( ! function_exists( 'safelayout_preloader_set_background' ) ) {
 				break;
 			case 'split-horizontal':
 				?>
-				.sl-pl-back-split-horizontal-left {
+				#sl-preloader .sl-pl-back-split-horizontal-left {
+					background-size: 3200px 1800px, 200% 100%  !important;
 					height: 100%;
 					left: 0;
 					top: 0;
 					width: 50%;
 				}
-				.sl-pl-back-split-horizontal-right {
+				#sl-preloader .sl-pl-back-split-horizontal-right {
+					background-position-x: -100%  !important;
+					background-size: 3200px 1800px, 200% 100%  !important;
 					height: 100%;
 					left: 50%;
 					top: 0;
@@ -254,13 +260,16 @@ if ( ! function_exists( 'safelayout_preloader_set_background' ) ) {
 				break;
 			case 'tear-horizontal':
 				?>
-				.sl-pl-back-tear-horizontal-top {
+				#sl-preloader .sl-pl-back-tear-horizontal-top {
+					background-size: 3200px 1800px, 100% 200%  !important;
 					height: 50%;
 					left: 0;
 					top: 0;
 					width: 100%;
 				}
-				.sl-pl-back-tear-horizontal-bottom {
+				#sl-preloader .sl-pl-back-tear-horizontal-bottom {
+					background-position-y: -100%  !important;
+					background-size: 3200px 1800px, 100% 200%  !important;
 					height: 50%;
 					left: 0;
 					top: 50%;
@@ -278,13 +287,16 @@ if ( ! function_exists( 'safelayout_preloader_set_background' ) ) {
 				break;
 			case 'split-vertical':
 				?>
-				.sl-pl-back-split-vertical-top {
+				#sl-preloader .sl-pl-back-split-vertical-top {
+					background-size: 3200px 1800px, 100% 200%  !important;
 					height: 50%;
 					left: 0;
 					top: 0;
 					width: 100%;
 				}
-				.sl-pl-back-split-vertical-bottom {
+				#sl-preloader .sl-pl-back-split-vertical-bottom {
+					background-position-y: -100%  !important;
+					background-size: 3200px 1800px, 100% 200%  !important;
 					height: 50%;
 					left: 0;
 					top: 50%;
@@ -308,7 +320,8 @@ if ( ! function_exists( 'safelayout_preloader_set_background' ) ) {
 					top: 0;
 					width: 100%;
 				}
-				.sl-pl-back-linear-left div {
+				#sl-preloader .sl-pl-back-linear-left div {
+					background-size: 3200px 1800px, 1000% 100% !important;
 					display: inline-block;
 					height: 100%;
 					transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1) 0s, background 0s;
@@ -317,31 +330,40 @@ if ( ! function_exists( 'safelayout_preloader_set_background' ) ) {
 				.sl-pl-loaded .sl-pl-back-linear-left div {
 					opacity: 0 !important;
 				}
-				.sl-pl-loaded .sl-pl-back-linear-left div:nth-child(2) {
+				#sl-preloader .sl-pl-back-linear-left div:nth-child(2) {
+					background-position-x: -100% !important;
 					transition-delay: 0.025s;
 				}
-				.sl-pl-loaded .sl-pl-back-linear-left div:nth-child(3) {
+				#sl-preloader .sl-pl-back-linear-left div:nth-child(3) {
+					background-position-x: -200% !important;
 					transition-delay: 0.05s;
 				}
-				.sl-pl-loaded .sl-pl-back-linear-left div:nth-child(4) {
+				#sl-preloader .sl-pl-back-linear-left div:nth-child(4) {
+					background-position-x: -300% !important;
 					transition-delay: 0.075s;
 				}
-				.sl-pl-loaded .sl-pl-back-linear-left div:nth-child(5) {
+				#sl-preloader .sl-pl-back-linear-left div:nth-child(5) {
+					background-position-x: -400% !important;
 					transition-delay: 0.1s;
 				}
-				.sl-pl-loaded .sl-pl-back-linear-left div:nth-child(6) {
+				#sl-preloader .sl-pl-back-linear-left div:nth-child(6) {
+					background-position-x: -500% !important;
 					transition-delay: 0.125s;
 				}
-				.sl-pl-loaded .sl-pl-back-linear-left div:nth-child(7) {
+				#sl-preloader .sl-pl-back-linear-left div:nth-child(7) {
+					background-position-x: -600% !important;
 					transition-delay: 0.15s;
 				}
-				.sl-pl-loaded .sl-pl-back-linear-left div:nth-child(8) {
+				#sl-preloader .sl-pl-back-linear-left div:nth-child(8) {
+					background-position-x: -700% !important;
 					transition-delay: 0.175s;
 				}
-				.sl-pl-loaded .sl-pl-back-linear-left div:nth-child(9) {
+				#sl-preloader .sl-pl-back-linear-left div:nth-child(9) {
+					background-position-x: -800% !important;
 					transition-delay: 0.2s;
 				}
-				.sl-pl-loaded .sl-pl-back-linear-left div:nth-child(10) {
+				#sl-preloader .sl-pl-back-linear-left div:nth-child(10) {
+					background-position-x: -900% !important;
 					transition-delay: 0.225s;
 				}
 				<?php
@@ -354,7 +376,8 @@ if ( ! function_exists( 'safelayout_preloader_set_background' ) ) {
 					top: 0;
 					width: 100%;
 				}
-				.sl-pl-back-linear-right div {
+				#sl-preloader .sl-pl-back-linear-right div {
+					background-size: 3200px 1800px, 1000% 100% !important;
 					display: inline-block;
 					height: 100%;
 					transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1) 0s, background 0s;
@@ -363,31 +386,42 @@ if ( ! function_exists( 'safelayout_preloader_set_background' ) ) {
 				.sl-pl-loaded .sl-pl-back-linear-right div {
 					opacity: 0 !important;
 				}
-				.sl-pl-loaded .sl-pl-back-linear-right div:nth-child(9) {
+				#sl-preloader .sl-pl-back-linear-right div:nth-child(10) {
+					background-position-x: -900% !important;
+				}
+				#sl-preloader .sl-pl-back-linear-right div:nth-child(9) {
+					background-position-x: -800% !important;
 					transition-delay: 0.025s;
 				}
-				.sl-pl-loaded .sl-pl-back-linear-right div:nth-child(8) {
+				#sl-preloader .sl-pl-back-linear-right div:nth-child(8) {
+					background-position-x: -700% !important;
 					transition-delay: 0.05s;
 				}
-				.sl-pl-loaded .sl-pl-back-linear-right div:nth-child(7) {
+				#sl-preloader .sl-pl-back-linear-right div:nth-child(7) {
+					background-position-x: -600% !important;
 					transition-delay: 0.075s;
 				}
-				.sl-pl-loaded .sl-pl-back-linear-right div:nth-child(6) {
+				#sl-preloader .sl-pl-back-linear-right div:nth-child(6) {
+					background-position-x: -500% !important;
 					transition-delay: 0.1s;
 				}
-				.sl-pl-loaded .sl-pl-back-linear-right div:nth-child(5) {
+				#sl-preloader .sl-pl-back-linear-right div:nth-child(5) {
+					background-position-x: -400% !important;
 					transition-delay: 0.125s;
 				}
-				.sl-pl-loaded .sl-pl-back-linear-right div:nth-child(4) {
+				#sl-preloader .sl-pl-back-linear-right div:nth-child(4) {
+					background-position-x: -300% !important;
 					transition-delay: 0.15s;
 				}
-				.sl-pl-loaded .sl-pl-back-linear-right div:nth-child(3) {
+				#sl-preloader .sl-pl-back-linear-right div:nth-child(3) {
+					background-position-x: -200% !important;
 					transition-delay: 0.175s;
 				}
-				.sl-pl-loaded .sl-pl-back-linear-right div:nth-child(2) {
+				#sl-preloader .sl-pl-back-linear-right div:nth-child(2) {
+					background-position-x: -100% !important;
 					transition-delay: 0.2s;
 				}
-				.sl-pl-loaded .sl-pl-back-linear-right div:nth-child(1) {
+				#sl-preloader .sl-pl-back-linear-right div:nth-child(1) {
 					transition-delay: 0.225s;
 				}
 				<?php

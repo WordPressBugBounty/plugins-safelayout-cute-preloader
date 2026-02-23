@@ -3,7 +3,7 @@
 Plugin Name: Safelayout Cute Preloader
 Plugin URI: https://safelayout.com
 Description: Easily add a pure CSS animated preloader to your WordPress website.
-Version: 2.2.1
+Version: 2.2.2
 Author: Safelayout
 Text Domain: safelayout-cute-preloader
 Domain Path: /languages
@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Preloader_Pro' ) ) {
 
 	// Define the constant used in this plugin
-	define( 'SAFELAYOUT_PRELOADER_VERSION', '2.2.1' );
+	define( 'SAFELAYOUT_PRELOADER_VERSION', '2.2.2' );
 	define( 'SAFELAYOUT_PRELOADER_NAME', plugin_basename( __FILE__ ) );
 	define( 'SAFELAYOUT_PRELOADER_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'SAFELAYOUT_PRELOADER_URL', plugin_dir_url( __FILE__ ) );
@@ -38,6 +38,12 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 			'maximum_time'				=> 9,
 			'background_anim'			=> 'linear-right',
 			'background_new_anim'		=> 'rising-squares',
+			'background_pattern'		=> 'No',
+			'background_pattern_color'	=> '#000000',
+			'background_pattern_scale'	=> 1,
+			'background_pattern_rotate'	=> 0,
+			'background_pattern_x'		=> 0,
+			'background_pattern_y'		=> 0,
 			'background_color_type'		=> 'solid',
 			'background_color_value'	=> '#101010',
 			'background_gradient_value'	=> 6,

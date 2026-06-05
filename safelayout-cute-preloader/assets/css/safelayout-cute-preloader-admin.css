@@ -1,7 +1,7 @@
 /*
 * Safelayout Cute Preloader Admin Stylesheet
 *
-* Version: 2.2.2
+* Version: 2.2.3
 *
 * Table of Contents:
 *
@@ -165,7 +165,6 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 	background: #fcb92c !important;
 	width: 160px;
 	height: 35px;
-	padding-top: 4px !important;
 	margin-top: 20px !important;
 	color: #00f !important;
 }
@@ -178,9 +177,6 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 }
 .sl-pl-side-button-icon {
 	color: #3737ff;
-	width: 25px;
-	height: 25px;
-	font-size: 25px;
 }
 #sl-pl-progress-bar-icon {
 	height: 10px;
@@ -648,10 +644,10 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 	font-size: 14px !important;
 	height: 33px;
 	text-align: center;
-	width: 210px;
+	width: 220px;
 }
 .sl-pl-special-button {
-	margin: 0 16px 20px 16px !important;
+	margin: 0 12px 20px 12px !important;
 }
 #sl-pl-play-bar {
 	margin-top: 30px;

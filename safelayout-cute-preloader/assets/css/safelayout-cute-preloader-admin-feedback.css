@@ -1,7 +1,7 @@
 /*
 * Safelayout Cute Preloader Admin Stylesheet
 *
-* Version: 2.2.2
+* Version: 2.2.3
 *
 * Table of Contents:
 *
@@ -53,7 +53,7 @@
 .sl-pl-feedback-footer {
 	border-top: 1px solid #dadadb;
 	font-size: 18px;
-	height: 50px;
+	height: 65px;
 	margin-top: 20px;
 	text-align: center;
 }
@@ -196,7 +196,7 @@
 }
 .sl-pl-rate-reminder-footer .button span,
 .sl-pl-upgrade-reminder-footer .button span {
-	padding: 3px;
+	padding: 0 3px;
 }
 #sl-pl-rate-ok {
 	background: #2271b1;

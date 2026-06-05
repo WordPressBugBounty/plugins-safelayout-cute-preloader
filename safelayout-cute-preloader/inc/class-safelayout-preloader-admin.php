@@ -2953,10 +2953,6 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 				}
 			} else if ( method_exists( 'WpFastestCache', 'deleteCache' ) && !empty( $wp_fastest_cache ) ) { // WP Fastest Cache
 				$wp_fastest_cache->deleteCache( true );
-			} else if ( class_exists( '\Kinsta\Cache' ) && !empty( $kinsta_cache ) ) { // Kinsta Cache
-				$kinsta_cache->kinsta_cache_purge->purge_complete_caches();
-			} else if ( class_exists( '\WPaaS\Cache' ) ) { // GoDaddy Cache
-				ccfm_godaddy_purge();
 			} else if ( class_exists( 'WP_Optimize' ) && defined( 'WPO_PLUGIN_MAIN_PATH' ) ) { // WP Optimize Cache
 				if ( !class_exists('WP_Optimize_Cache_Commands') ) {
 					include_once(WPO_PLUGIN_MAIN_PATH . 'cache/class-cache-commands.php');
@@ -2973,9 +2969,13 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 			} else if ( function_exists( 'sg_cachepress_purge_cache' ) ) { // SiteGround SuperCacher
 				sg_cachepress_purge_cache();
 			} else if ( class_exists( 'autoptimizeCache' ) ) { // Autoptimize
-				autoptimizeCache::clearall();
+				if ( method_exists( 'autoptimizeCache', 'clearall' ) ) {
+					autoptimizeCache::clearall();   
+				}
 			} else if ( class_exists( 'Cache_Enabler' ) ) { // Cache Enabler
-				Cache_Enabler::clear_total_cache();
+				if ( method_exists( 'Cache_Enabler', 'clear_total_cache' ) ) {
+					Cache_Enabler::clear_total_cache();   
+				}
 			} else if ( function_exists( 'rocket_clean_domain' ) ) { // WP Rocket
 				rocket_clean_domain();
 				if ( function_exists( 'rocket_clean_minify' ) ) {

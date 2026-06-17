@@ -1,19 +1,33 @@
 ﻿=== Safelayout Cute Preloader - CSS3 Wordpress Preloader ===
 Contributors: safelayout
-Tags: preload, preloader, loader, loading, wordpress preloader
+Tags: preload, preloader, loader, loading screen, wordpress preloader
 Requires at least: 4.7
 Tested up to: 7.0
-Stable tag: 2.2.3
+Stable tag: 2.2.4
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Easily add a pure CSS animated preloader to your WordPress website.
+Beautiful pure CSS animated preloader for your WordPress website. A highly lightweight, easy-to-use, and powerful site loader.
 
 == Description ==
 
-An **easy-to-use**, **lightweight** and **powerful** preloader plugin. Safelayout Cute Preloader helps you to add a beautiful, pure CSS animated preloader to your website.
+First impressions matter. When a visitor lands on your website, a slow-loading template or large images can cause a messy, unpolished layout shift. **Safelayout Cute Preloader** fixes this instantly by masking background loading gaps with a professional, beautifully animated entrance screen that fits your exact site layout style and corporate branding.
 
+Instead of staring at a blank screen and leaving your site out of frustration, your visitors see a responsive, fluid transition. You can display your company logo, custom typography strings, and smooth background gradients that match your active theme's colors perfectly. It turns a boring page wait into an elegant, branded introduction.
+
+### 🚀 High Performance, Zero Speed Impact
+Many web creators avoid loading animations because they worry a plugin will slow down their host server. **Safelayout Cute Preloader** is engineered with a **pure CSS animation** setup. Because it never processes heavy GIF image resources or bulky, render-blocking JavaScript files, its impact on your page speed is completely insignificant. It protects your Core Web Vitals and ensures smooth performance scores across modern mobile devices and desktops.
+
+### 🎨 Fully Custom Brand Alignment
+You have total control over the design, colors, and layout structures without editing code. Simply toggle pre-configured settings from your administration panel to mix beautiful linear gradients across your loader graphics, text elements, and background panels. Want a fully unique appearance? Upload your own custom logo asset, select elegant visual filter effects, map complex text kinetic styles, or apply subtle geometric background patterns to give your site a distinct identity.
+
+### 🏷️ Multi-Preloader Logic & Advanced Device Rules
+This utility provides unique, flexible routing frameworks for growing websites:
+* **The Special Preloader System:** Run completely different loading layouts on different sections of your website simultaneously. For example, you can assign an energetic design for your landing page marketing pipelines while keeping a minimal, professional setup on WooCommerce checkout areas.
+* **Smart Visibility Filtering:** Keep your content loops responsive using granular device controls. Choose to run your animation globally across all screens, display it only on mobile viewports, or restrict it strictly to desktop screens.
+
+See why website creators trust Safelayout for clean site layouts. It gives you an easy, plug-and-play setup that makes your web project look incredibly premium from the exact millisecond a user clicks your link.
 
 [youtube https://www.youtube.com/watch?v=KrLU4_xY6i0]
 
@@ -63,13 +77,32 @@ Safelayout Cute Preloader **Pro** is available. [Upgrade to pro version](https:/
 
 == Installation ==
 
-* Go to the Plugins section of your WordPress dashboard.
-* Click on Add New.
-* Click on the Upload Plugin button.
-* Browse and locate the zipped plugin that you have downloaded.
-* Activate the plugin by clicking on Activate.
-* Use the Settings -> **Safelayout Preloader** to configure the plugin.
-* Choose your style and enjoy.
+= Automated Installation (Recommended) =
+1. Go to your **WordPress Admin Dashboard -> Plugins -> Add New**.
+2. Input **"Safelayout Cute Preloader"** inside the keyword lookup directory bar.
+3. Click **Install Now**, then select **Activate**.
+
+= Manual Installation via ZIP Upload =
+1. Grab the official compressed plugin archive folder from the [Safelayout Cute Preloader WordPress.org Plugin Repository](https://wordpress.org/plugins/safelayout-cute-preloader/).
+2. Move to your **Plugins -> Add New -> Upload Plugin** dashboard panel screen.
+3. Select the file structure, run the installation script, and click **Activate**.
+
+== Frequently Asked Questions ==
+
+= Will this plugin slow down my website performance scores? =
+No, absolutely not. Safelayout Cute Preloader is specifically engineered for speed. It runs entirely on a lightweight, pure CSS animation engine without using heavy GIF images or bloated, render-blocking JavaScript files. Your core server loading speeds remain fast, and your Core Web Vitals stay completely protected.
+
+= What makes the "Special Preloader" feature unique? =
+Standard preloader plugins only allow you to display one single loading style across your entire website. The Special Preloader framework breaks this limitation. It allows you to create and deploy multiple different preloaders simultaneously, meaning you can assign a unique, energetic style to your landing pages while running a clean, minimal design on your WooCommerce checkout pages.
+
+= Can I use my own company logo as the loader? =
+Yes! You are not locked into using our pre-designed icons. You can easily upload your own custom brand image or corporate logo directly through the administration panel, apply premium image animation profiles to it, and use it as your main loading element.
+
+= Can I restrict the loading animation to mobile devices only? =
+Yes. The plugin features built-in granular device controls. From your settings panel, you can choose to display your custom preloader across all screens, target mobile phone viewports exclusively, or restrict the rendering to desktop monitors only.
+
+= Does this loading screen work with any WordPress theme? =
+Yes. The plugin is built using responsive styling variables that work flawlessly out of the box with any standard layout framework, including traditional Classic Themes and modern Full-Site Editing (FSE) Block Themes.
 
 == Screenshots ==
 
@@ -83,6 +116,9 @@ Safelayout Cute Preloader **Pro** is available. [Upgrade to pro version](https:/
 8. Special preloader
 
 == Changelog ==
+
+= 2.2.4 =
+* Fixed some issue.
 
 = 2.2.3 =
 * Fixed some issue.

@@ -2610,7 +2610,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 					$width = $options['custom_icon_width'];
 					$height = $options['custom_icon_height'];
 					if ( $url != '' && ( $width <= 0 || $height <= 0 ) ) {
-						list( $width, $height ) = getimagesize( $url );
+						list( $width, $height ) = getimagesize( esc_url_raw( $url, $this->add_data_protocol() ) );
 					}
 					echo '<div><img style="aspect-ratio: ' . esc_html( $width ) . ' / ' . esc_html( $height ) .
 						 '" width="' . esc_html( $width ) . '" height="' . esc_html( $height ) .

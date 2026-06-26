@@ -1,7 +1,7 @@
 /*
 * Safelayout Cute Preloader Admin Stylesheet
 *
-* Version: 2.2.4
+* Version: 2.2.5
 *
 * Table of Contents:
 *
@@ -115,9 +115,9 @@
 .ui-tabs ul.ui-tabs-nav li a {
 	color: #454545;
 	display: block;
+	float: none;
 	font-size: 16px;
-	padding-left: 5px;
-	padding-right: 5px;
+	padding: 0 5px;
 	text-decoration: none;
 }
 .ui-tabs ul.ui-tabs-nav li a:hover {

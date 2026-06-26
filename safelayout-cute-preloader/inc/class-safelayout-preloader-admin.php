@@ -340,7 +340,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 			);
 			$arg = array (
 				'body'			=> $data,
-				'timeout'		=> 30,
+				'timeout'		=> 10,
 				'sslverify'		=> false,
 				'httpversion'	=> 1.1,
 			);

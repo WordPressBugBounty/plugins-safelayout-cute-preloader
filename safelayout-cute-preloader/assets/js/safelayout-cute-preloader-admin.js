@@ -4,9 +4,6 @@ jQuery( document ).ready( function( $ ) {
 	$( "#tabs" ).on( "tabsactivate", function( event, ui ) {
 		$( '#ui_tabs_activate' ).val( $( "#tabs" ).tabs( "option", "active" ) );
 		showOtherBanner( $( '#ui_tabs_activate' ).val() );
-		if( $( '#ui_tabs_activate' ).val() == 8 ) {
-			document.getElementById( 'sl-pl-pro-features' ).src = document.getElementById( 'sl-pl-pro-features' ).src;
-		}
 	});
 
 	// Color pickers start

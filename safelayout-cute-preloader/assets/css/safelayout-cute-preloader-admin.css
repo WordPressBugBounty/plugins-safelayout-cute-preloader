@@ -1,7 +1,7 @@
 /*
 * Safelayout Cute Preloader Admin Stylesheet
 *
-* Version: 2.2.5
+* Version: 2.2.6
 *
 * Table of Contents:
 *
@@ -171,6 +171,7 @@ html[dir*="rtl"] .sl-pl-other-plugins {
 }
 #sl-pl-side-button-rate {
 	background: #a2ff6f !important;
+	margin-bottom: 20px;
 }
 #sl-pl-side-button-rate:hover,
 #sl-pl-side-button-upgrade:hover {

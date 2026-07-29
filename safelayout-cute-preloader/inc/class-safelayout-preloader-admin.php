@@ -16,6 +16,8 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 			add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 			add_action( 'admin_init', array( $this, 'init_settings' ) );
 			add_action( 'admin_init', array( $this, 'add_rate_reminder' ) );
+			add_action( 'wp_ajax_slpl_preloader_upgrade', array( $this, 'preloader_upgrade_ajax_handler' ) );
+			add_action( 'wp_ajax_slpl_preloader_rate_reminder', array( $this, 'preloader_rate_reminder_ajax_handler' ) );
 			add_action( 'add_meta_boxes', array( $this, 'add_meta_boxe' ) );
 			add_action( 'save_post', array( $this, 'save_meta_boxe' ) );
 			add_action( 'wp_ajax_preloader_meta_box_set', array( $this, 'add_preloader_meta_box_ajax_handler' ) );
@@ -165,13 +167,11 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 			if ( is_super_admin() ) {
 				$rate = $this->get_rate_data();
 				$upgrade = $this->get_upgrade_data();
-				if ( $upgrade < strtotime( '-9 day' ) ) {
+				if ( $upgrade < strtotime( '-30 day' ) ) {
 					add_action( 'admin_notices', array( $this, 'show_upgrade_message' ), 0 );
-					add_action( 'wp_ajax_slpl_preloader_upgrade', array( $this, 'preloader_upgrade_ajax_handler' ) );
 					add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_for_rate_reminder' ) );
-				} else if ( $upgrade < strtotime( '-1 day' ) && $rate['later'] != 0 && $rate['later'] < strtotime( '-3 day' ) ) {
+				} else if ( $upgrade < strtotime( '-1 day' ) && $rate['later'] != 0 && $rate['later'] < strtotime( '-14 day' ) ) {
 					add_action( 'admin_notices', array( $this, 'show_rate_reminder' ), 0 );
-					add_action( 'wp_ajax_slpl_preloader_rate_reminder', array( $this, 'preloader_rate_reminder_ajax_handler' ) );
 					add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_for_rate_reminder' ) );
 				}
 			}
@@ -431,8 +431,8 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 								<span class="dashicons dashicons-unlock sl-pl-side-button-icon"></span> <?php esc_html_e( 'Upgrade to Pro', 'safelayout-cute-preloader' ); ?>
 							</a>
 							<a href="https://wordpress.org/support/plugin/safelayout-cute-preloader/reviews/?filter=5" target="_blank" class="button" id="sl-pl-side-button-rate" title="<?php esc_html_e( 'Like the plugin? Please give us a rating!', 'safelayout-cute-preloader' ); ?>">
-								<span class="dashicons dashicons-star-filled sl-pl-side-button-icon"></span> <?php esc_html_e( 'Rate The Plugin', 'safelayout-cute-preloader' ); ?></a>
-							<li><a href="#tabs-9" style="color:#00f"><span class="dashicons dashicons-awards"></span> <?php esc_html_e( 'Pro Features', 'safelayout-cute-preloader' ); ?></a></li>
+								<span class="dashicons dashicons-star-filled sl-pl-side-button-icon"></span> <?php esc_html_e( 'Rate The Plugin', 'safelayout-cute-preloader' ); ?>
+							</a>
 						</ul>
 					</div>
 					<div class="ui-tabs-content">
@@ -461,9 +461,6 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 							</div>
 							<div id="tabs-8">
 								<?php do_settings_sections( 'safelayout-cute-preloader-special' ); ?>
-							</div>
-							<div id="tabs-9">
-								<iframe id="sl-pl-pro-features" width="690" height="900" src="https://safelayout.com/logo/preloader-pro-features.html?ver=<?php echo esc_html( SAFELAYOUT_PRELOADER_VERSION ); ?>"></iframe>
 							</div>
 							<div id="sl-pl-options-button-container">
 								<?php submit_button( esc_html__( 'Save Changes', 'safelayout-cute-preloader' ), 'primary', 'submit_btn', false ); ?>

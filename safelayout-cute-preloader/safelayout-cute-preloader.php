@@ -3,7 +3,7 @@
 Plugin Name: Safelayout Cute Preloader
 Plugin URI: https://safelayout.com
 Description: Easily add a pure CSS animated preloader to your WordPress website.
-Version: 2.2.6
+Version: 2.2.7
 Author: Safelayout
 Text Domain: safelayout-cute-preloader
 Domain Path: /languages
@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Preloader_Pro' ) ) {
 
 	// Define the constant used in this plugin
-	define( 'SAFELAYOUT_PRELOADER_VERSION', '2.2.6' );
+	define( 'SAFELAYOUT_PRELOADER_VERSION', '2.2.7' );
 	define( 'SAFELAYOUT_PRELOADER_NAME', plugin_basename( __FILE__ ) );
 	define( 'SAFELAYOUT_PRELOADER_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'SAFELAYOUT_PRELOADER_URL', plugin_dir_url( __FILE__ ) );
@@ -34,10 +34,10 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 			'specific_names'			=> '',
 			'device'					=> 'all',
 			'close_button'				=> 5,
-			'minimum_time'				=> 0.5,
+			'minimum_time'				=> 0,
 			'maximum_time'				=> 9,
 			'background_anim'			=> 'linear-right',
-			'background_new_anim'		=> 'rising-squares',
+			'background_new_anim'		=> 'No',
 			'background_pattern'		=> 'No',
 			'background_pattern_color'	=> '#000000',
 			'background_pattern_scale'	=> 1,
@@ -49,7 +49,7 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 			'background_gradient_value'	=> 6,
 			'background_alpha'			=> 95,
 			'background_small'			=> '',
-			'icon'						=> 'spinner',
+			'icon'						=> 'triple-spinner',
 			'custom_icon'				=> '',
 			'custom_icon_alt'			=> '',
 			'custom_icon_width'			=> 0,
@@ -57,14 +57,14 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 			'icon_size'					=> 50,
 			'icon_color_type'			=> 'solid',
 			'icon_color_value'			=> '#4285f4',
-			'icon_gradient_value'		=> 4,
+			'icon_gradient_value'		=> 9,
 			'icon_effect'				=> 0,
 			'text_enable'				=> 'enable',
 			'text'						=> esc_html__( 'Loading ...', 'safelayout-cute-preloader' ),
-			'text_anim'					=> 'zoom',
+			'text_anim'					=> 'glow',
 			'text_size'					=> 14,
 			'text_color'				=> '#fff',
-			'text_margin_top'			=> 5,
+			'text_margin_top'			=> 0,
 			'brand_enable'				=> 'enable',
 			'brand_url'					=> '',
 			'brand_url_alt'				=> '',
@@ -74,12 +74,12 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 			'brand_position'			=> 'top',
 			'brand_margin_top'			=> 0,
 			'brand_margin_bottom'		=> 0,
-			'bar_shape'					=> 'simple-bar',
+			'bar_shape'					=> 'anim-border-stripe-bar',
 			'bar_light'					=> 'enable',
 			'bar_position'				=> 'middle_under_text',
 			'bar_width'					=> 240,
 			'bar_width_unit'			=> 'px',
-			'bar_height'				=> 10,
+			'bar_height'				=> 12,
 			'bar_border_radius'			=> 2,
 			'bar_border_color'			=> '#0f0',
 			'bar_margin_top'			=> 5,

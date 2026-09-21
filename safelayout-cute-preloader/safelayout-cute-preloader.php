@@ -3,7 +3,7 @@
 Plugin Name: Safelayout Cute Preloader
 Plugin URI: https://safelayout.com
 Description: Easily add a pure CSS animated preloader to your WordPress website.
-Version: 2.2.7
+Version: 2.3.0
 Author: Safelayout
 Text Domain: safelayout-cute-preloader
 Domain Path: /languages
@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Preloader_Pro' ) ) {
 
 	// Define the constant used in this plugin
-	define( 'SAFELAYOUT_PRELOADER_VERSION', '2.2.7' );
+	define( 'SAFELAYOUT_PRELOADER_VERSION', '2.3.0' );
 	define( 'SAFELAYOUT_PRELOADER_NAME', plugin_basename( __FILE__ ) );
 	define( 'SAFELAYOUT_PRELOADER_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'SAFELAYOUT_PRELOADER_URL', plugin_dir_url( __FILE__ ) );
@@ -187,9 +187,7 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 		// exclude js WP Rocket
 		public function rocket_exclude_inline_js( $excluded ) {
 			$list = [
-				'safelayout-cute-preloader-brand-anim-synchro',
 				'safelayout-cute-preloader-script-js-before',
-				'safelayout-cute-preloader-visible',
 				'safelayout-cute-preloader-progress-bar-script-js',
 			];
 			foreach( $list as $li ) {
@@ -214,9 +212,7 @@ if ( ! class_exists( 'Safelayout_Preloader' ) && ! class_exists( 'Safelayout_Pre
 		// exclude js WP Rocket
 		public function rocket_delay_js_exclude( $excluded ) {
 			$list = [
-				'safelayout-cute-preloader-brand-anim-synchro',
 				'safelayout-cute-preloader-script-js-before',
-				'safelayout-cute-preloader-visible',
 				'safelayout-cute-preloader-progress-bar-script-js',
 				'safelayout-cute-preloader.min.js',
 			];

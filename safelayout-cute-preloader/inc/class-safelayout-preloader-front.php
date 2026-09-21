@@ -42,7 +42,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 				if ( $options['icon'] === 'Custom' && strpos( $options['custom_icon'], 'data:image' ) === false ) {
 					echo "\n" . '<link rel="preload" fetchpriority="high" as="image" href="' . esc_url( $options['custom_icon'] ) . '">';
 				}
-				echo "\n" . '<style id="safelayout-cute-preloader-visible-css" data-no-optimize="1" data-no-minify="1">#sl-preloader{visibility: hidden;}</style>';
+				echo "\n" . '<style id="safelayout-cute-preloader-visible-css" data-no-optimize="1" data-no-minify="1">@media (scripting: none){#sl-preloader{display: none !important}}</style>';
 			}
 		}
 
@@ -420,22 +420,9 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 
 			if ( false === $code ) {
 				$code = wp_kses( stripslashes( $options['code_CSS_HTML'] ), $allowed_tags );
-				set_transient( $id, $code, DAY_IN_SECONDS ); 
+				set_transient( $id, $code, DAY_IN_SECONDS );
 			}
 			$this->main_code = $code;
-			if ( $options['brand_enable'] === 'enable' && trim( $options['brand_url'] ) !== '' ) {
-				$temp1 = array( 'wrest-X', 'wrest-Y', 'roll', 'pipe', 'swirl', 'sheet', );
-				if ( in_array( $options['brand_anim'], $temp1 ) ) {
-					ob_start();
-					echo '<script id="safelayout-cute-preloader-brand-anim-synchro" data-no-delay-js="1" data-no-optimize="1" data-no-minify="1" type="text/javascript">' .
-						 "\n\tvar slplChilds = document.getElementById('sl-pl-brand-parent').children;" .
-						 "\n\tvar name = 'sl-pl-brand-" . esc_html( $options['brand_anim'] ) . "';" .
-						 "\n\tfor ( var i = 0 ; i < slplChilds.length ; i++ ) {\n\t\tif ( slplChilds[i].classList ) {\n\t\t\tslplChilds[i].classList.add( name );" .
-						 "\n\t\t} else {\n\t\t\tslplChilds[i].className += ' ' + name;\n\t\t}\n\t}" . "\n</script>";
-					$this->main_code .= ob_get_clean();
-				}
-			}
-			$this->main_code = '<script id="safelayout-cute-preloader-visible" data-no-delay-js="1" data-no-optimize="1" data-no-minify="1" type="text/javascript">var vStyle = document.createElement("style");document.head.appendChild(vStyle);vStyle.textContent = "#sl-preloader{visibility: visible !important;}";</script>' . $this->main_code;
 		}
 	}
 	new Safelayout_Preloader_Front();

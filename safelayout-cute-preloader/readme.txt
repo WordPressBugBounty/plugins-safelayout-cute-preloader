@@ -2,8 +2,8 @@
 Contributors: safelayout
 Tags: preload, preloader, loader, loading screen, wordpress preloader
 Requires at least: 4.7
-Tested up to: 7.0
-Stable tag: 2.2.7
+Tested up to: 7.1
+Stable tag: 2.3.0
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -116,6 +116,10 @@ Yes. The plugin is built using responsive styling variables that work flawlessly
 8. Special preloader
 
 == Changelog ==
+
+= 2.3.0 =
+* Fixed some issue.
+* Improved the preloader JavaScript code.
 
 = 2.2.7 =
 * Changed the default value of some settings.

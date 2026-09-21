@@ -2412,7 +2412,8 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 				echo ';max-width:' . esc_html( $width ) . 'px">';
 			}
 			for ( $i = 0; $i < $len -1 ; $i++ ) {
-				echo '<div class="sl-pl-brand-part" style="position:absolute;background-position:' . esc_html( -$i * $hKey ) . 'px ' .
+				echo '<div class="sl-pl-brand-part sl-pl-brand-' . esc_html( $options['brand_anim'] ) .
+					 '" style="position:absolute;background-position:' . esc_html( -$i * $hKey ) . 'px ' .
 					 esc_html( -$i * $wKey ) . 'px;top:' . esc_html( $i * $wKey ) . 'px;left:' . esc_html( $i * $hKey ) . 'px;animation-delay:' .
 					 esc_html( $i * $delay ) . 'ms;-webkit-animation-delay:' . esc_html( $i * $delay ) . 'ms;"></div>';
 			}

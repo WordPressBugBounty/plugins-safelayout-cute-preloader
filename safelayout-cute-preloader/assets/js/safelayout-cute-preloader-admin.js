@@ -585,7 +585,7 @@ jQuery( document ).ready( function( $ ) {
 		var img = new Image();
 		img.onload = function() {
 			var array = [ 'wrest-X', 'wrest-Y', 'swirl', 'sheet', 'roll', 'pipe', ];
-			if ( ( this.width >= 550 || this.height >= 550 ) && -1 != $.inArray( anim, array ) ) {
+			if ( -1 != $.inArray( anim, array ) ) {
 				alert( $( '#sl-pl-brand-size-alert' ).html() );
 				$( '#brand_anim' ).val( 'No' );
 				anim = 'No';
@@ -636,31 +636,30 @@ jQuery( document ).ready( function( $ ) {
 			case 'light-move':
 				elm = '<div class="sl-pl-brand-container"><div id="sl-pl-brand-' + anim + '"><img class="sl-pl-brand" src="' + src + '" /></div></div>';
 				break;
-			case 'wrest-X':
-				elm = brandImageSplitCodeGen( 'sl-pl-brand-wrest-X', src, width, height, 0, 1, 4 );
+			case 'parts01':
+			case 'parts02':
+			case 'parts03':
+				elm = brandImageSplitCodeGen( anim, src, width, height, 1 );
 				break;
-			case 'wrest-Y':
-				elm = brandImageSplitCodeGen( 'sl-pl-brand-wrest-Y', src, width, height, 1, 0, 4 );
-				break;
-			case 'roll':
-			case 'pipe':
-			case 'swirl':
-			case 'sheet':
-				elm = brandImageSplitCodeGen( 'sl-pl-brand-' + anim, src, width, height, 1, 0, -6 );
+			case 'rising-opacity-to-left':
+				elm = brandImageSplitCodeGen( anim, src, width, height, 0 );
 				break;
 		}
 		return elm;
 	}
 
 	// Generate brand image code
-	function brandImageSplitCodeGen( cls, src, width, height, wKey, hKey, delay ) {
-		var len = hKey ? width : height;
+	function brandImageSplitCodeGen( anim, src, width, height, delay ) {
+		var len = Math.ceil( width / 8 );
 		var elm = '<div class="sl-pl-brand-container"><div class="sl-pl-brand" style="width:' + width + 'px;height:' + height + 'px">';
-		for ( var i = 0; i < len -1 ; i++ ) {
-			elm += '<div class="' + cls + '" style="position:absolute;background-image:' + "url('" + src + "');";
-			elm += 'background-repeat:no-repeat;background-position:' + ( -i * hKey ) + 'px ' + ( -i * wKey ) + 'px;width:';
-			elm += ( hKey ? 2 : width ) + 'px;height:' + ( wKey ? 2 : height ) + 'px;';
-			elm += 'top:' + ( i * wKey ) + 'px;left:' + ( i * hKey ) + 'px;animation-delay:' + ( i * delay ) + 'ms;-webkit-animation-delay:' + ( i * delay ) + 'ms;"></div>';
+		for ( var i = 0; i < 8 ; i++ ) {
+			elm += '<div class="sl-pl-brand-' + anim + '" style="position:absolute;background-image:' + "url('" + src + "');";
+			elm += 'background-repeat:no-repeat;background-position:' + ( -i * len ) + 'px 0px;width:';
+			elm += len + 'px;height:100%;left:' + ( i * len ) + 'px;';
+			if ( delay ) {
+				elm += 'animation-delay:' + ( i * 0.06 ) + 's;-webkit-animation-delay:' + ( i * 0.06 ) + 's;';
+			}
+			elm += '"></div>';
 		}
 		return elm + '</div></div>';
 	}

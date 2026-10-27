@@ -3,7 +3,7 @@ Contributors: safelayout
 Tags: preload, preloader, loader, loading screen, wordpress preloader
 Requires at least: 4.7
 Tested up to: 7.1
-Stable tag: 2.3.0
+Stable tag: 2.3.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -44,7 +44,7 @@ See why website creators trust Safelayout for clean site layouts. It gives you a
 * 18 Background exit effects.
 * background animation.
 * background pattern.
-* 14 Brand Image animation effects.
+* 12 Brand Image animation effects.
 * 11 Text animation effects.
 * progress bar and counter.
 * Cross browser compatible.
@@ -116,6 +116,12 @@ Yes. The plugin is built using responsive styling variables that work flawlessly
 8. Special preloader
 
 == Changelog ==
+
+= 2.3.1 =
+* Improved the preloader CSS style.
+* Added 4 Brand Image animation effects.
+* Removed 6 Brand Image animation effects.
+* Fixed some issue.
 
 = 2.3.0 =
 * Fixed some issue.

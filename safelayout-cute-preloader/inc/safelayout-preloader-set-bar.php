@@ -6,13 +6,15 @@ if ( ! function_exists( 'safelayout_preloader_set_bar' ) ) {
 	// Return brand css
 	function safelayout_preloader_set_bar( $options ) {
 		?>
+		#sl-pl-bar-middle-container {
+			align-items: center;
+			display: flex;
+			justify-content: center;
+		}
 		.sl-pl-bar-container {
 			box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
 			box-sizing: content-box;
-			left: 50%;
 			position: absolute;
-			transform: translateX(-50%);
-			-webkit-transform: translateX(-50%);
 			z-index: 99;
 		}
 		.sl-pl-bar-back {

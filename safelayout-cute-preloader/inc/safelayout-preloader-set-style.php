@@ -6,6 +6,9 @@ if ( ! function_exists( 'safelayout_preloader_set_style' ) ) {
 	function safelayout_preloader_set_style( $options ) {
 		?>
 		#sl-preloader {
+			align-items: center;
+			display: flex;
+			justify-content: center;
 			height: 100vh;
 			left: 0;
 			max-height: 100%;
@@ -100,7 +103,7 @@ if ( ! function_exists( 'safelayout_preloader_set_style' ) ) {
 		?>
 		#sl-pl-counter {
 			position: relative;
-			line-height: normal;
+			line-height: 1.4;
 			white-space: nowrap;
 			width: 100%;
 		}

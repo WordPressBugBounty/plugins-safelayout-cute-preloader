@@ -16,8 +16,8 @@ if ( ! function_exists( 'safelayout_preloader_set_brand' ) ) {
 		}
 		.sl-pl-brand-container,
 		.sl-pl-brand-container div {
-			perspective: 200px;
-			-webkit-perspective: 200px;
+			perspective: 300px;
+			-webkit-perspective: 300px;
 			position: relative;
 			text-align: center;
 		}
@@ -279,166 +279,143 @@ if ( ! function_exists( 'safelayout_preloader_set_brand' ) ) {
 				}
 				<?php
 				break;
-			case 'wrest-X':
+			case 'parts01':
 				?>
-				.sl-pl-brand-wrest-X {
-					animation: sl-pl-wrest-X-anim 2.4s linear infinite;
-					-webkit-animation: sl-pl-wrest-X-anim 2.4s linear infinite;
+				.sl-pl-brand-parts01 {
+					animation: sl-pl-parts01-anim 4.8s linear infinite;
+					-webkit-animation: sl-pl-parts01-anim 4.8s linear infinite;
+					transform-origin: 65% 14% 29px;
+					-webkit-transform-origin: 65% 14% 29px;
 				}
-				@-webkit-keyframes sl-pl-wrest-X-anim {
-					0% {
-						-webkit-transform: scale(1) rotateX(360deg);
+				@-webkit-keyframes sl-pl-parts01-anim {
+					0%, 5%, 85%, 100% {
+						-webkit-transform: rotateZ(0) rotateX(0) rotateY(0) scale(3, 3);
+						opacity: 0;
 					}
-					25% {
-						-webkit-transform: scale(1.3) rotateX(180deg);
-					}
-					55%, 100% {
-						-webkit-transform: scale(1) rotateX(0);
+					28%, 75% {
+						-webkit-transform: rotateZ(-360deg) rotateX(-360deg) rotateY(-360deg) scale(1, 1);
+						opacity: 1;
 					}
 				}
-				@keyframes sl-pl-wrest-X-anim {
-					0% {
-						transform: scale(1) rotateX(360deg);
+				@keyframes sl-pl-parts01-anim {
+					0%, 5%, 85%, 100% {
+						transform: rotateZ(0) rotateX(0) rotateY(0) scale(3, 3);
+						opacity: 0;
 					}
-					25% {
-						transform: scale(1.3) rotateX(180deg);
-					}
-					55%, 100% {
-						transform: scale(1) rotateX(0);
+					28%, 75% {
+						transform: rotateZ(-360deg) rotateX(-360deg) rotateY(-360deg) scale(1, 1);
+						opacity: 1;
 					}
 				}
 				<?php
 				break;
-			case 'wrest-Y':
+			case 'parts02':
 				?>
-				.sl-pl-brand-wrest-Y {
-					animation: sl-pl-wrest-Y-anim 2.4s linear infinite;
-					-webkit-animation: sl-pl-wrest-Y-anim 2.4s linear infinite;
+				.sl-pl-brand-parts02 {
+					animation: sl-pl-parts02-anim 4.8s linear infinite;
+					-webkit-animation: sl-pl-parts02-anim 4.8s linear infinite;
+					transform-origin: 96% 66% 12px;
+					-webkit-transform-origin: 96% 66% 12px;
 				}
-				@-webkit-keyframes sl-pl-wrest-Y-anim {
-					0% {
-						-webkit-transform: scale(1) rotateY(360deg);
+				@-webkit-keyframes sl-pl-parts02-anim {
+					0%, 5%, 85%, 100% {
+						-webkit-transform: rotateX(360deg) rotateY(-360deg) rotateZ(360deg) scale(2, 2) translate(10px ,-10px);
+						opacity: 0;
 					}
-					25% {
-						-webkit-transform: scale(1.3) rotateY(180deg);
-					}
-					55%, 100% {
-						-webkit-transform: scale(1) rotateY(0);
+					28%, 75% {
+						-webkit-transform: rotateX(0) rotateY(0) rotateZ(0) scale(1, 1) translate(0 ,0);
+						opacity: 1;
 					}
 				}
-				@keyframes sl-pl-wrest-Y-anim {
-					0% {
-						transform: scale(1) rotateY(360deg);
+				@keyframes sl-pl-parts02-anim {
+					0%, 5%, 85%, 100% {
+						transform: rotateX(360deg) rotateY(-360deg) rotateZ(360deg) scale(2, 2) translate(10px ,-10px);
+						opacity: 0;
 					}
-					25% {
-						transform: scale(1.3) rotateY(180deg);
-					}
-					55%, 100% {
-						transform: scale(1) rotateY(0);
+					28%, 75% {
+						transform: rotateX(0) rotateY(0) rotateZ(0) scale(1, 1) translate(0 ,0);
+						opacity: 1;
 					}
 				}
 				<?php
 				break;
-			case 'roll':
+			case 'parts03':
 				?>
-				.sl-pl-brand-roll {
-					animation: sl-pl-roll-anim 2.9s cubic-bezier(0.39, 0.58, 0.57, 1) infinite;
-					-webkit-animation: sl-pl-roll-anim 2.9s cubic-bezier(0.39, 0.58, 0.57, 1) infinite;
-					transform-origin: -10% 15% -35px;
-					-webkit-transform-origin: -10% 15% -35px;
+				.sl-pl-brand-parts03 {
+					animation: sl-pl-parts03-anim 4.8s linear infinite;
+					-webkit-animation: sl-pl-parts03-anim 4.8s linear infinite;
+					transform-origin: 102% 31% 25px;
+					-webkit-transform-origin: 102% 31% 25px;
 				}
-				@-webkit-keyframes sl-pl-roll-anim {
-					0% {
-						-webkit-transform: translate(20px ,-20px) rotateX(-720deg) scale(2,2);
+				@-webkit-keyframes sl-pl-parts03-anim {
+					0%, 5%, 85%, 100% {
+						-webkit-transform: rotateX(660deg) rotateY(0) rotateZ(0) scale(0, 3) translate(0 ,0);
+						opacity: 0;
 					}
-					45%, 100% {
-						-webkit-transform: translate(0 ,0) rotateX(0) scale(1, 1);
+					28%, 75% {
+						-webkit-transform: rotateX(0) rotateY(0) rotateZ(0) scale(1, 1) translate(0 ,0);
+						opacity: 1;
 					}
 				}
-				@keyframes sl-pl-roll-anim {
-					0% {
-						transform: translate(20px ,-20px) rotateX(-720deg) scale(2,2);
+				@keyframes sl-pl-parts03-anim {
+					0%, 5%, 85%, 100% {
+						transform: rotateX(660deg) rotateY(0) rotateZ(0) scale(0, 3) translate(0 ,0);
+						opacity: 0;
 					}
-					45%, 100% {
-						transform: translate(0 ,0) rotateX(0) scale(1, 1);
+					28%, 75% {
+						transform: rotateX(0) rotateY(0) rotateZ(0) scale(1, 1) translate(0 ,0);
+						opacity: 1;
 					}
 				}
 				<?php
 				break;
-			case 'pipe':
+			case 'rising-opacity-to-left':
 				?>
-				.sl-pl-brand-pipe {
-					animation: sl-pl-pipe-anim 2.9s ease-in-out infinite;
-					-webkit-animation: sl-pl-pipe-anim 2.9s ease-in-out infinite;
-					transform-origin: 70% 14% -40px;
-					-webkit-transform-origin: 70% 14% -40px;
+				@property --sl-pl-brand-rising-step {
+					syntax: '<number>';
+					inherits: true;
+					initial-value: 0;
 				}
-				@-webkit-keyframes sl-pl-pipe-anim {
-					0% {
-						-webkit-transform: translate(20px ,-20px) rotateZ(-10deg) rotateX(720deg) rotateY(-50deg) scale(2,2);
-					}
-					45%, 100% {
-						-webkit-transform: translate(0 ,0) rotateZ(0) rotateX(0) rotateY(0) scale(1, 1);
-					}
+				.sl-pl-brand .sl-pl-brand-rising-opacity-to-left {
+					animation: sl-pl-rising-opacity-to-left-anim 4s linear infinite;
+					-webkit-animation: sl-pl-rising-opacity-to-left-anim 4s linear infinite;
+					opacity: clamp(0.2, 0.2 + (var(--sl-pl-brand-rising-step) - (var(--i) - 1)) * 0.8, 1);
 				}
-				@keyframes sl-pl-pipe-anim {
-					0% {
-						transform: translate(20px ,-20px) rotateZ(-10deg) rotateX(720deg) rotateY(-50deg) scale(2,2);
+				.sl-pl-brand .sl-pl-brand-rising-opacity-to-left:nth-child(1) { --i: 8; }
+				.sl-pl-brand .sl-pl-brand-rising-opacity-to-left:nth-child(2) { --i: 7; }
+				.sl-pl-brand .sl-pl-brand-rising-opacity-to-left:nth-child(3) { --i: 6; }
+				.sl-pl-brand .sl-pl-brand-rising-opacity-to-left:nth-child(4) { --i: 5; }
+				.sl-pl-brand .sl-pl-brand-rising-opacity-to-left:nth-child(5) { --i: 4; }
+				.sl-pl-brand .sl-pl-brand-rising-opacity-to-left:nth-child(6) { --i: 3; }
+				.sl-pl-brand .sl-pl-brand-rising-opacity-to-left:nth-child(7) { --i: 2; }
+				.sl-pl-brand .sl-pl-brand-rising-opacity-to-left:nth-child(8) { --i: 1; }
+
+				@-webkit-keyframes sl-pl-rising-opacity-to-left-anim {
+					0%, 5% {
+						--sl-pl-brand-rising-step: 0;
 					}
-					45%, 100% {
-						transform: translate(0 ,0) rotateZ(0) rotateX(0) rotateY(0) scale(1, 1);
+					70% {
+						--sl-pl-brand-rising-step: 8;
 					}
-				}
-				<?php
-				break;
-			case 'swirl':
-				?>
-				.sl-pl-brand-swirl {
-					animation: sl-pl-swirl-anim 2.9s ease-in-out infinite;
-					-webkit-animation: sl-pl-swirl-anim 2.9s ease-in-out infinite;
-					transform-origin: 30% 10% 50px;
-					-webkit-transform-origin: 30% 10% 50px;
-				}
-				@-webkit-keyframes sl-pl-swirl-anim {
-					0% {
-						-webkit-transform: translate(20px ,-20px) rotateZ(-360deg) rotateY(50deg) scale(0.5,0.5);
+					99.9% {
+						--sl-pl-brand-rising-step: 8;
 					}
-					45%, 100% {
-						-webkit-transform: translate(0 ,0) rotateZ(0) rotateY(0) scale(1, 1);
+					100% {
+						--sl-pl-brand-rising-step: 0;
 					}
 				}
-				@keyframes sl-pl-swirl-anim {
-					0% {
-						transform: translate(20px ,-20px) rotateZ(-360deg) rotateY(50deg) scale(0.5,0.5);
+				@keyframes sl-pl-rising-opacity-to-left-anim {
+					0%, 5% {
+						--sl-pl-brand-rising-step: 0;
 					}
-					45%, 100% {
-						transform: translate(0 ,0) rotateZ(0) rotateY(0) scale(1, 1);
+					70% {
+						--sl-pl-brand-rising-step: 8;
 					}
-				}
-				<?php
-				break;
-			case 'sheet':
-				?>
-				.sl-pl-brand-sheet {
-					animation: sl-pl-sheet-anim 2.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-					-webkit-animation: sl-pl-sheet-anim 2.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-					transform-origin: 90% 0 -40px;
-					-webkit-transform-origin: 90% 0 -40px;
-				}
-				@-webkit-keyframes sl-pl-sheet-anim {
-					0% {
-						-webkit-transform: rotateX(0deg) scale(0.1, 1);
+					99.9% {
+						--sl-pl-brand-rising-step: 8;
 					}
-					45%, 100% {
-						-webkit-transform: rotateX(-360deg) scale(1, 1);
-					}
-				}
-				@keyframes sl-pl-sheet-anim {
-					0% {
-						transform: rotateX(0deg) scale(0.1, 1);
-					}
-					45%, 100% {
-						transform: rotateX(-360deg) scale(1, 1);
+					100% {
+						--sl-pl-brand-rising-step: 0;
 					}
 				}
 				<?php

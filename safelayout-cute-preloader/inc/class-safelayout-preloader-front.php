@@ -304,7 +304,6 @@ if ( ! class_exists( 'Safelayout_Preloader_Front' ) ) {
 		// Set main code(html)
 		public function set_main_code() {
 			$allowed_tags = array(
-				'noscript'		=> [],
 				'femerge'		=> [],
 				'femergenode'	=> [ 'in'			=> 1, ],
 				'span'			=> [ 'style'		=> 1, ],

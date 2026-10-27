@@ -7,12 +7,8 @@ if ( ! function_exists( 'safelayout_preloader_set_icon_group1' ) ) {
 	function safelayout_preloader_set_icon_group1( $options ) {
 		?>
 		.sl-pl-spin-container {
-			left: 50%;
 			position: absolute;
 			text-align: center;
-			top: 50%;
-			transform: translate(-50%, -50%);
-			-webkit-transform: translate(-50%, -50%);
 			width: 100%;
 		}
 		.sl-pl-spin {

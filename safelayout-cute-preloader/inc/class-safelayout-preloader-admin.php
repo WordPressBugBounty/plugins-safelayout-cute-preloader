@@ -1246,10 +1246,12 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 
 		// Background animation field code
 		public function settings_background_new_anim_callback() {
+			$msg = __( 'Note: Depending on the type (excluding rising squares, rising shapes, and adrift shapes), the background animation requires loading one or two additional files on your site visitors\' devices and uses more resources. Starting with version 2.3 of the plugin, background animations are not displayed on mobile devices to improve preloader performance.', 'safelayout-cute-preloader' );
 			$backgrounds = array( 'No', 'rising-squares', );
 			$counter = 0;
 
-			echo '<span class="sl-pl-new-msg">New !</span><br /><div id="sl-pl-new-background-container">';
+			echo '<span class="sl-pl-new-msg">New !</span><br /><span style="margin: 0 10px" class="sl-pl-pref-alarm-message">' .
+				 esc_html( $msg ) . '</span><div id="sl-pl-new-background-container">';
 			foreach ( $backgrounds as $background ) {
 				echo '<input class="sl-pl-new-background-radio" type="radio" id="preloader_new_background_' .
 					 esc_html( $counter ) . '" name="safelayout_preloader_options[background_new_anim]" value="' .
@@ -1364,18 +1366,22 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 
 		// Brand animation field code
 		public function settings_brand_anim_callback() {
-			$msg = __( 'Wrest X, wrest Y, swirl, sheet, roll and pipe animation types are not suitable for images with a width or height greater than 550 pixels.', 'safelayout-cute-preloader' );
-			$anims = array( 'No', 'light move', 'flash', 'rotate 2D', 'rotate 3D X', 'rotate 3D Y', 'wrest X',
-							'wrest Y', 'swirl', 'sheet', 'roll', 'pipe', 'bounce', 'yoyo', 'swing', );
+			$msg = __( 'We removed the wrest X, wrest Y, swirl, sheet, roll and pipe animations from both the free and Pro versions of the plugin because they added too many HTML elements to the page and reduced performance.', 'safelayout-cute-preloader' );
+			$anims = array( 'No', 'light move', 'flash', 'rotate 2D', 'rotate 3D X', 'rotate 3D Y', 'rising opacity to left', 'parts01', 'parts02', 'parts03', 'bounce', 'yoyo', 'swing', );
 			echo '<select name="safelayout_preloader_options[brand_anim]" id="brand_anim" class="sl-pl-brand-enable">';
 
+			$temp1 = $this->options['brand_anim'];
+			$temp2 = array( 'wrest-X', 'wrest-Y', 'swirl', 'sheet', 'roll', 'pipe', );
+			if ( in_array( $temp1, $temp2 ) ) {
+				$temp1 = 'No';
+			}
 			foreach ( $anims as $anim ) {
 				echo '<option value="' . esc_html( str_replace( ' ', '-', $anim ) ) . '" ' .
-					 selected( esc_attr( $this->options['brand_anim'] ), str_replace( ' ', '-', $anim ), false ) . '>' .
+					 selected( esc_attr( $temp1 ), str_replace( ' ', '-', $anim ), false ) . '>' .
 					 esc_html( $anim ) . ( $anim === 'No' ? ' animation' : '') . '</option>';
 			}
 
-			echo '</select><span class="sl-pl-hidden" id="sl-pl-brand-size-alert">' . esc_html( $msg ) . '</span>';
+			echo '</select><span class="sl-pl-pref-alarm-message">' . esc_html( $msg ) . '</span>';
 		}
 
 		// Brand preview code
@@ -2358,7 +2364,12 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 			$alt = $alt != '' ? $alt : 'Brand Image';
 			$width = $options['brand_width'];
 			$height = $options['brand_height'];
-			switch ( $options['brand_anim'] ) {
+			$anim = $options['brand_anim'];
+			$temp1 = array( 'wrest-X', 'wrest-Y', 'swirl', 'sheet', 'roll', 'pipe', );
+			if ( in_array( $anim, $temp1 ) ) {
+				$anim = 'No';
+			}
+			switch ( $anim ) {
 				case 'No':
 					echo '<div class="sl-pl-brand-container"><img style="aspect-ratio: ' . esc_html( $width ) . ' / ' . esc_html( $height ) .
 						 '" width="' . esc_html( $width ) . '" height="' . esc_html( $height ) .
@@ -2376,34 +2387,30 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 						 '" width="' . esc_html( $width ) . '" height="' . esc_html( $height ) .
 						 '" data-no-lazy="1" class="skip-lazy sl-pl-brand" alt="' . esc_html( $alt ) .
 						 '" src="' . esc_url( $options['brand_url'], $this->add_data_protocol() ) .
-						 '" id="sl-pl-brand-' . esc_html( $options['brand_anim'] ) . '" /></div>';
+						 '" id="sl-pl-brand-' . esc_html( $anim ) . '" /></div>';
 					break;
 				case 'light-move':
-					echo '<div class="sl-pl-brand-container"><div id="sl-pl-brand-' . esc_html( $options['brand_anim'] ) .
+					echo '<div class="sl-pl-brand-container"><div id="sl-pl-brand-' . esc_html( $anim ) .
 						 '"><img style="aspect-ratio: ' . esc_html( $width ) . ' / ' . esc_html( $height ) .
 						 '" width="' . esc_html( $width ) . '" height="' . esc_html( $height ) .
 						 '" data-no-lazy="1" class="skip-lazy sl-pl-brand" alt="' . esc_html( $alt ) .
 						 '" src="' . esc_url( $options['brand_url'], $this->add_data_protocol() ) .
 						 '" /></div></div>';
 					break;
-				case 'wrest-X':
-					$this->set_brand_split( $options, $width, $height, 0, 1, 4 );
+				case 'parts01':
+				case 'parts02':
+				case 'parts03':
+					$this->set_brand_split( $options, $width, $height, 1 );
 					break;
-				case 'wrest-Y':
-					$this->set_brand_split( $options, $width, $height, 1, 0, 4 );
-					break;
-				case 'roll':
-				case 'pipe':
-				case 'swirl':
-				case 'sheet':
-					$this->set_brand_split( $options, $width, $height, 1, 0, -6 );
+				case 'rising-opacity-to-left':
+					$this->set_brand_split( $options, $width, $height, 0 );
 					break;
 			}
 		}
 
 		// echo brand split
-		public function set_brand_split( $options, $width, $height, $wKey, $hKey, $delay ) {
-			$len = $hKey ? $width : $height;
+		public function set_brand_split( $options, $width, $height, $delay ) {
+			$len = ceil( $width / 8 );
 			echo '<div class="sl-pl-brand-container"><div id="sl-pl-brand-parent" class="sl-pl-brand" style="aspect-ratio:' .
 				 esc_html( $width ) . ' / ' . esc_html( $height );
 			if ( $options['background_small'] == 'enable' ) {
@@ -2411,11 +2418,15 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 			} else {
 				echo ';max-width:' . esc_html( $width ) . 'px">';
 			}
-			for ( $i = 0; $i < $len -1 ; $i++ ) {
-				echo '<div class="sl-pl-brand-part sl-pl-brand-' . esc_html( $options['brand_anim'] ) .
-					 '" style="position:absolute;background-position:' . esc_html( -$i * $hKey ) . 'px ' .
-					 esc_html( -$i * $wKey ) . 'px;top:' . esc_html( $i * $wKey ) . 'px;left:' . esc_html( $i * $hKey ) . 'px;animation-delay:' .
-					 esc_html( $i * $delay ) . 'ms;-webkit-animation-delay:' . esc_html( $i * $delay ) . 'ms;"></div>';
+			$anim = $options['brand_anim'];
+			for ( $i = 0; $i < 8 ; $i++ ) {
+				echo '<div class="sl-pl-brand-part sl-pl-brand-' . esc_html( $anim ) .
+					 '" style="position:absolute;background-position:' . esc_html( -$i * $len ) . 'px ' .
+					 '0px;left:' . esc_html( $i * $len ) . 'px;';
+				if ( $delay ) {
+					echo 'animation-delay:' . esc_html( $i * 0.06 ) . 's;-webkit-animation-delay:' . esc_html( $i * 0.06 ) . 's;';
+				}
+				echo '"></div>';
 			}
 			echo '</div></div>';
 		}
@@ -2768,8 +2779,7 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 							$icon_margin_h += ( $options['icon_size'] - 50 ) / 2;
 						}
 					}
-					$temp0 = array( 'wrest-X', 'wrest-Y', 'roll', 'pipe', 'swirl', 'sheet', );
-					if ( $brand && in_array( $options['brand_anim'], $temp0 ) ) {
+					if ( str_contains( $options['brand_anim'], 'parts' ) || str_contains( $options['brand_anim'], 'rising-opacity' ) ) {
 						echo ';min-width: ' . esc_html( $options['brand_width'] ) .'px';
 					}
 					echo '}';
@@ -2782,13 +2792,11 @@ if ( ! class_exists( 'Safelayout_Preloader_Admin' ) ) {
 				echo '.sl-pl-brand-container{margin-top: ' . esc_html( $options['brand_margin_top'] ) . 'px !important;' .
 					 'margin-bottom: ' . esc_html( $options['brand_margin_bottom'] ) .'px !important;}';
 
-				$temp0 = array( 'wrest-X', 'wrest-Y', 'roll', 'pipe', 'swirl', 'sheet', );
-				if ( in_array( $options['brand_anim'], $temp0 ) ) {
-					$key = $options['brand_anim'] === 'wrest-X';
-					echo '.sl-pl-brand-part{background-repeat: no-repeat;background-size: cover;' .
+				if ( str_contains( $options['brand_anim'], 'parts' ) || str_contains( $options['brand_anim'], 'rising-opacity' ) ) {
+					$w1 = ceil( $options['brand_width'] / 8 );
+					echo '.sl-pl-brand-part{opacity: 0;background-repeat: no-repeat;background-size: cover;' .
 						 "background-image: url('" . esc_url( $options['brand_url'], $this->add_data_protocol() ) . "');" .
-						 'width: ' . ( $key ? '2px;' : '100%;' ) . 'height: ' . ( ! $key ? '2px;}' : '100%}' );
-				}
+						 'width: ' . esc_html( $w1 ) . 'px;height: 100%}';				}
 			}
 
 			// set progress bar css

@@ -8,7 +8,7 @@ if ( ! function_exists( 'safelayout_preloader_set_text' ) ) {
 		?>
 		.sl-pl-text {
 			position: relative;
-			line-height: normal;
+			line-height: 1.4;
 		}
 		.sl-pl-text span {
 			display: inline-block;
